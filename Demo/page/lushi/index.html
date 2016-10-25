@@ -176,7 +176,7 @@
 								</ul>
 								<a href="list_article.html" class="more" target="_blank">查看更多内容</a>
 							</div>
-							<div id="news-left-con1" class="tab-item1">
+							<div id="news-left-con1" class="tab-item1 none">
 								<ul class="news-left-list">
 									<li>
 										<span>06-22</span>
@@ -211,7 +211,7 @@
 								</ul>
 								<a href="list_article.html" class="more" target="_blank">查看更多内容</a>
 							</div>
-							<div id="news-left-con2" class="tab-item1">
+							<div id="news-left-con2" class="tab-item1 none">
 								<ul class="news-left-list">
 									<li>
 										<span>06-22</span>
@@ -402,7 +402,7 @@
 						</ul>
 					</div>
 				</div>
-				<div class="career-content" id="myCareer-Content1">
+				<div class="career-content none" id="myCareer-Content1">
 					<div class="info-left">
 						<div class="info-title">
 							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 热门卡组
@@ -464,7 +464,7 @@
 						</ul>
 					</div>
 				</div>
-				<div class="career-content" id="myCareer-Content2">
+				<div class="career-content none" id="myCareer-Content2">
 					<div class="info-left">
 						<div class="info-title">
 							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 热门卡组
@@ -526,7 +526,7 @@
 						</ul>
 					</div>
 				</div>
-				<div class="career-content" id="myCareer-Content3">
+				<div class="career-content none" id="myCareer-Content3">
 					<div class="info-left">
 						<div class="info-title">
 							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 热门卡组
@@ -588,7 +588,7 @@
 						</ul>
 					</div>
 				</div>
-				<div class="career-content" id="myCareer-Content4">
+				<div class="career-content none" id="myCareer-Content4">
 					<div class="info-left">
 						<div class="info-title">
 							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 热门卡组
@@ -650,7 +650,7 @@
 						</ul>
 					</div>
 				</div>
-				<div class="career-content" id="myCareer-Content5">
+				<div class="career-content none" id="myCareer-Content5">
 					<div class="info-left">
 						<div class="info-title">
 							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 热门卡组
@@ -712,7 +712,7 @@
 						</ul>
 					</div>
 				</div>
-				<div class="career-content" id="myCareer-Content6">
+				<div class="career-content none" id="myCareer-Content6">
 					<div class="info-left">
 						<div class="info-title">
 							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 热门卡组
@@ -774,7 +774,7 @@
 						</ul>
 					</div>
 				</div>
-				<div class="career-content" id="myCareer-Content7">
+				<div class="career-content none" id="myCareer-Content7">
 					<div class="info-left">
 						<div class="info-title">
 							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 热门卡组
@@ -836,7 +836,7 @@
 						</ul>
 					</div>
 				</div>
-				<div class="career-content" id="myCareer-Content8">
+				<div class="career-content none" id="myCareer-Content8">
 					<div class="info-left">
 						<div class="info-title">
 							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 热门卡组
@@ -1082,12 +1082,12 @@
 					</a> <a href="article.html"> <img src="images/adventure-1.jpg" alt="探险者协会"> </a> <a href="article.html">
 						<img src="images/adventure-1.jpg" alt="探险者协会"> </a>
 					</div>
-					<div class="adventure-list tab-item">
+					<div class="adventure-list tab-item none">
 						<a href="#"> <img src="images/adventure-2.jpg" alt="黑石深渊"> </a> <a href="#"> <img src="images/adventure-2.jpg" alt="黑石深渊">
 					</a> <a href="#"> <img src="images/adventure-2.jpg" alt="黑石深渊"> </a> <a href="#"> <img src="images/adventure-2.jpg" alt="黑石深渊">
 					</a> <a href="#"> <img src="images/adventure-2.jpg" alt="黑石深渊"> </a>
 					</div>
-					<div class="adventure-list tab-item">
+					<div class="adventure-list tab-item none">
 						<a href="#"> <img src="images/adventure-3.jpg" alt="冰龙巢穴"> </a> <a href="#"> <img src="images/adventure-3.jpg" alt="冰龙巢穴">
 					</a> <a href="#"> <img src="images/adventure-3.jpg" alt="冰龙巢穴"> </a> <a href="#"> <img src="images/adventure-3.jpg" alt="冰龙巢穴">
 					</a> <a href="#"> <img src="images/adventure-3.jpg" alt="冰龙巢穴"> </a>
@@ -1108,13 +1108,13 @@
 </body>
 <script>/*初始化开始内容*/
 window.onload = function () {
-	for (i = 1; i < 9; i++) {
-		document.getElementById("myCareer-Content" + i).style.display = "none";
-	}
-	for (i = 1; i < 3; i++) {
-		document.getElementsByClassName("adventure-list")[i].style.display = "none";
-		document.getElementById("news-left-con" + i).style.display = "none";
-	}
+//	for (i = 1; i < 9; i++) {
+//		document.getElementById("myCareer-Content" + i).style.display = "none";
+//	}
+//	for (i = 1; i < 3; i++) {
+//		document.getElementsByClassName("adventure-list")[i].style.display = "none";
+//		document.getElementById("news-left-con" + i).style.display = "none";
+//	}
 	nCl = $(".newCard-left").length;
 	for (i = 0; i < nCl; i++) {
 		$(".newCard-left").addClass("ico");
