@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>input元素 表单 时间</title>
+</head>
+<body>
+<form>
+	<input name="url" type="url" value="http://www.baidu.com">
+	<input type="submit" value="提交">
+</form>
+
+<form>
+<input name="email" type="email" value="123@123.com">
+<input type="submit" value="提交">
+<br>
+<input name="date" type="date" value="">
+<br>
+<input name="time" type="time" value="10:00">
+<br>
+</form>
+
+<input name="datetime" type="datetime" value=""><br>
+
+<input name="datetimelocal" type="datetime-local"><br>
+
+<input name="month" type="month" value="2015-1-2"><br>
+
+<input name="week" type="week"><br>
+
+<input name="number" type="number" value="15" min="0" max="100" step="5"><br>
+
+<!--计算器-->
+<script>
+	function sun(){
+		var n1 = document.getElementById("num1").valueAsNumber;
+		var n2 = document.getElementById("num2").valueAsNumber;
+		document.getElementById("result").valueAsNumber = n1+n2;
+	}
+</script>
+<form>
+	<input type="number" id="num1">
+	+
+	<input type="number" id="num2">
+	=
+	<input type="number" id="result" @readonly="readonly">
+	<input type="button" value="计算" onclick="sun()"><br>
+	<!--range-->
+	<input type="range" name="range" value="25" min="0" max="100" step="20"><br>
+	<!--search-->
+	<input type="search"><br>
+	<!--tel-->
+	<input type="tel"><br>
+	<!--color-->
+	<input type="color" onchange="document.body.style.backgroundColor = document.getElementById('currentColor').textContent = this.value;">
+	<span id="currentColor"></span><br>
+	<!--output-->
+	<script>
+		function value_change(){
+			var number = document.getElementById('range').value;
+			document.getElementById('output').value = number;
+		}
+	</script>
+	<form id="testform">
+		<input id="range" type="range" min="0" max="100" step="5" value="10" onchange="value_change()">
+		<output id="output">10</output>
+	</form>
+</form>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<style>
+		div{
+			transition:all linear 0.5s;
+			background-color:lightblue;
+			height:100px;
+			width:100%;
+			position:relative;
+			top:0;
+			left:0;
+		}
+		.ng-hide{
+			height:0;
+			width:0;
+			background-color:transparent;
+			top:-200px;
+			left:200px;
+		}
+	</style>
+	<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular-animate.min.js"></script>
+</head>
+<body>
+	<h2>AngularJS 动画</h2>
+	<p>AngularJS 提供了动画效果，可以配合 CSS 使用。<br> AngularJS 使用动画需要引入 angular-animate.min.js 库。<br> 还需在应用中使用模型 ngAnimate：<br>
+	<pre class="prettyprint prettyprinted"><span class="tag">&lt;body</span><span class="pln"> </span><span class="atn">ng-app</span><span class="pun">=</span><span class="atv">"ngAnimate"</span><span class="tag">&gt;</span></pre>
+	</p>
+	<br>
+	<hr>
+	<br>
+	<dd ng-app="ngAnimate">
+		<h2>实例</h2>
+		<h1>隐藏 DIV: <input type="checkbox" ng-model="myCheck"></h1>
+		<div ng-hide="myCheck"></div>
+	</dd>
+	<dd ng-app="myApp">
+		<h2>如果我们应用已经设置了应用名，可以把 ngAnimate 直接添加在模型中：</h2>
+		<h1>隐藏 DIV: <input type="checkbox" ng-model="myCheck"></h1>
+		<div ng-hide="myCheck"></div>
+		<script>
+			var app = angular.module('myApp', ['ngAnimate']);
+			angular.bootstrap(document.getElementsByTagName('dd')[1], ['myApp']);
+		</script>
+	</dd>
+	<br>
+	<hr>
+	<br>
+	<h2>ngAnimate 做了什么?</h2>
+	<p>
+		ngAnimate 模型可以添加或移除 class 。<br>
+		 ngAnimate 模型并不能使 HTML 元素产生动画，但是 ngAnimate 会监测事件，类似隐藏显示 HTML 元素 ，如果事件发生 ngAnimate 就会使用预定义的 class 来设置 HTML 元素的动画。<br>
+		 AngularJS 添加/移除 class 的指令:<br>
+		 ng-show <br>
+		 ng-hide <br>
+		 ng-class <br>
+		 ng-view <br>
+		 ng-include <br>
+		 ng-repeat <br>
+		 ng-if <br>
+		 ng-switch <br>
+		 ng-show 和 ng-hide 指令用于添加或移除 ng-hide class 的值。<br>
+		 其他指令会在进入 DOM 会添加 ng-enter 类，移除 DOM 会添加 ng-leave 属性。<br>
+		 当 HTML 元素位置改变时，ng-repeat 指令同样可以添加 ng-move 类 。<br>
+		 此外， 在动画完成后，HTML 元素的类集合将被移除。例如： ng-hide 指令会添加一下类：<br>
+		 ng-animate <br>
+		 ng-hide-animate <br>
+		 ng-hide-add (如果元素将被隐藏) <br>
+		 ng-hide-remove (如果元素将显示) <br>
+		 ng-hide-add-active (如果元素将隐藏) <br>
+		 ng-hide-remove-active (如果元素将显示) <br>
+	</p>
+	<br>
+	<hr>
+	<br>
+	<h2>CSS 过渡</h2>
+	<p>
+		div { <br>
+		transition: all linear 0.5s; <br>
+		background-color: lightblue; <br>
+		height: 100px; <br>
+		} <br>
+		.ng-hide { <br>
+		height: 0; <br>
+		} <br>
+		(一个网页样式不能重复  不再修改  看源码即可 这个修改后是上下收缩的)
+	</p>
+	<dd ng-app="myApp2">
+		<h1>隐藏 DIV: <input type="checkbox" ng-model="myCheck"></h1>
+		<div ng-hide="myCheck"></div>
+		<script>
+			var app = angular.module('myApp2', ['ngAnimate']);
+			angular.bootstrap(document.getElementsByTagName('dd')[2], ['myApp2']);
+		</script>
+	</dd>
+	<br>
+	<hr>
+	<br>
+	<h2>CSS 动画</h2>
+	<p>
+		样式如下：<br>
+		@keyframes myChange { <br>
+		from { <br>
+		height: 100px; <br>
+		} to { <br>
+		height: 0; <br>
+		} <br>
+		} <br>
+		div { <br>
+		height: 100px; <br>
+		background-color: lightblue; <br>
+		} <br>
+		div.ng-hide { <br>
+		animation: 0.5s myChange; <br>
+		} <br>
+		(样式无法重复 不再赘述)
+	</p>
+	<dd ng-app="myApp3">
+		<h2>隐藏 DIV:<input type="checkbox" ng-model="myCheck"></h2>
+		<div ng-hide="myCheck"></div>
+		<script>
+			var app = angular.module('myApp3', ['ngAnimate']);
+			angular.bootstrap(document.getElementsByTagName('dd')[3], ['myApp3']);
+		</script>
+	</dd>
+</body>
+</html>

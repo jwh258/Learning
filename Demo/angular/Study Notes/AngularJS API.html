@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="angular.min.js"></script>
+</head>
+<body>
+	<h2>AngularJS API</h2>
+	<table>
+		<tbody>
+		<tr>
+			<th>API</th>
+			<th>描述</th>
+		</tr>
+		<tr>
+			<td>angular.lowercase()</td>
+			<td>转换字符串为小写</td>
+		</tr>
+		<tr>
+			<td>angular.uppercase()</td>
+			<td>转换字符串为大写</td>
+		</tr>
+		<tr>
+			<td>angular.isString()</td>
+			<td>判断给定的对象是否为字符串，如果是返回 true。</td>
+		</tr>
+		<tr>
+			<td>angular.isNumber()</td>
+			<td>判断给定的对象是否为数字，如果是返回 true。</td>
+		</tr>
+		</tbody>
+	</table>
+	<br>
+	<hr>
+	<br>
+	<h2>angular.lowercase()</h2>
+	<div ng-app="myApp" ng-controller="myCtrl">
+		<p>{{ x1 }}</p>
+		<p>{{ x2 }}</p>
+	</div>
+	<script>
+		var app = angular.module('myApp', []);
+		app.controller('myCtrl', function ($scope) {
+			$scope.x1 = "JOHN";
+			$scope.x2 = angular.lowercase($scope.x1);
+		});
+	</script>
+	<br>
+	<hr>
+	<br>
+	<h2>angular.uppercase()</h2>
+	<div ng-app="myApp1" ng-controller="myCtrl">
+		<p>{{ x1 }}</p>
+		<p>{{ x2 }}</p>
+	</div>
+	<script>
+		var app = angular.module('myApp1', []);
+		app.controller('myCtrl', function ($scope) {
+			$scope.x1 = "John";
+			$scope.x2 = angular.uppercase($scope.x1);
+		});
+		angular.bootstrap(document.getElementsByTagName('div')[1], ['myApp1']);
+	</script>
+	<br>
+	<hr>
+	<br>
+	<h2>angular.isString()</h2>
+	<div ng-app="myApp2" ng-controller="myCtrl">
+		<p>{{ x1 }}</p>
+		<p>{{ x2 }}</p>
+	</div>
+	<script>
+		var app = angular.module('myApp2', []);
+		app.controller('myCtrl', function ($scope) {
+			$scope.x1 = "JOHN";
+			$scope.x2 = angular.isString($scope.x1);
+		});
+		angular.bootstrap(document.getElementsByTagName('div')[2], ['myApp2']);
+	</script>
+	<br>
+	<hr>
+	<br>
+	<h2>angular.isNumber()</h2>
+	<div ng-app="myApp3" ng-controller="myCtrl">
+		<p>{{ x1 }}</p>
+		<p>{{ x2 }}</p>
+	</div>
+	<script>
+		var app = angular.module('myApp3', []);
+		app.controller('myCtrl', function ($scope) {
+			$scope.x1 = "JOHN";
+			$scope.x2 = angular.isNumber($scope.x1);
+		});
+		angular.bootstrap(document.getElementsByTagName('div')[3], ['myApp3']);
+	</script>
+</body>
+</html>

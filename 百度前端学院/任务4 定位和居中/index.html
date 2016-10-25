@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="style/index.css">
+	<script src="../jquery-1.12.0.min.js"></script>
+	<title>任务4</title>
+</head>
+<body class="azure">
+	<div class="link">
+		<a href="#" id="position">定位居中</a>
+		<a href="#" id="flex">flex居中</a>
+		<a href="#" id="table">表格居中</a>
+	</div>
+	<div class="demo1 position">
+		<div class="lt"></div>
+		<div class="rb"></div>
+	</div>
+	<div class="demo2" style="display:none">
+		<div class="flex">
+			<div class="inner">
+				<div class="lt"></div>
+				<div class="rb"></div>
+			</div>
+		</div>
+	</div>
+	<div class="demo3" style="display:none">
+		<div class="table">
+			<div class="corner">
+				<div class="inner">
+					<div class="lt"></div>
+					<div class="rb"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	$("#position").click(function () {
+		$(".demo1").show().siblings("body>div").not(".link").hide();
+		$("body").attr("class","azure");
+	});
+	$("#flex").click(function () {
+		$(".demo2").show().siblings("body>div").not(".link").hide();
+		$("body").attr("class","blue");
+	});
+	$("#table").click(function () {
+		$(".demo3").show().siblings("body>div").not(".link").hide();
+		$("body").attr("class","violet");
+	});
+</script>
+</html>

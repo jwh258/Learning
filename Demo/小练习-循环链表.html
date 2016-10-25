@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>循环链表</title>
+	<style>
+		html{
+			width:80%;
+			min-width:800px;
+			margin:0 auto;
+		}
+		body > div{
+			text-align:center;
+		}
+		.last{
+			position:relative;
+			top:5px;
+			/*word-break:break-all;*/
+			background-color:#fff;
+			font:14px/1.5 '微软雅黑';
+			color:#252525;
+		}
+	</style>
+</head>
+<body>
+	<h2>说明：一个军队，一共有XXX人被包围了，他们决定自杀不被俘虏，自杀的方式是：所有人站成一圈，从第一个人开始算，先杀第3个，再杀第6个，第9个……以此类推，求最终活下了谁？</h2>
+	<div>
+		<div class="left">
+			输入从第几个人开始杀：<input type="text" name="killNum" size="5"><br> 输入军队一共有多少人：<input type="text" name="personNum" size="5"><br>
+			<input type="button" value="计算">
+		</div>
+		 <textarea class="last" readonly disabled cols="105" rows="30" wrap="hard" placeholder="你倒是输个数字啊？"></textarea>
+	</div>
+	<script>
+		var button = document.getElementsByTagName('input')[2];
+		var span = document.getElementsByClassName('last')[0];
+		button.addEventListener("click", function () {
+			var killNum = document.getElementsByTagName('input')[0].value;
+			var personNum = document.getElementsByTagName('input')[1].value;
+			var text = '';
+			text += getLastParson(killNum, personNum);
+			//js中replace默认只替换第一个  需要加上  /内容/g  才会全部替换
+			text = text.replace(/,/g, ' ');
+			text = '剩下的人是：' + text;
+			//如果用“.”作为分隔的话,必须是如下写法,String.split("\\."),这样才能正确的分隔开,不能用String.split(".");
+			//如果用“|”作为分隔的话,必须是如下写法,String.split("\\|"),这样才能正确的分隔开,不能用String.split("|");
+			span.innerHTML = text;
+			console.log("killNum:" + killNum + ",personNum:" + personNum + ",活下的人为：" + text);
+		});
+		function getLastParson(killNum, personNum) {
+			var person = [];
+			killN = killNum;
+			personN = personNum;
+			//判断正整数
+			var type = /^[0-9]*[1-9][0-9]*$/;
+			var re = new RegExp(type);
+			if (killN.match(re) == null || personN.match(re) == null) {
+				alert("输入有误，请输入正确的数值!");
+				return '错误的输入！';
+			} else {
+				killN = parseInt(killN);
+				personN = parseInt(personN);
+				if (killN > personN) {
+					return '错误的输入！';
+				} else {
+					//				console.log('killN:' + killN + ',personN:' + personN);
+					for (i = 1; i <= personN; i++) {
+						person.push([i]);
+					}
+					//				console.log(typeof(person));
+					var k = killN - 1;
+					//				console.log('初始化的K为：' + k);
+					for (i = 0; i <= (personN - killN); i++) {
+						//数组用delete删除后，不改变下标！！！
+						person.splice(k, 1);
+						if ((k + killN) > (person.length)) {
+							k = k - 1 + killN - person.length;
+							//						console.log('>的时候' + k + ' 长度:' + person.length);
+						} else {
+							k = parseInt(k - 1 + killN);
+							//						console.log('平时' + k + ' 长度:' + person.length);
+						}
+					}
+					return person;
+				}
+			}
+		}
+	</script>
+</body>
+</html>

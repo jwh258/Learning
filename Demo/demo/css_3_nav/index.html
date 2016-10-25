@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>纯CSS3导航栏</title>
+	<style>
+		body{
+			margin:0;
+			background-color:#ccc;
+		}
+		header{
+			width:800px;
+			height:60px;
+			font-size:0;
+			position:relative;
+			margin:0 auto;
+			background-color:#fff;
+		}
+		header nav{
+			height: 60px;
+			width: 85%;
+			display: inline-block;
+			vertical-align: middle;
+			position: relative;
+			left:0;
+		}
+		header nav ul{
+			width:100%;
+			line-height:60px;
+			list-style:none;
+			box-sizing:border-box;
+			margin:0;
+			padding:0;
+		}
+		header nav ul li{
+			display:inline-block;
+			width:20%;
+			font-size:14px;
+			text-align:center;
+			box-sizing:border-box;
+			color:#534141;
+			cursor:pointer;
+			-webkit-transition:color 0.4s ease-in-out;
+			-moz-transition:color 0.4s ease-in-out;
+			transition:color 0.4s ease-in-out;
+		}
+		header nav ul li:hover{
+			color:#f04c57;
+		}
+		header nav ul .move{
+			position:absolute;
+			border-top:4px solid #e53c3c;
+			left:0;
+			top:56px;
+			-webkit-transition:left 0.4s ease-in-out;
+			-moz-transition:left 0.4s ease-in-out;
+			transition:left 0.4s ease-in-out;
+		}
+		/*header nav ul li:nth-child(1):hover ~ .move{
+	left:0;
+}*/
+		/*这一段可以不写*/
+		header nav ul li:nth-child(2):hover ~ .move{
+			left:20%;
+		}
+		header nav ul li:nth-child(3):hover ~ .move{
+			left:40%;
+		}
+		header nav ul li:nth-child(4):hover ~ .move{
+			left:60%;
+		}
+		header nav ul li:nth-child(5):hover ~ .move{
+			left:80%;
+		}
+		header .banner-right{
+			font-size:14px;
+			color:#e53c3c;
+			height:60px;
+			width:10%;
+			display:inline-block;
+			vertical-align:middle;
+			line-height:60px;
+			text-align:center;
+			cursor:pointer;
+			position:relative;
+			left:5%;
+		}
+		header .banner-right .move{
+			width:40%;/*宽度改为%之后自适应更好*/
+			position:absolute;
+			top:45px;
+			left:30%;
+			-webkit-transition:border 0.4s ease-in-out;
+			-moz-transition:border 0.4s ease-in-out;
+			transition:border 0.4s linear;
+		}
+		header .banner-right:hover .move{
+			border-top:3px solid #e53c3c;/*改为border后 鼠标离开时不是慢动画*/
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<nav>
+			<ul>
+				<li>首页</li>
+				<li>最新活动</li>
+				<li>项目介绍</li>
+				<li>爱心社区</li>
+				<li>关于我们</li>
+				<li class="move"></li>
+			</ul>
+		</nav>
+		<div class="banner-right">
+			<span>登录</span>
+			<div class="move"></div>
+		</div>
+	</header>
+</body>
+</html>

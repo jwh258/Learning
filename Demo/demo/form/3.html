@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>关闭用户中文输入法</title>
+	<style type="text/css"></style>
+</head>
+<body>
+	<div>
+		<form id="form" role="form" action="" method="post">
+			<input type="hidden" name="method" value="regist"/><!--需要后台有regist方法-->
+			<div class="form-group">
+				<label for="username">用户名</label>
+				<div>
+					<input type="text" id="username" class="inputClass" placeholder="长度为3-10"><label class="errorClass" id="usernameError"></label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="password">密码</label>
+				<div>
+					<input type="password" id="password" class="inputClass" placeholder="长度为3-20"><label class="errorClass" id="passwordError"></label>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script>
+		(function(){
+			var form = document.getElementById('form');
+			var input = form.getElementsByTagName('input');
+			for(var i = 0; i < input.length; i++){
+				input[i].onfocus = function(){
+					if(this.getAttribute('data-ime')){
+						cancel(this);
+					}
+				}
+				if(input[i].style.imeMode == undefined){
+					input[i].onkeyup = input[i].onblur = function(){
+						clear(this);
+					}
+				}
+			}
+			function cancel(o){
+				o.style.imeMode = 'disabled';//屏蔽输入法
+
+			}
+			function clear(o){
+				o.value = o.value.replace(/[\u4e00-\u9fa5]/g, '');//将输入的中文去掉
+			}
+		}());
+	</script>
+</body>
+</html>

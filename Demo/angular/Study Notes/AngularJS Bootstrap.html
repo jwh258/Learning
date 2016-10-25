@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="angular.min.js"></script>
+	<link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
+</head>
+<body ng-app="myApp" ng-controller="userCtrl">
+	<h2>AngularJS Bootstrap</h2>
+	<p>你可以在你的 AngularJS 应用中加入 Twitter Bootstrap，你可以在你的
+		<head>元素中添加如下代码:
+	</p>
+	<p>
+		&lt;link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"&gt;
+	</p>
+	<p>如果站点在国内，建议使用百度静态资源库的Bootstrap，代码如下：</p>
+	<p>
+		&lt;link rel="stylesheet" href="//apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css"&gt;
+	</p>
+	<p>以下是一个完整的 HTML 实例, 使用了 AngularJS 指令和 Bootstrap 类。</p>
+	<br>
+	<div class="container">
+		<h3>Users</h3>
+		<table class="table table-striped">
+			<thead>
+			<tr>
+				<th>Edit</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="user in users">
+				<td>
+					<button class="btn" ng-click="editUser(user.id)">
+						<span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit
+					</button>
+				</td>
+				<td>{{ user.fName }}</td>
+				<td>{{ user.lName }}</td>
+			</tr>
+			</tbody>
+		</table>
+		<hr>
+		<div class="container">
+			<h3>Users</h3>
+			<table class="table table-striped">
+				<thead>
+				<tr>
+					<th>编辑</th>
+					<th>名</th>
+					<th>姓</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr ng-repeat="user in users">
+					<td>
+						<button class="btn" ng-click="editUser(user.id)">
+							<span class="glyphicon glyphicon-pencil"></span>编辑
+						</button>
+					</td>
+					<td>{{ user.fName }}</td>
+					<td>{{ user.lName }}</td>
+				</tr>
+				</tbody>
+			</table>
+			<hr>
+			<button class="btn btn-success" ng-click="editUser('new')">
+				<span class="glyphicon glyphicon-user"></span>创建新用户
+			</button>
+			<hr>
+			<h3 ng-show="edit">创建新用户:</h3>
+			<h3 ng-hide="edit">编辑用户:</h3>
+			<form class="form-horizontal">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">名:</label>
+					<div class="col-sm-10">
+						<input type="text" ng-model="fName" ng-disabled="!edit" placeholder="名">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">姓:</label>
+					<div class="col-sm-10">
+						<input type="text" ng-model="lName" ng-disabled="!edit" placeholder="姓">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">密码:</label>
+					<div class="col-sm-10">
+						<input type="password" ng-model="passw1" placeholder="密码">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">重复密码:</label>
+					<div class="col-sm-10">
+						<input type="password" ng-model="passw2" placeholder="重复密码">
+					</div>
+				</div>
+			</form>
+			<hr>
+			<button class="btn btn-success" ng-disabled="error || incomplete">
+				<span class="glyphicon glyphicon-save"></span>修改
+			</button>
+		</div>
+	</div>
+	<script>
+		angular.module('myApp', []).controller('userCtrl', function ($scope) {
+			$scope.fName = '';
+			$scope.lName = '';
+			$scope.passw1 = '';
+			$scope.passw2 = '';
+			$scope.users = [
+				{id: 1, fName: 'Hege', lName: "Pege"},
+				{id: 2, fName: 'Kim', lName: "Pim"},
+				{id: 3, fName: 'Sal', lName: "Smith"},
+				{id: 4, fName: 'Jack', lName: "Jones"},
+				{id: 5, fName: 'John', lName: "Doe"},
+				{id: 6, fName: 'Peter', lName: "Pan"}
+			];
+			$scope.edit = true;
+			$scope.error = false;
+			$scope.incomplete = false;
+			$scope.editUser = function (id) {
+				if (id == 'new') {
+					$scope.edit = true;
+					$scope.incomplete = true;
+					$scope.fName = '';
+					$scope.lName = '';
+				} else {
+					$scope.edit = false;
+					$scope.fName = $scope.users[id - 1].fName;
+					$scope.lName = $scope.users[id - 1].lName;
+				}
+			};
+			$scope.$watch('passw1', function () {
+				$scope.test();
+			});
+			$scope.$watch('passw2', function () {
+				$scope.test();
+			});
+			$scope.$watch('fName', function () {
+				$scope.test();
+			});
+			$scope.$watch('lName', function () {
+				$scope.test();
+			});
+			$scope.test = function () {
+				if ($scope.passw1 !== $scope.passw2) {
+					$scope.error = true;
+				} else {
+					$scope.error = false;
+				}
+				$scope.incomplete = false;
+				if ($scope.edit && (!$scope.fName.length || !$scope.lName.length || !$scope.passw1.length || !$scope.passw2.length)) {
+					$scope.incomplete = true;
+				}
+			};
+		});
+	</script>
+	<h2>指令解析</h2>
+	<table class="reference">
+		<tbody>
+		<tr>
+			<th>AngularJS 指令</th>
+			<th>描述</th>
+		</tr>
+		<tr>
+			<td>&lt;html ng-app</td>
+			<td>为 &lt;html&gt; 元素定义一个应用(未命名)</td>
+		</tr>
+		<tr>
+			<td>&lt;body ng-controller</td>
+			<td>为 &lt;body&gt; 元素定义一个控制器</td>
+		</tr>
+		<tr>
+			<td>&lt;tr ng-repeat</td>
+			<td>循环 users 对象数组，每个 user 对象放在 &lt;tr&gt; 元素中。</td>
+		</tr>
+		<tr>
+			<td>&lt;button ng-click</td>
+			<td>当点击 &lt;button&gt; 元素时调用函数 editUser()</td>
+		</tr>
+		<tr>
+			<td>&lt;h3 ng-show</td>
+			<td> 如果 edit = true 显示 &lt;h3&gt; 元素</td>
+		</tr>
+		<tr>
+			<td>&lt;h3 ng-hide</td>
+			<td>如果 edit = true 隐藏 &lt;h3&gt; 元素</td>
+		</tr>
+		<tr>
+			<td>&lt;input ng-model</td>
+			<td>为应用程序绑定 &lt;input&gt; 元素</td>
+		</tr>
+		<tr>
+			<td>&lt;button ng-disabled</td>
+			<td>如果发生错误或者 ncomplete = true 禁用 &lt;button&gt; 元素</td>
+		</tr>
+		</tbody>
+	</table>
+	<h2>Bootstrap 类解析</h2>
+	<table class="reference">
+		<tbody>
+		<tr>
+			<th>元素</th>
+			<th>Bootstrap 类</th>
+			<th>定义</th>
+		</tr>
+		<tr>
+			<td>&lt;div&gt;</td>
+			<td>container</td>
+			<td>内容容器</td>
+		</tr>
+		<tr>
+			<td>&lt;table&gt;</td>
+			<td>table</td>
+			<td>表格</td>
+		</tr>
+		<tr>
+			<td>&lt;table&gt;</td>
+			<td>table-striped</td>
+			<td>带条纹背景的表格</td>
+		</tr>
+		<tr>
+			<td>&lt;button&gt;</td>
+			<td>btn</td>
+			<td>按钮</td>
+		</tr>
+		<tr>
+			<td>&lt;button&gt;</td>
+			<td>btn-success</td>
+			<td>成功按钮</td>
+		</tr>
+		<tr>
+			<td>&lt;span&gt;</td>
+			<td>glyphicon</td>
+			<td>字形图标</td>
+		</tr>
+		<tr>
+			<td>&lt;span&gt;</td>
+			<td>glyphicon-pencil</td>
+			<td>铅笔图标</td>
+		</tr>
+		<tr>
+			<td>&lt;span&gt;</td>
+			<td>glyphicon-user</td>
+			<td>用户图标</td>
+		</tr>
+		<tr>
+			<td>&lt;span&gt;</td>
+			<td>glyphicon-save</td>
+			<td>保存图标</td>
+		</tr>
+		<tr>
+			<td>&lt;form&gt;</td>
+			<td>form-horizontal</td>
+			<td>水平表格</td>
+		</tr>
+		<tr>
+			<td>&lt;div&gt;</td>
+			<td>form-group</td>
+			<td>表单组</td>
+		</tr>
+		<tr>
+			<td>&lt;label&gt;</td>
+			<td>control-label</td>
+			<td>控制器标签</td>
+		</tr>
+		<tr>
+			<td>&lt;label&gt;</td>
+			<td>col-sm-2</td>
+			<td>跨越 2 列</td>
+		</tr>
+		<tr>
+			<td>&lt;div&gt;</td>
+			<td>col-sm-10</td>
+			<td>跨越 10 列</td>
+		</tr>
+		</tbody>
+	</table>
+	<h2>JavaScript 代码解析</h2>
+	<table class="reference">
+		<tbody>
+		<tr>
+			<th>Scope 属性</th>
+			<th>用途</th>
+		</tr>
+		<tr>
+			<td>$scope.fName</td>
+			<td>模型变量 (用户名)</td>
+		</tr>
+		<tr>
+			<td>$scope.lName</td>
+			<td>模型变量 (用户姓)</td>
+		</tr>
+		<tr>
+			<td>$scope.passw1</td>
+			<td>模型变量 (用户密码 1)</td>
+		</tr>
+		<tr>
+			<td>$scope.passw2</td>
+			<td>模型变量 (用户密码 2)</td>
+		</tr>
+		<tr>
+			<td>$scope.users</td>
+			<td>模型变量 (用户的数组)</td>
+		</tr>
+		<tr>
+			<td>$scope.edit</td>
+			<td>当用户点击创建用户时设置为true。</td>
+		</tr>
+		<tr>
+			<td>$scope.error</td>
+			<td>如果 passw1 不等于 passw2 设置为 true</td>
+		</tr>
+		<tr>
+			<td>$scope.incomplete</td>
+			<td>如果每个字段都为空(length = 0)设置为 true</td>
+		</tr>
+		<tr>
+			<td>$scope.editUser</td>
+			<td>设置模型变量</td>
+		</tr>
+		<tr>
+			<td>$scope.watch</td>
+			<td>监控模型变量</td>
+		</tr>
+		<tr>
+			<td>$scope.test</td>
+			<td>验证模型变量的错误和完整性</td>
+		</tr>
+		</tbody>
+	</table>
+</body>
+</html>

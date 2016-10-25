@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>js任务1</title>
+</head>
+<body>
+	<img src="任务要求.png" alt="">
+	<br>
+	<hr>
+	<br> <label>请输入北京今天空气质量：<input id="aqi-input" type="text"></label>
+	<button id="button">确认填写</button>
+	<div>您输入的值是：<span id="aqi-display">尚无录入</span></div>
+	<script type="text/javascript">
+		(function () {
+			/*
+			 在注释下方写下代码
+			 给按钮button绑定一个点击事件
+			 在事件处理函数中
+			 获取aqi-input输入的值，并显示在aqi-display中
+			 */
+			var $ = function (id) {
+				return document.getElementById(id);
+			};
+			//这个定义方式学习了
+
+			function cInput() {
+				var num = parseInt($('aqi-input').value);
+				if ((!isNaN(num)) && (num >= 0) && (num <= 1000)) {
+					$('aqi-display').innerHTML = num;
+				} else {
+					$('aqi-display').innerHTML = '\"' + num + '\"' +
+					' 不是一个有效的数值，请输入正确的数值！';
+				}
+			}
+
+			$('button').onclick = cInput;
+
+			$('aqi-input').onkeydown = function (event) {
+				if(event.keyCode == 13){
+					cInput();
+				}
+			};
+			//回车是13
+		})();
+	</script>
+</body>
+</html>

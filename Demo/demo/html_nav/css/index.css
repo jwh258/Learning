@@ -1,0 +1,39 @@
+.fl{float:left;_display:inline;}
+.fr{float:right;_display:inline;}
+.fix{width:960px;margin-right:auto;margin-left:auto;}
+a{text-decoration:none;color:#000;}
+/*a:hover{color:#000;}*/
+.clearfix{display:block;*display:inline-block;}
+.clearfix:after{display:block;visibility:hidden;clear:both;height:0;content:'.';}
+
+/*nav*/
+.nav{width:100%;height:49px;background:#00659c;}
+.nav ul{position:relative;}
+.nav li{float:left;background:url('../img/nav_bg.gif') no-repeat right;}
+.nav li:first-child{background-color:#004b8b;}
+.nav li:last-child{background:none;}
+.nav li a{font:14px/49px Microsoft YaHei;display:block;height:49px;margin-right:1px;padding:0 32px 0 32px;text-align:center;color:#fff;}
+.nav li a:hover{background:#004b8b;}
+
+#nav_2_child,#nav_3_child{display:none;}
+#nav_2_child{position:absolute;z-index:999;top:49px;left:0;float:left;width:960px;}
+#nav_2_child .hi{height:6px;width:100%}
+#nav_2_child .con{overflow:hidden;-webkit-border-radius:15px;-webkit-box-shadow:1px 1px 3px #292929;background:#00659c;}
+#nav_2_child i{position:relative;top:2px;left:147px;display:block;width:10px;height:10px;-webkit-transform:rotate(45deg);background:#00659c;}
+#nav_2_child ul{float:left;width:238px;min-height:90px;margin:10px 0;border-right:2px solid #fff;}
+#nav_2_child ul:last-child{border:none;}
+#nav_2_child ul li{clear:both;width:208px;margin:0 15px;text-align:center;color:#fff;border:none;background:none;}
+#nav_2_child ul li a{font:14px/30px Microsoft YaHei;height:30px;}
+
+#nav_3_child{position:absolute;z-index:999;top:49px;left:0;float:left;width:960px;}
+#nav_3_child .hi{height:6px;width:100%}
+#nav_3_child .con{overflow:hidden;-webkit-border-radius:15px;-webkit-box-shadow:1px 1px 3px #292929;background:#00659c;}
+#nav_3_child i{position:relative;top:2px;left:268px;display:block;width:10px;height:10px;-webkit-transform:rotate(45deg);background:#00659c;}
+#nav_3_child ul{float:left;width:420px;min-height:90px;margin:10px 0 10px;padding:10px 30px;}
+#nav_3_child ul li{width:100%;margin:5px 0;background:none;}
+#nav_3_child ul li b{display:block;float:left;width:100px;height:100px;background:#0eff00;}
+#nav_3_child ul li div{float:left;width:280px;padding:0 20px;}
+#nav_3_child ul li div h2{height:30px;margin:0 0 3px;padding:0;}
+#nav_3_child ul li div h2 a{font-size:16px;font-weight:bold;line-height:30px;display:block;float:left;height:30px;margin:0;padding:0;color:#fff;background:none;}
+#nav_3_child ul li div h2 a:hover{color:#97c6ff;background:none;}
+#nav_3_child ul li div p{font-size:12px;line-height:20px;color:#fff;}

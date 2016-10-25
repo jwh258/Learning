@@ -1,0 +1,42 @@
+﻿@charset "utf-8";
+
+按钮左右通过 :after 来设置中间的图标：
+
+.price_l:after,.price_r:after{position:absolute;top:28px;width:8px;height:8px;border:1px solid #b0b0b0;content:'';-webkit-transform:rotateZ(45deg);transform:rotateZ(45deg);-ms-transform:rotateZ(45deg)}
+.price_l:after{left:10px;border-right-color:transparent;border-top-color:transparent}
+.price_r:after{right:10px;border-left-color:transparent;border-bottom-color:transparent}
+
+图片垂直居中：
+1.给父框体设置 line-height
+2.给图片设置属性 display:inline-block;vertical-align:middle
+
+圆圈里包个圆：
+父div{
+	float: left;
+	margin-right: 18px;
+	margin-left: 13px;
+	width: 55px;
+	height: 55px;
+	border: 1px solid #e8e7e7;
+	border-radius: 50%;
+	text-align: center;
+	font-size: 0;
+	line-height: 55px;
+}
+子span{
+	display: inline-block;
+	width: 47px;
+	height: 47px;
+	border-radius: 50%;
+	background: #b9babd;
+	vertical-align: middle;
+}
+
+[attribute^=value] 选择器匹配属性值以指定值开头的每个元素。
+设置 class 属性值以 "test" 开头的所有 div 元素的背景色：
+div[class^="test"]{xxx}
+
+通过
+.project_tab_menu [id^=tab]:checked~[id^=tab_menu]
+.project_tab_menu [id^=tab]:checked~label
+来控制table的切换显示

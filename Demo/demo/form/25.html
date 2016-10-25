@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas测试</title>
+	<style>
+		canvas{margin:10px 0;float:left;clear:both;}
+	</style>
+	<script>
+		//创建倾斜图形
+		var mycanvas1,context1;
+		window.onload = function(){
+			cteateCanvas();
+			drawWord('canvasWord');
+			drawRotate();
+			doaeImage();
+			drawArc('canvasArc');
+			drawBezier('canvasBezier');
+			drawPolygon('canvasPolygon');
+		}
+		function cteateCanvas(){
+			document.body.innerHTML = "<canvas id=\"canvasRotate\" width=\"500px\" height=\"500px\"></canvas>" +
+			"<canvas id=\"canvasWord\" width=\"500px\" height=\"300px\"></canvas>" +
+			"<canvas id=\"canvasArc\" width=\"500px\" height=\"500px\"></canvas>" +
+			"<canvas id=\"canvasBezier\" width=\"300px\" height=\"300px\"></canvas>" +
+			"<canvas id=\"canvasPolygon\" width=\"300px\" height=\"300px\"></canvas>";
+			mycanvas1 = document.getElementById("canvasRotate");
+			context1 = mycanvas1.getContext("2d");
+		}
+		function drawRotate(){
+			//context1.fillStyle="#FF0000";
+			context1.rotate(45);//角度
+			context1.translate(120,-200);//移动
+			context1.scale(0.8,1);
+			context1.fillRect(0,0,200,200);//创建
+		}
+		function doaeImage(){
+			var img = new Image();
+			img.onload = function(){
+				context1.drawImage(img,0,0);
+			}
+			img.src = "img/1.jpg"
+		}
+
+		//创建文字
+		function drawWord(id){
+			var canvas = document.getElementById(id);
+			var context = canvas.getContext("2d");
+			//绘制矩形
+			context.fillStyle="green";
+			context.fillRect(0,0,800,300);
+			//绘制文字
+			context.fillStyle="#ccc";
+			// context.strokeStyle="#fff";
+			context.font="bold 40px '微软雅黑','宋体'";
+
+			//文字上下对齐方式
+			context.textBaseline="top";
+			/*alphabetic	默认。文本基线是普通的字母基线。
+			 top	文本基线是 em 方框的顶端。。
+			 hanging	文本基线是悬挂基线。
+			 middle	文本基线是 em 方框的正中。
+			 ideographic	文本基线是表意基线。
+			 bottom	文本基线是 em 方框的底端。*/
+
+			//文字左右对齐方式
+			context.textAlign="left";
+			/*start	默认。文本在指定的位置开始。
+			 end	文本在指定的位置结束。
+			 center	文本的中心被放置在指定的位置。
+			 left	文本左对齐。
+			 right	文本右对齐。*/
+			context.fillText('这是文字',0,40);//实线文字
+			context.strokeText('这是文字',40,110);//空心文字
+
+			//渐变
+			var gradient=context.createLinearGradient(0,0,800,0);
+			gradient.addColorStop("0","#fff");
+			gradient.addColorStop("0.5","blue");
+			gradient.addColorStop("1.0","red");
+			/*context.createLinearGradient(x0,y0,x1,y1);
+			 x0	渐变开始点的 x 坐标
+			 y0	渐变开始点的 y 坐标
+			 x1	渐变结束点的 x 坐标
+			 y1	渐变结束点的 y 坐标*/
+			// 用渐变填色
+			context.fillStyle=gradient;
+			context.strokeStyle=gradient;
+			context.fillText("BaiDuBaiDuBaiDuBaiDuBaiDuBaiDuBaiDuBaiDuBaiDuBaiDuBaiDuBaiDuBaiDuBaiDuBaiDuBaiDuBaiDu",0,180,800);
+			context.strokeText('这是文字这是文字这是文字这是文字',0,250);//空心文字
+		}
+
+		//圆圈
+		function drawArc(id){
+			var canvas = document.getElementById(id);
+			if(canvas == null){
+				return false;
+			}
+			var context = canvas.getContext("2d");
+			context.fillStyle="#eeeeef";
+			context.fillRect(0,0,600,700);
+			for(var i=0;i<=10;i++){
+				context.beginPath();
+				context.arc(i*25,i*25,i*10,0,Math.PI*2,true);
+				/*arc() 方法创建弧/曲线（用于创建圆或部分圆）。
+				 提示：如需通过 arc() 来创建圆，请把起始角设置为 0，结束角设置为 2*Math.PI。
+				 提示：请使用 stroke() 或 fill() 方法在画布上绘制实际的弧。
+				 JavaScript 语法：
+				 context.arc(x,y,r,sAngle,eAngle,counterclockwise);
+				 参数值
+				 参数	描述
+				 x	圆的中心的 x 坐标。
+				 y	圆的中心的 y 坐标。
+				 r	圆的半径。
+				 sAngle	起始角，以弧度计。（弧的圆形的三点钟位置是 0 度）。
+				 eAngle	结束角，以弧度计。
+				 counterclockwise	可选。规定应该逆时针还是顺时针绘图。False = 顺时针，true = 逆时针。*/
+				context.closePath();
+				context.fillStyle = "rgba(255,0,0,0.25)";
+				context.fill();
+			}
+		}
+
+		//贝塞尔曲线
+		function drawBezier(id){
+			var canvas = document.getElementById(id);
+			if(canvas == null){
+				return false;
+			}
+			var context = canvas.getContext("2d");
+			context.fillStyle = "#fccffc";
+			context.fillRect(0,0,300,400);
+			var dx = 150;
+			var dy = 150;
+			var s = 100;
+			context.beginPath();
+			context.fillStyle = "rgb(100,255,100)";//这行又没用？
+			var x = Math.sin(0);
+			var y = Math.cos(0);
+			var dig = Math.PI / 15*11;
+			context.moveTo(dx,dy);
+			for(var i =0;i<30;i++){
+				var x = Math.sin(i*dig);
+				var y = Math.cos(i*dig);
+				context.bezierCurveTo(dx+x*s,dy+y*s-100,dx+x*s+100,dy+y*s,dx+x*s,dy+y*s)
+				/*bezierCurveTo() 方法通过使用表示三次贝塞尔曲线的指定控制点，向当前路径添加一个点。
+				 提示：三次贝塞尔曲线需要三个点。前两个点是用于三次贝塞尔计算中的控制点，第三个点是曲线的结束点。曲线的开始点是当前路径中最后一个点。如果路径不存在，那么请使用 beginPath() 和 moveTo() 方法来定义开始点。
+
+				 JavaScript 语法：
+				 context.bezierCurveTo(cp1x,cp1y,cp2x,cp2y,x,y);
+				 参数值
+				 参数	描述
+				 cp1x	第一个贝塞尔控制点的 x 坐标
+				 cp1y	第一个贝塞尔控制点的 y 坐标
+				 cp2x	第二个贝塞尔控制点的 x 坐标
+				 cp2y	第二个贝塞尔控制点的 y 坐标
+				 x		结束点的 x 坐标
+				 y		结束点的 y 坐标
+
+				 浏览器支持
+				 Internet Explorer 9、Firefox、Opera、Chrome 以及 Safari 支持 bezierCurveTo() 方法。
+				 注释：Internet Explorer 8 或更早的浏览器不支持 <canvas> 元素。
+				 */
+			}
+			context.closePath();
+			context.fill();
+			context.stroke();
+		}
+
+		//多边形
+		function drawPolygon(id){
+			var canvas = document.getElementById(id);
+			var context = canvas.getContext("2d");
+			context.fillStyle = "#cfcccf";
+			context.fillRect(0,0,300,400);
+			var dx = 150;
+			var dy = 150;
+			var s = 100;
+			context.beginPath();
+			context.fillStyle = "rgb(100,255,100)";//这个颜色不起作用？？？
+			/*fillStyle 属性设置或返回用于填充绘画的颜色、渐变或模式。
+
+			 默认值：	#000000
+			 JavaScript 语法：	context.fillStyle=color|gradient|pattern;
+
+			 属性值
+			 值			描述
+			 color		指示绘图填充色的 CSS 颜色值。默认值是 #000000。
+			 gradient	用于填充绘图的渐变对象（线性或放射性）
+			 pattern	用于填充绘图的 pattern 对象*/
+			context.strokeStyle = "rgb(0,0,100)";
+			var x = Math.sin(0);
+			var y = Math.cos(0);
+			var dig = Math.PI / 15*11;
+			for (var i=0;i<30;i++){
+				var x = Math.sin(i*dig);
+				var y = Math.cos(i*dig);
+				context.lineTo(dx+x*s,dy+y*s);
+			}
+			context.closePath();
+			context.fill();
+			context.stroke();
+		}
+	</script>
+</head>
+<body>
+</body>
+</html>

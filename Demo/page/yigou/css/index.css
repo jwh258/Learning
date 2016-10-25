@@ -1,0 +1,142 @@
+/*public style*/
+a{text-decoration:none;color:#fff;}
+a:hover{color:#fff;}
+a:focus{outline:none;-moz-outline-style:none;}
+fieldset,img{border:0;}
+img{vertical-align:middle;border:0;}
+button,input,select,textarea{font-size:100%;}
+button,input[type='button'],input[type='reset'],input[type='submit']{cursor:pointer;-webkit-appearance:button;}
+q:before,q:after{content:'';}
+table{border-spacing:0;border-collapse:collapse;}
+em,i{font-style:normal;}
+.fl{float:left;_display:inline;}
+.fr{float:right;_display:inline;}
+.fn{float:none;}
+.pr{position:relative;}
+.pa{position:absolute;}
+.clear{font-size:1px;line-height:1px;clear:both;width:100%;height:1px;}
+.clearfix{display:block;*display:inline-block;}
+.clearfix:after{display:block;visibility:hidden;clear:both;height:0;content:'.';}
+.op{opacity:0.7;filter:Alpha(opacity=70);}
+.cut{overflow:hidden;}
+.db{display:block;}
+.none,.hide{display:none;}
+.hand{cursor:pointer;}
+.shadow{box-shadow:5px 5px 2px #dfdfdf;}
+.fix{width:990px;margin-right:auto;margin-left:auto;}
+
+/*搜索框样式修改*/
+input{border:none;outline:none;-webkit-appearance:none;-moz-appearance:none;appearance:none;}
+input::-webkit-search-cancel-button{display:none;}
+
+html{width:100%;background-color:#fff;}
+
+/*header*/
+.header{background-color:#fff;}
+.header .top{height:31px;border-bottom:1px solid #e8e8e8;background-color:#f4f4f4;}
+.header .top span{font:12px/31px 'SimSun';float:left;color:#7f7d7c;}
+.header .top .topRight a	 span:hover{color:#adaaa9;}
+.header .top .topIcon1,.header .top .topIcon2,.header .top .topIcon3{display:block;float:left;margin-right:6px;margin-left:10px;background:url('../img/icon.png');}
+.header .top .topIcon1{width:14px;height:14px;margin-top:7px;background-position:0 0;}
+.header .top .topIcon2{width:7px;height:12px;margin-top:9px;background-position:-18px 0;}
+.header .top .topIcon3{width:8px;height:13px;margin-top:9px;background-position:-29px 0;}
+
+.header .search{max-width:1600px;height:111px;margin:0 auto;background:url('../img/searchBg.jpg') no-repeat;}
+.header .search .searchBar{float:right;width:461px;height:43px;margin:35px 2px;background:url('../img/searchBarBg.png');}
+.header .search .searchBar .searchBarText{font:12px/29px 'Microsoft YaHei';width:350px;height:29px;margin:7px 0 7px 7px;padding:0 15px;color:#8f8f8f;}
+.header .search .searchBar .searchBarSubmit{position:absolute;width:94px;height:29px;margin:7px 3px;vertical-align:top;background:url('../img/icon.png');background-position:-107px -129px;}
+
+/*main*/
+.main{background-color:#f9f6ef;border-bottom:1px solid #a6a6a6;padding-bottom:63px;
+-webkit-box-shadow: 0 2px 3px #a6a6a6;
+-moz-box-shadow: 0 2px 3px #a6a6a6;
+box-shadow: 0 2px 3px #a6a6a6;}
+
+/*banner*/
+.main .banner{position:relative;height:401px;background:url('../img/bannerBg.png');}
+.main .banner .nav{height:39px;margin-left:249px;}
+.main .banner .nav a{font:15px/39px 'Microsoft YaHei';display:block;float:left;padding:0 38px;}
+.main .banner .nav a:first-child{padding:0 15px;}
+.main .banner .nav a:hover{background-color:#a2de6c;}
+.main .banner .bannerCenter{position:relative;z-index:999;width:554px;height:360px;margin-top:2px;margin-left:202px;}
+.main .banner .bannerCenter .bannerCenterImgLists ul li{position:absolute;top:0;left:0;}
+.main .banner .bannerCenter .bannerCenterLinkLists{position:absolute;bottom:0;left:0;width:100%;height:33px;background:url('../img/bannerCenterLinkListsBg.png') repeat;}
+.main .banner .bannerCenter .bannerCenterLinkLists li{position:relative;display:block;float:left;width:110px;text-align:center;border-right:1px solid #fff;}
+.main .banner .bannerCenter .bannerCenterLinkListsLiHover,.main .banner .bannerCenter .bannerCenterLinkLists li:hover{background:url('../img/bannerCenterLinkListsBgHover.png') repeat;}
+.main .banner .bannerCenter .bannerCenterLinkLists li:last-child{border:none;}
+.main .banner .bannerCenter .bannerCenterLinkLists li a{font:12px/33px 'SimSun';cursor:pointer;}
+.main .banner .bannerLeft{position:absolute;top:-6px;left:0;}
+.main .banner .bannerLeftTop{width:206px;height:47px;background:url('../img/bannerLeftTopBg.png');}
+.main .banner .bannerLeftTop a{display:block;width:137px;height:19px;margin:13px;}
+.main .banner .bannerLeftCon a{color:#836e5d;}
+.main .banner .bannerLeftCon a:hover{color:#cdaf96;}
+.main .banner .bannerLeftCon div{width:200px;height:119px;border-right:1px solid #e2e2e2;border-bottom:1px solid #e2d6ca;border-left:1px solid #e2e2e2;background-color:#f9f8f4;}
+.main .banner .bannerLeftCon div h2{font:14px/26px 'Microsoft YaHei';padding:9px 0 0 12px;color:#836e5d;}
+.main .banner .bannerLeftCon div ul{padding-left:31px;}
+.main .banner .bannerLeftCon div ul li{float:left;width:69px;text-align:left;}/*保证能放两个4个字的子标题*/
+.main .banner .bannerLeftCon div ul li span{font:12px/25px 'SimSun';}
+.main .banner .bannerRight{position:absolute;top:-12px;right:0;width:245px;height:426px;}
+.main .banner .bannerRight .bannerRightTop,.main .banner .bannerRight .bannerRightBottom{width:100%;height:12px;background:url('../img/icon.png');background-position:0 -21px;}
+.main .banner .bannerRight .bannerRightCenter{overflow:hidden;width:220px;height:401px;margin-left:11px;background:url('../img/bannerRightBgCenter.jpg');}
+.main .banner .bannerRight .bannerRightCenter b a{display:block;width:154px;height:21px;margin:11px 0 14px 35px;}
+.main .banner .bannerRight .bannerRightCenter ul{width:201px;margin:0 auto;}
+.main .banner .bannerRight .bannerRightCenter ul li{padding:18px 0 15px;border-bottom:1px dashed #d4d0bf;}
+.main .banner .bannerRight .bannerRightCenter ul li:last-child{border:none;}
+.main .banner .bannerRight .bannerRightCenter ul li img{float:left;margin-right:10px;padding:2px;border:1px solid #c5d1b9;background-color:#fff;}
+.main .banner .bannerRight .bannerRightCenter ul li h3 a{font:600 12px/26px 'SimSun';color:#5d9b1e;}
+.main .banner .bannerRight .bannerRightCenter ul li h3 a:hover{color:#83d728;}
+.main .banner .bannerRight .bannerRightCenter ul li span{font:12px/20px 'SimSun';color:#836e5d;}
+.main .banner .bannerRight .bannerRightCenter a span{font:12px/20px 'SimSun';display:block;float:right;margin:8px;text-align:right;color:#5d9b1e;}
+
+/*产品公用pro*/
+.main .pro{margin-top:27px;border:1px solid #e2e2e2;width:988px;height:350px;background-color:#fff;
+-webkit-box-shadow: 0 3px 3px #e2e2e2;
+-moz-box-shadow: 0 3px 3px #e2e2e2;
+box-shadow: 0 3px 3px #e2e2e2; }
+.main .proTitle{height:40px;border-bottom:1px solid #e2e2e2; background-color:#f6f6f6;}
+.main .proTitle h1{display:block;width:202px; background-color:#7dac0b;text-align:center;float:left;}
+.main .proTitle h1 a{font:20px/40px "Microsoft YaHei"; }
+.main .proTitle a span{font:12px/40px "SimSun";float:right;color:#898989;margin-right:21px;}
+.main .proTitle a span:hover{color:#b2b2b2;}
+.main .proCon{padding:30px;overflow:hidden}
+.main .proCon ul li{position:relative;float:left;margin-right:30px}
+.main .proCon ul li:last-child{margin-right:0;}
+.main .proCon ul li img{width:197px;height:183px;padding:5px;border:1px solid #dbdbdb;}
+.main .proCon .proImgA{position:absolute;top:160px;left:6px;width:197px;font:12px/29px "SimSun";text-align:center; background:url("../img/bannerCenterLinkListsBg.png");}
+.main .proCon .proImgA:hover{color:#ffb844 }
+.main .proCon ul li h4{ font:12px/12px "SimSun";color:#836e5d;text-align:center;margin:14px auto 13px}
+.main .proCon ul li h4:hover{color:#bc9e85 }
+.main .proCon ul li b{font:12px/18px "SimSun";color:#5d9b1e; margin-left:11px;/*修正FF文字高度是14，向下对齐的>>*/vertical-align:top;}
+.main .proCon ul li a span{font:12px/18px "SimSun";color:#fff;margin-right:11px; float:right; /*display:block;*/background:url('../img/icon.png');background-position:-40px 0;width:50px;text-align:center;}
+.main .proCon ul li a span:hover{background-position:-94px 0;}
+
+/*footer*/
+.footer{}
+.footer .footerTop{width:978px;height:62px;border:1px solid #d3d9dc;margin-top:18px;}
+.footer .footerTop ul{margin:7px 0 7px 19px;}
+.footer .footerTop ul li{margin-right:50px;float:left;}
+.footer .footerTop ul li i{display:block;width:51px;height:48px; background:url('../img/icon.png'); float:left;}
+.footer .footerTop ul li b{display:block;height:19px;background:url('../img/icon.png'); margin-left:14px; float:left;width:80px; margin-top:14px;}
+.footer .footerTop ul li:last-child{margin-right:0;}
+.footer .footerTop ul .footerTop_1 i{background-position:0 -35px;}
+.footer .footerTop ul .footerTop_1 b{background-position:0 -87px;}
+.footer .footerTop ul .footerTop_2 i{background-position:-52px -35px;}
+.footer .footerTop ul .footerTop_2 b{background-position:-85px -87px;}
+.footer .footerTop ul .footerTop_3 i{background-position:-104px -35px;}
+.footer .footerTop ul .footerTop_3 b{background-position:-169px -87px;width:81px}
+.footer .footerTop ul .footerTop_4 i{background-position:-156px -35px;}
+.footer .footerTop ul .footerTop_4 b{background-position:-0px -108px;}
+.footer .footerTop ul .footerTop_5 i{background-position:-208px -35px;}
+.footer .footerTop ul .footerTop_5 b{background-position:-84px -108px;width:93px}
+.footer .footerCenter{padding:18px 0 45px;}
+.footer .footerCenter .contact{width:188px; height:93px;padding:6px 12px 1px;border-right:1px solid #e8e8e8;background:url("../img/contact.png") no-repeat left 12px top 6px;}
+.footer .footerCenter .others ul li{ float:left;margin-left:66px}
+.footer .footerCenter .others ul li i{display:block;float:left;width:24px;background:url('../img/icon.png');}
+.footer .footerCenter .others ul li .others_1{ height:23px; margin-top:2px;background-position:0 -129px;}
+.footer .footerCenter .others ul li .others_2{ height:23px; margin-top:4px;background-position:-25px -129px;}
+.footer .footerCenter .others ul li .others_3{ height:24px; margin-top:1px;background-position:-50px -129px;}
+.footer .footerCenter .others ul li .others_4{ height:26px; background-position:-75px -129px;}
+.footer .footerCenter .others ul li h2 a{font:14px/26px "Microsoft YaHei";color:#572b08; display:block; float:left; margin:0 0 8px 5px;}
+.footer .footerCenter .others ul li a span{font:12px/20px "SimSun";color:#959595;float:left;margin-left:29px;clear:left}
+.footer .footerCenter .others ul li a span:hover{color:#c0c0c0 }
+.footerBottom{background-color:#836e5d;font:12px/33px "SimSun";color:#dad4cf;text-align:center}

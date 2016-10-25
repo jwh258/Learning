@@ -1,0 +1,16 @@
+.fl{float:left;_display:inline;}
+.fr{float:right;_display:inline;}
+.fix{width:960px;margin-right:auto;margin-left:auto;}
+a{text-decoration:none;color:#000;}
+/*a:hover{color:#000;}*/
+.clearfix{display:block;*display:inline-block;}
+.clearfix:after{display:block;visibility:hidden;clear:both;height:0;content:'.';}
+
+html{ background-color:#ccc;}
+.news{overflow:hidden;width:371px;height:316px;background:#006eaa;position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;}
+.news ul li{position:absolute;}/*不固定渐隐没背景 必须都固定到一个地方*/
+.news ul li a:first-child{display:block;}/*不加的话IMG撑不起来a的高度 下面一行不能加 不然就变大了*/
+.news ul li a span{font:14px/41px Microsoft YaHei;overflow:hidden;max-width:268px;/*371 - 13 - 60 - 15*2 = 268 再减去个13也行*/padding:0 15px;color:#fff;}
+.news_btn{position:absolute;right:13px;bottom:14px;}
+.news_btn a{font-size:0;display:block;float:left;overflow:hidden;width:12px;height:12px;margin:0 4px;-webkit-border-radius:50px;-moz-border-radius:50px;border-radius:50px;background:#fff;cursor:pointer}
+.news .btn_hover{background:#fa8100;}

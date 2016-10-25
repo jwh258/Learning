@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>关键字过滤</title>
+	<style type="text/css"></style>
+</head>
+<body>
+	<div class="demo1">
+		<form id="form" role="form">
+			<div class="form-group">
+				<label for="msg" class="col-sm-2 control-label">在此输入</label>
+				<br>
+				<textarea id="msg" maxlength="50" placeholder="女|美少妇|日本 将会被过滤" cols="47" rows="10"></textarea>
+			</div>
+			<div class="form-group">
+				<button id="btn" type="button">过 滤</button>
+			</div>
+			<div class="form-group">
+				<label for="msg2">输出的内容</label>
+				<br>
+				<textarea id="msg2" maxlength="50" placeholder="备注" cols="47" rows="10" readonly='readonly'></textarea>
+			</div>
+		</form>
+	</div>
+	<script>
+		(function () {
+			var msg = document.getElementById('msg');
+			var msg2 = document.getElementById('msg2');
+			var btn = document.getElementById('btn');
+			var key = /女|美少妇|日本/g;
+			var v = '';
+			btn.onclick = function () {
+				v = msg.value;
+				msg2.value = v.replace(key, function (str) {
+					var r = '';
+					for (var i = 0; i < str.length; i++) {
+						r += '*';
+					}
+					return r;
+				});
+				return false;
+			}
+		}());
+	</script>
+</body>
+</html>

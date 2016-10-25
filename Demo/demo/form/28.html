@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Html5新元素</title>
+	<script src=""></script>
+</head>
+<body>
+	<!--figure以及figcaption元素-->
+	<figure>
+		<img src="公会宣传550.jpg" alt="123">
+		<figcaption>这是图片的标题</figcaption>
+	</figure>
+	<br>
+	<script>
+		function detail_onclick(detail) {
+			var p = document.getElementById("p");
+			if (detail.open) {
+				p.style.visibility = "hidden";
+			} else {
+				p.style.visibility = "visible";
+			}
+		}
+	</script>
+	<details id="deteil" onclick="detail_onclick(this)">
+		<summary>速度与激情7</summary>
+		<p id="p" style="visibility: hidden">速度与激情kiehrkfhsdfhjkhsdfsdfhkdshfkhdfs</p>
+	</details>
+	<!--mark元素-->
+	<p>这是一段文字用来
+		<mark>测试</mark>
+		 mark元素
+	</p>
+	<!--progress-->
+	<script>
+		function btn() {
+			/*for (var i=0;i<=100;i++){
+			 setTimeout(function(){updateprogress(i);},2000)
+			 }*/
+			var i = 0;
+
+			function thread_one() {
+				if (i <= 100) {
+					i++;
+					updateprogress(i);
+				}
+			}
+
+			setInterval(thread_one, 100);
+		}
+		function updateprogress(newValue) {
+			var progressBar = document.getElementById("pp");
+			progressBar.value = newValue;
+			progressBar.getElementsByTagName("span")[0].textContent = newValue;
+		}
+	</script>
+	<section>
+		<h2>progress</h2>
+		<p>完成百分比
+			<progress id="pp" max="100"><span>0</span>%</progress>
+		</p>
+		<input type="button" onclick="btn()" value="点击">
+	</section>
+	<!--meter元素-->
+	<meter value="40" min="0" max="100" low="10" high="90" optimum="80"></meter>
+	<meter>40/100(外部文字不影响里面进度)</meter>
+	<!--ol-->
+	<ol start="5" reversed>
+		<li>列表1</li>
+		<li>列表2</li>
+		<li>列表3</li>
+		<li>列表4</li>
+		<li>列表5</li>
+	</ol>
+	<!--dl-->
+	<dl>
+		<dt>Hello</dt>
+		<dd>123</dd>
+		<dt>123</dt>
+		<dd>123</dd>
+	</dl>
+	<!--cite-->
+	<h3>cite</h3>
+	<p>我最喜欢的电影是<cite>速度与激情</cite>123321</p>
+	<!--small-->
+	<small>small:行内元素，只在最后用，没有具体小的字号，涉及版权、法律等等引用的时候采用。</small>
+	<br><br>
+	<!--Selection对象与Range对象-->
+	<script>
+		function rangeTest() {
+			var html;
+			showRangeDiv = document.getElementById("showRange");
+			selection = document.getSelection();
+			if (selection.rangeCount > 0) {
+				html = "您选取了>" + selection.rangeCount + "<内容<br>";
+				for (var i = 0; i < selection.rangeCount; i++) {
+					var range = selection.getRangeAt(i);
+					html += "第" + (i + 1) + "段内容为：" + range + "<br>";
+				}
+				showRangeDiv.innerHTML = html;
+			}
+		}
+	</script>
+	Selection对象与Range对象的使用
+	<input type="button" value="点击我" onclick="rangeTest()">
+	<div id="showRange"></div>
+	<!--Select/Range/获取删除-->
+	<script>
+		function deleteRangeContent(onlyContent) {
+			var div = document.getElementById("div");
+			var rangeObj = document.createRange();
+			if (onlyContent) {
+				rangeObj.selectNodeContents(div);
+				rangeObj.deleteContents();
+			} else {
+				rangeObj.selectNode(div);
+				rangeObj.deleteContents();
+			}
+		}
+	</script>
+	<div id="div" style="background-color:#e0a0b0;width:300px;height:50px;">元素中的内容</div>
+	<button onclick="deleteRangeContent(true)">删除内容</button>
+	<button onclick="deleteRangeContent(false)">删除元素</button>
+	<br><br>
+	<!--setStart/setEnd/Range-->
+	<script>
+		function deleteChar() {
+			var div = document.getElementById("myDiv");
+			var textNode = div.firstChild;
+			var rangeObj = document.createRange();
+			rangeObj.setStart(textNode, 1);
+			rangeObj.setEnd(textNode, 4);
+			rangeObj.deleteContents();
+		}
+	</script>
+	<div id="myDiv" style="color:red">
+		这段文字是用来删除的
+	</div>
+	<button onclick="deleteChar()">删除文字</button>
+	<!--setStartBefore/setEndAfter/Range-->
+	<script>
+		function deleteRow() {
+			var table = document.getElementById("myTable");
+			if (table.rows.length > 0) {
+				var row = table.rows[0];
+				var rangeObj = document.createRange();
+				rangeObj.setStartBefore(row);
+				rangeObj.setEndAfter(row);
+				rangeObj.deleteContents();
+			}
+		}
+	</script>
+	<table id="myTable" border="1" cellspacing="0" cellpadding="0">
+		<tr>
+			<td>内容1</td>
+			<td>内容2</td>
+		</tr>
+		<tr>
+			<td>内容3</td>
+			<td>内容4</td>
+		</tr>
+	</table>
+	<button onclick="deleteRow()">删除一行</button>
+	<!--clone/Range-->
+	<script>
+		function cloneRange() {
+			var rangeObj = document.createRange();
+			rangeObj.selectNodeContents(document.getElementById("p4"));
+			var rangeClone = rangeObj.cloneRange();
+			alert(rangeClone.toString());
+		}
+	</script>
+	<p id="p4">随便写</p>
+	<button onclick="cloneRange()">克隆</button>
+	<!--cloneContents/Range-->
+	<script>
+		function cloneContent() {
+			var div = document.getElementById("divx");
+			var rangeObj = document.createRange();
+			rangeObj.selectNodeContents(div);
+			var docFrangMent = rangeObj.cloneContents();
+			div.appendChild(docFrangMent);
+		}
+	</script>
+	<div id="divx">
+		你好么？
+		<br>
+		<button onclick="cloneContent()">克隆</button>
+		<br>
+	</div>
+	<!--extractContents()-->
+	<!--删除当前范围表示的文档区域，并且以 DocumentFragment 对象的形式返回那个区域的内容。该方法和 cloneContents() 方法与 deleteContents() 方法的组合很相似。-->
+	<script>
+		function moveContent() {
+			var srcDiv = document.getElementById("srcDiv");
+			var disDiv = document.getElementById("disDiv");
+			var rangeObj = document.createRange();
+			rangeObj.selectNodeContents(srcDiv);
+			var docFragment = rangeObj.extractContents();
+			disDiv.appendChild(docFragment);
+		}
+	</script>
+	<div id="srcDiv" style="background-color:aquamarine;width: 300px;height: 50px;">你好么</div>
+	<div id="disDiv" style="background-color:bisque;width: 300px;height: 50px;"></div>
+	<button onclick="moveContent()">移动元素</button>
+	<!--insertNode/Range-->
+	<script>
+		function moveButton() {
+			var btn = document.getElementById("button");
+			var selection = document.getSelection();
+			if (selection.rangeCount > 0) {
+				var range = selection.getRangeAt(0);
+				range.insertNode(btn);
+			}
+		}
+	</script>
+	<div onmouseup="moveButton()" style="width:400px;background-color:bisque">
+		速度快了翻开历史的肌肤克里斯多夫就考虑适当加分速度快了；房间克隆；斯蒂芬金
+	</div>
+	<button id="button">按钮</button>
+	<!--compareBoundaryPoints/Range-->
+	<!--compareBoundaryPoints(how,sourceRange)-->
+	<!--该方法将比较当前范围的边界点和指定的 sourceRange 的边界点，并返回一个值，声明它们在源文档中的相对位置。参数 how 指定了比较两个范围的哪个边界点。该参数的合法值和它们的含义如下：-->
+	<!--Range.START_TO_START - 比较两个 Range 节点的开始点-->
+	<!--Range.END_TO_END - 比较两个 Range 节点的结束点-->
+	<!--Range.START_TO_END - 用 sourceRange 的开始点与当前范围的结束点比较-->
+	<!--Range.END_TO_START - 用 sourceRange 的结束点与当前范围的开始点比较-->
+	<!--该方法的返回值是一个数字，声明了当前范围相对于 sourceRange 的位置。因此，您可能认为，首先需要用参数 how 的范围常量指定当前范围的边界点，然后再用它指定 sourceRange 的边界点。但事实上，常量 Range.START_TO_END 指定与当前范围的 end 点和 sourceRange 的 start 点进行比较。同样，常量 Range.END_TO_START 指定比较当前范围的 start 点和指定范围的 end 点。-->
+	<script>
+		function testPlace() {
+			var boldText = document.getElementById("boldTest");
+			var boldRange = document.createRange();
+			boldRange.selectNodeContents(boldText.firstChild);
+			var selection = document.getSelection();
+			if (selection.rangeCount > 0) {
+				var selRange = selection.getRangeAt(0);
+				if (selRange.compareBoundaryPoints(Range.START_TO_END, boldRange) <= 0) {
+					alert("选取的文字在粗体前面");
+				} else {
+					if (selRange.compareBoundaryPoints(Range.END_TO_START, boldRange) >= 0) {
+						alert("选择的文字在粗体后面");
+					}
+				}
+			}
+		}
+	</script>
+	这是一段文字，我也不<b id="boldTest">知道</b>写点啥
+	<button onclick="testPlace()">位置比较</button>
+	<!--collapse:如果把参数 toStart 设置为 true，该方法将把范围的结束点设置为与开始点相同的值。否则，它将把范围的开始点设置为与结束点相同的值。-->
+	<!--detach:释放掉选中的内容-->
+	<!--通知实现不再使用当前的范围，可以停止跟踪。如果调用了范围的这个方法，那么接下来调用的该范围任何方法都会抛出代码为 INVALID_STATE_ERR 的 DOMException 异常。-->
+	<script>
+		var rangeObj = document.createRange();
+		function selectRangeContents() {
+			var div = document.getElementById("divxxx");
+			rangeObj.selectNode(div);
+			//rangeObj.detach(); 释放掉选中的内容
+		}
+		function unselect() {
+			rangeObj.collapse(false);
+		}
+		function showRange() {
+			alert(rangeObj.toString());
+		}
+	</script>
+	<div id="divxxx" style="background-color:bisque;width:300px;height: 50px;">元素中的内容</div>
+	<button onclick="selectRangeContents()">选择元素</button>
+	<button onclick="unselect()">取消元素</button>
+	<button onclick="showRange()">显示Range内容</button>
+</body>
+</html>

@@ -1,0 +1,367 @@
+p, h1, h2, h3, h4, h5, h6, b, body, img, dl, dt, dd{
+	margin:0;
+	padding:0;
+}
+ul{
+	list-style: none;
+	padding:0;
+	margin:0;
+}
+body{
+	background-color:#5d5d5d;
+}
+.container{
+	padding:0 44px; /*(980 - 892)/2*/
+	width:892px;
+	height:1386px;
+	background-color:#fff;
+	margin:0 auto;
+}
+/*头部*/
+.container>header{
+	font:12px/14px "黑体";
+	height:61px;
+	width:100%;
+	position:relative;
+	border-bottom:2px solid #938e8c;
+}
+header div{
+	float:left;
+	width:110px;
+	height:100%;
+	background-color:#d55d5c;
+}
+header div span{
+	color:#fff;
+	position:absolute;
+	left:4px;
+	bottom:2px;
+}
+header time{
+	color:#d45d5c;
+	position:absolute;
+	right:0;
+	bottom:2px;
+}
+/*上部*/
+.one{
+	margin-top:34px;
+	position:relative;
+}
+.one_img{
+}
+.one_img_l, .one_img_r{
+	top:0;
+	z-index:99;
+	opacity:0.5;
+	width:191px;
+	height:301px;
+	position:absolute;
+}
+.one_img_l{
+	background-color:#a0c5ac;
+	left:0;
+}
+.one_img_r{
+	background-color:#e5bac0;
+	left:450px;
+}
+.aside{
+	width:203px;
+	float:right;
+	border-top:2px solid #cc8091;
+	position:relative;
+}
+.aside .about{
+	color:#000;
+	font:24px/40px "微软雅黑";
+	text-decoration:underline;
+	font-variant:small-caps; /*小写字母变为小型大写字母*/
+	text-transform:capitalize; /*首字母大写*/
+	/*
+		font-variant -- 属性设置小型大写字母的字体显示文本，这意味着所有的小写字母均会被转换为大写，但是所有使用小型大写字体的字母与其余文本相比，其字体尺寸更小。
+		normal	默认值。浏览器会显示一个标准的字体。
+		small-caps	浏览器会显示小型大写字母的字体。
+		inherit	规定应该从父元素继承 font-variant 属性的值。
+
+		text-transform -- 定义文本的大小写状态,此属性对中文无意义
+		capitalize: 首字母大写
+		uppercase: 大写
+		lowercase: 小写
+		none: 正常无变化
+		inherit: 继承
+	*/
+}
+.aside .detail{
+	color:#676767;
+	font:12px/10px "楷体";
+	font-style:oblique;
+}
+.aside .seven{
+	color:#75b86b;
+	font:600 116px/153px "微软雅黑";
+	font-style:oblique;
+	margin-left:-25px;
+}
+.color_cc8091{
+	color:#cc8091;
+}
+.aside .num{
+	font:55px/55px "微软雅黑";
+	display:inline;
+}
+.aside .text1{
+	font:21px/21px "微软雅黑";
+	position:absolute;
+	bottom:10px;
+	left:85px;
+}
+.aside .text2{
+	font:12px/14px "微软雅黑";
+	color:#ccc;
+	position:absolute;
+	bottom:0;
+	left:85px;
+}
+/*中间部分*/
+.two{
+	margin:30px 0;
+	font:12px/16px "微软雅黑";
+	overflow:auto;
+}
+.two dl{
+	float:left;
+	margin-right:25px;
+}
+.two a{
+	font:600 16px/28px "微软雅黑";
+}
+/*里面的a标签自带text-decoration:underline的 不用专门写*/
+.what{
+	width:227px;
+	font-family:"宋体";
+}
+.what a{
+	color:#418c59;
+}
+.what dd{
+	color:#767777;
+}
+.when{
+	width:205px;
+}
+.when a{
+	color:#d2994f;
+}
+.when dd{
+	color:#231815;
+	opacity:0.7;
+}
+.how{
+	width:135px;
+}
+.how a{
+	color:#cc7680;
+}
+.how dd{
+	color:#231815;
+	line-height:21px;
+	word-break:keep-all;
+}
+/*
+	word-break
+	normal	使用浏览器默认的换行规则。
+	break-all	允许在单词内换行。
+	keep-all	只能在半角空格或连字符处换行。
+*/
+.how_what{
+	margin-top:23px;
+}
+.how_what p{
+	margin-top:5px;
+	font-style:oblique;
+}
+.how_what p span{
+	color:#cd4a48;
+}
+/*底部文章*/
+.three{
+	margin-top:75px;
+	overflow:hidden;/*里面有浮动*/
+}
+/*左边*/
+.three article{
+	width:415px;
+	float:left;
+}
+.three header{
+	border-bottom:2px solid #11456b;
+	margin-bottom:23px;
+}
+.three h1{
+	color:#11456b;
+	font:bold 42px/42px "黑体";
+}
+.three h1 b{
+	color:#f5e327;
+	font-style:oblique;
+	font-size:72px;
+	line-height:72px;
+}
+/* 可以用简写 font:oblique bold 72px/72px "黑体" */
+.three h1:last-child{
+	font-size:33px;
+}
+.three article p{
+	color:#767777;
+	font:12px/16px "宋体";
+	text-indent: 2em;
+}
+.three article .firstP{
+	text-indent:0;
+}
+.three article p span{
+	color:#f5e327;
+	float:left;
+	font:70px/70px "微软雅黑";
+	padding:0 9px 9px 0;
+}
+.three article img{
+	float:right;
+	margin:15px 0 15px 15px;
+}
+/*右边*/
+.three_right{
+	width:458px;/*固定了外围宽度 任务要求一个458 一个459*/
+	float:right;
+}
+.three_right .top_box{/*这个高度是图片的257不是任务的275 任务可能写错了*/
+	position:relative;
+	line-height:0;
+}
+.three_right .qdjs-bg{
+	width:100%;
+	height:61px;
+	background-color:#040000;
+	opacity:0.4;
+	position:absolute;
+	bottom:0;
+}
+.three_right .top_box p{
+	position:absolute;
+	left:38px;
+	bottom:8px;
+	border-left:3px solid #72b16a;
+	padding-left:12px;
+	font:26px/44px "微软雅黑";
+}
+.three_right .top_box p a{
+	color:#fff;
+	text-decoration:none;
+}
+.three_right .top_box p span{
+	color:#72b16a;
+	margin-left:8px;
+	font:oblique 12px/140% "微软雅黑";
+	/*
+	任务要求的字间距140%不知是不是写错  我设置了行高140%
+	字母间隔letter-spacing和文本间隔 word-spacing属性分别用在字母间和单词间的距离
+	这两个属性无法设置140%
+	*/
+}
+.three_right .bottom_box{
+	background-color:#eeedd6;
+	width:100%;
+	height:318px;
+	overflow:hidden;/*不然里面UL的margin无效*/
+	margin-top:30px;
+}
+.three_right .bottom_box ul{
+	padding:19px 0
+}
+.three_right li{
+	line-height:40px;
+	width:390px;
+	padding-left:15px;
+	background:url("../img/icon-1.png") left center no-repeat;
+	margin:0 auto;
+}
+.three_right li a{
+	width:100%;
+	font-size:16px;
+	font-family:"宋体";
+	color:#5a5b5b;
+	text-decoration:none;
+	text-align:left;
+}
+.three_right li span{
+	text-align:right;
+	float:right;
+	font-size:12px;
+	font-style:oblique;
+}
+.three_right .three_text_l{
+	width:260px;
+	height:160px;
+	background-color:#d45d5c;
+	color:#fff;
+	float:left;
+}
+.three_right .three_text_l .zero{
+	font:110px/86px "微软雅黑";
+	height:86px;
+	margin:37px 10px;
+	border-right:2px solid #fff;
+	float:left;
+}
+.three_right .three_text_l .nums{
+	margin-top: 37px;
+	float:left;
+	font:oblique 21px/24px "黑体";
+}
+.three_right .three_text_l .hello{
+	float:left;
+	margin-top:5px;
+	font:12px/10px "黑体";
+}
+.three_right .three_text_r{
+	width:162px;
+	height:160px;
+	padding:0 18px;
+	float:left;
+	position:relative;
+}
+.three_right .three_text_r p{
+	font:oblique 14px/16px "宋体";
+	color:#5a5b5b;
+	text-indent:3em;
+	margin-top:20px;
+}
+.three_right .three_text_r .icon_l, .three_right .three_text_r .icon_r{
+	font:72px/16px "黑体";
+	color:#d45d5c;
+}
+.three_right .three_text_r .icon_l{
+	position: absolute;
+	top:35px;
+	left:-60px;
+}
+.three_right .three_text_r .icon_r{
+	position: absolute;
+	top:115px;
+	right:-20px;
+	font-style: normal;
+}
+/*底部*/
+footer{
+	clear: both;
+	width: 892px;
+	height: 59px;
+	border-top: 1px solid #938e8c;
+	margin-top:35px;
+}
+footer .ife_url{
+	float:right;
+	font:12px "黑体";
+	color:#d45d5c;
+}

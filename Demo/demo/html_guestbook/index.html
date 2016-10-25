@@ -1,0 +1,78 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>留言板</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/guestbook.css">
+</head>
+<body>
+	<div class="fix">
+		<div class="up">
+			<div class="center">
+				<h1>这是上面的内容 自适应高度居中</h1>
+			</div>
+		</div>
+	</div>
+	<div class="guestbook">
+		<div class="fix">
+			<!--左边 投资-->
+			<div class="investment">
+				<div class="title">
+					<i></i>
+					<h2>关注兴富投资</h2>
+				</div>
+				<b></b>
+			</div>
+			<!--中间 留言板-->
+			<div class="con">
+				<div class="title">
+					<i></i>
+					<h2>在线留言</h2>
+				</div>
+				<form action="">
+					<input type="button" name="fname"/>
+					<input type="text" name="fname" value="姓名" onclick="chg()"/>
+					<input type="text" name="fname" value="电话"/>
+					<input type="text" name="fname" value="邮箱"/>
+					<textarea name="guestbook">请输入您的留言内容</textarea>
+				</form>
+				<script>
+					/*前三个*/
+					var con = document.getElementsByName("fname");
+					var context = ["","姓名","电话","邮箱"];/*定义数组对应检查是不是当前默认Value*/
+					for(i=0;i<con.length-1;i++){
+						con[i+1].setAttribute("onclick","chg("+(i+1)+")");
+						con[i+1].setAttribute("onblur","newChg("+(i+1)+")");
+					}
+					function chg(num) {
+						if(con[num].value==''||con[num].value==context[num]){
+							con[num].value='';
+						}
+					}
+					function newChg(num) {
+						if(con[num].value==''||con[num].value==context[num]){
+							con[num].value=context[num];
+						}
+					}
+					/*留言板*/
+					document.getElementsByName('guestbook')[0].setAttribute("onclick","clearGuestbook(this)");
+					function clearGuestbook(obj){
+						obj.innerHTML = '';
+					}
+				</script>
+			</div>
+			<!--右边 联系我们-->
+			<div class="contact">
+				<div class="title">
+					<i></i>
+					<h2>联系我们</h2>
+				</div>
+				<p>Add：锡林郭勒盟兴富投资<br>
+				   Tel :  0551-66191717    66187722     64660285<br>
+				   网址: www.qmtc.net   Q Q:  944255168<br>
+				   EML:944255168@qq.com</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

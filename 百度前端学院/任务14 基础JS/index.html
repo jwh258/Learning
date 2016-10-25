@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>js任务2</title>
+</head>
+<body>
+	<img src="任务要求.png" alt="">
+	<br>
+	<hr>
+	<br>
+	<p>学习笔记：尽量避免循环内appendChild…重排会引起性能下降，对DOM的操作要越少越好</p>
+	<p>前两种方法性能相差不多，但是第三种明显快</p>
+	<p>由此可知，循环内appendChild不管放哪里都会降低性能。保存到临时字符串(contentStr += "ooxx")，最后一次性添加(innerHTML)，是更好的做法。</p>
+	<br>
+	<hr>
+	<br>
+	<p>第一种方法，循环创建li放入ul</p>
+	<h3>污染城市列表1</h3>
+	<ul id="aqi-list1">
+		<!--
+				<li>第一名：福州（样例），10</li>
+				<li>第二名：福州（样例），10</li> -->
+	</ul>
+	<!--最基础的写法-->
+	<script type="text/javascript">
+		var aqiData = [
+			["北京", 90],
+			["上海", 50],
+			["福州", 10],
+			["广州", 50],
+			["成都", 90],
+			["西安", 100]
+		];
+		(function () {
+			/*
+			 在注释下方编写代码
+			 遍历读取aqiData中各个城市的数据
+			 将空气质量指数大于60的城市显示到aqi-list的列表中
+			 */
+			var chineseNum = ["一", "二", "三", "四", "五", "六"];
+			aqiData.sort(function (n1, n2) {
+				return n2[1] - n1[1];//2-1 = 从大到小  [1]比后面的数值
+			});
+			for (i = 0; i < aqiData.length; i++) {
+				if (aqiData[i][1] > 60) {//判定的是后面的数字，第二个子元素
+					var li = document.createElement('li');//建立li
+					li.appendChild(document.createTextNode("第" + chineseNum[i] + "名：" + aqiData[i]));//把内容放入li
+					document.getElementById('aqi-list1').appendChild(li);//把li放入ul
+				}
+			}
+		})();
+	</script>
+	<br>
+	<hr>
+	<br>
+	<p>第二种方法，创建文档碎片(document.createDocumentFragment)，li循环加入碎片后把碎片一次性放入ul</p>
+	<h3>污染城市列表2</h3>
+	<ul id="aqi-list2">
+		<!--
+				<li>第一名：福州（样例），10</li>
+				<li>第二名：福州（样例），10</li> -->
+	</ul>
+	<!--
+	由于循环appendChild在大量数据插入时有性能问题
+	推荐 创建文档碎片(document.createDocumentFragment)
+	-->
+	<script type="text/javascript">
+		var aqiData = [
+			["北京", 90],
+			["上海", 50],
+			["福州", 10],
+			["广州", 50],
+			["成都", 90],
+			["西安", 100]
+		];
+		(function () {
+			/*
+			 在注释下方编写代码
+			 遍历读取aqiData中各个城市的数据
+			 将空气质量指数大于60的城市显示到aqi-list的列表中
+			 */
+			var chineseNum = ["一", "二", "三", "四", "五", "六"];
+			aqiData.sort(function (n1, n2) {
+				return n2[1] - n1[1];//2-1 = 从大到小  [1]比后面的数值
+			});
+			var oFragmeng = document.createDocumentFragment();//创建文档碎片
+			for (i = 0; i < aqiData.length; i++) {
+				if (aqiData[i][1] > 60) {//判定的是后面的数字，第二个子元素
+					var li = document.createElement('li');//建立li
+					li.appendChild(document.createTextNode("第" + chineseNum[i] + "名：" + aqiData[i]));//把内容放入li
+					oFragmeng.appendChild(li);//把li放入文档碎片
+				}
+			}
+			document.getElementById('aqi-list2').appendChild(oFragmeng);
+		})();
+	</script>
+	<br>
+	<hr>
+	<br>
+	<p>第三种方法，使用了array.filter、array.sort，使用了array.forEach方法来代替for循环遍历处理数组元素，使用了这三个数组函数的链式调用； 使用了element.innerHTML属性一次性改变元素的DOM结构</p>
+	<h3>污染城市列表3</h3>
+	<ul id="aqi-list3">
+		<!--
+				<li>第一名：福州（样例），10</li>
+				<li>第二名：福州（样例），10</li> -->
+	</ul>
+	<!--
+	由于循环appendChild在大量数据插入时有性能问题
+	推荐 创建文档碎片(document.createDocumentFragment)
+	-->
+	<script type="text/javascript">
+		var aqiData = [
+			["北京", 90],
+			["上海", 50],
+			["福州", 10],
+			["广州", 50],
+			["成都", 90],
+			["西安", 100]
+		];
+		(function () {
+			/*
+			 在注释下方编写代码
+			 遍历读取aqiData中各个城市的数据
+			 将空气质量指数大于60的城市显示到aqi-list的列表中
+			 */
+			var chineseNumbers = ["一", "二", "三", "四", "五", "六"];
+			var contentStr = "";
+			aqiData.filter(function (element) {return element[1] > 60;})
+			       .sort(function (d1, d2) {return d2[1] - d1[1];})
+			       .forEach(function (element, index) {
+								contentStr += "<li>第" + chineseNumbers[index] + "名：" + element[0] + "，" + element[1] + "</li>";
+							});
+			document.getElementById("aqi-list3").innerHTML = contentStr;
+		})();
+	</script>
+</body>
+</html>

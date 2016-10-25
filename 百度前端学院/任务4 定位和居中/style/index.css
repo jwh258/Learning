@@ -1,0 +1,107 @@
+*{
+	margin:0;
+	padding:0;
+}
+html, body{
+	width:100%;
+	height:100%;
+}
+.demo2, .demo3{ width:100%; height:100% }
+/*.none{ display:none }*/
+/*.db{ display:block }*/
+.azure{ background-color:azure; }
+.blue{ background-color:#006eaa; }
+.violet{ background-color:violet; }
+/* 连接 */
+.link{
+	position:absolute;
+	top:0;
+	left:50%;
+	margin-left:-146px;
+	z-index:999;
+}
+.link a{
+	display:inline-block;
+	text-decoration:none;
+	margin-right:10px;
+	font-weight:bold;
+	background:black;
+	color:white;
+	padding:10px;
+}
+.link a:last-child{
+	margin:0
+}
+.link a:hover{
+	background:#4b84e6;
+	color:black;
+}
+
+.lt{
+	width:50px;
+	height:50px;
+	border-radius:0 0 50px 0;
+	position:absolute;
+}
+.rb{
+	width:50px;
+	height:50px;
+	border-radius:50px 0 0 0;
+	position:absolute;
+	right:0;
+	bottom:0;
+}
+/*定位居中*/
+.position{
+	position:absolute;
+	width:400px;
+	height:200px;
+	background-color:#ccc;
+	top:50%;
+	margin-top:-100px;
+	left:50%;
+	margin-left:-200px
+}
+.position .lt , .position .rb{
+	background-color:#fc0;
+}
+/*flex居中*/
+.flex{
+	width:100%;
+	height:100%;
+	display:-webkit-flex;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+.flex .inner{
+	width:400px;
+	height:200px;
+	background:#ccc;
+	position:relative;
+	overflow:hidden;
+}
+.flex .lt , .flex .rb{
+	background-color:#ffc48a;
+}
+/*表格居中*/
+.table{
+	width:100%;
+	height:100%;
+	display:table;
+}
+.table .corner{
+	display: table-cell;
+	vertical-align: middle;
+}
+.table .inner{
+	width: 400px;
+	height: 200px;
+	background: #ccc;
+	position: relative;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.table .lt , .table .rb{
+	background-color:#ffa99d;
+}

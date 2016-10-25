@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<style type="text/css">
+		*{ margin:0; padding:0; }
+		body{ font-size:12px; }
+		.comment{ margin-top:10px; padding:10px; border:1px solid #ccc; background:#ddd; }
+		.comment h6{ font-weight:700; font-size:14px; }
+		.para{ margin-top:5px; text-indent:2em; background:#ddd; }
+		.para3{ width:100px; height:100px; margin:5px; border:0;}
+	</style>
+	<!--   引入jQuery -->
+	<script src="others/jquery.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		//<![CDATA[
+		$(function () {
+			//1 get scripts
+			$('#send1').click(function () {
+				$.ajax({
+					type: "GET",
+					url: "others/test.js",
+					dataType: "script"
+				});
+			});
+			//2 get json
+			$('#send2').click(function () {
+				$.ajax({
+					type: "GET",
+					url: "others/test.json",
+					dataType: "json",
+					success: function (data) {
+						$('#resText2').empty();
+						var html = '';
+						$.each(data, function (commentIndex, comment) {
+							html += '<div class="comment"><h6>' + comment['username'] + ':</h6><p class="para">' + comment['content'] + '</p></div>';
+						})
+						$('#resText2').html(html);
+					}
+				});
+			});
+			//3 get 外部 jsonp方法
+			$('#send3').click(function () {
+				$.ajax({
+					type: "GET",
+					url: "http://api.flickr.com/services/feeds/photos_public.gne?tags=car&tagmode=any&format=json&jsoncallback=?",
+					dataType: "jsonp",
+					success: function (data) {
+						$("#resText3").empty();//清空一次 不然无限增加
+						$.each(data.items, function (i, item) {
+							$("<img class='para3'/> ").attr("src", item.media.m).appendTo("#resText3");
+							if (i == 3) {
+								return false;
+							}
+						});
+					}
+				});
+			});
+		})
+		//]]>
+	</script>
+</head>
+<body>
+	<br/>
+	<p>
+		<input type="button" id="send1" value="加载"/>
+	</p>
+	<div class="comment">已有评论：</div>
+	<div id="resText">
+	</div>
+	<br>
+	<hr>
+	<br> <br/>
+	<p>
+		<input type="button" id="send2" value="加载"/>
+	</p>
+	<div class="comment">已有评论：</div>
+	<div id="resText2">
+	</div>
+	<br>
+	<hr>
+	<br>
+	<p>
+		<input type="button" id="send3" value="加载"/>
+	</p>
+	<div id="resText3">
+	</div>
+</body>
+</html>

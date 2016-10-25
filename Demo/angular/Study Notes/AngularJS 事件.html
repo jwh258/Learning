@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="angular.min.js"></script>
+</head>
+<body>
+	<h2>1 ng-click 指令</h2>
+	<p>ng-click 指令定义了 AngularJS 点击事件。</p>
+	<div ng-app="myApp" ng-controller="myCtrl">
+		<button ng-click="count = count + 1">点我！</button>
+		<p>{{ count }}</p>
+	</div>
+	<script>
+		var app = angular.module('myApp', []);
+		app.controller('myCtrl', function ($scope) {
+			$scope.count = 0;
+		});
+	</script>
+	<br>
+	<hr>
+	<br>
+	<h2>2 隐藏 HTML 元素 ng-hide</h2>
+	<div ng-app="myApp1" ng-controller="personCtrl">
+		<button ng-click="toggle()">>隐藏/显示</button>
+		<p ng-hide="myVar">
+			名: <input type="text" ng-model="firstName"><br><br>
+			姓名: <input type="text" ng-model="lastName"><br><br>
+			Full Name: {{firstName + " " + lastName}}
+		</p>
+	</div>
+	<script>
+		var app = angular.module('myApp1', []);
+		app.controller('personCtrl', function ($scope) {
+			$scope.firstName = "John";
+			$scope.lastName = "Doe";
+			$scope.myVar = false;
+			$scope.toggle = function () {
+				$scope.myVar = !$scope.myVar;
+			};
+		});
+		angular.bootstrap(document.getElementsByTagName('div')[1], ['myApp1']);
+	</script>
+	<br>
+	<hr>
+	<br>
+	<h2>3 显示 HTML 元素 ng-show</h2>
+	<div ng-app="myApp2" ng-controller="personCtrl">
+		<button ng-click="toggle()">隐藏/显示</button>
+		<p ng-show="myVar">
+			名: <input type=text ng-model="person.firstName"><br><br>
+			姓: <input type=text ng-model="person.lastName"><br><br>
+			姓名: {{person.firstName + " " + person.lastName}}
+		</p>
+	</div>
+	<script>
+		var app = angular.module('myApp2', []);
+		app.controller('personCtrl', function ($scope) {
+			$scope.person = {
+				firstName: "John",
+				lastName: "Doe"
+			};
+			$scope.myVar = true;
+			$scope.toggle = function () {
+				$scope.myVar = !$scope.myVar;
+			};
+		});
+		angular.bootstrap(document.getElementsByTagName('div')[2], ['myApp2']);
+	</script>
+</body>
+</html>

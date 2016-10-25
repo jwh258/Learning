@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="angular.min.js"></script>
+</head>
+<body ng-app="">
+	<!--
+		AngularJS 指令是扩展的 HTML 属性，带有前缀 ng-。
+		ng-app 指令初始化一个 AngularJS 应用程序。
+		ng-init 指令初始化应用程序数据。
+		ng-model 指令把元素值（比如输入域的值）绑定到应用程序。
+	-->
+	<div ng-init="firstName='John'">
+		<p>在输入框中尝试输入：</p>
+		<p>姓名：<input type="text" ng-model="firstName"></p>
+		<p>你输入的为： {{ firstName }}</p>
+	</div>
+
+	<!--
+		上面实例中的 {{ firstName }} 表达式是一个 AngularJS 数据绑定表达式。
+		AngularJS 中的数据绑定，同步了 AngularJS 表达式与 AngularJS 数据。
+		{{ firstName }} 是通过 ng-model="firstName" 进行同步。
+		在下一个实例中，两个文本域是通过两个 ng-model 指令同步的：
+	-->
+	<div ng-init="quantity=1;price=5">
+		<h2>价格计算器</h2>
+		数量： <input type="number"	ng-model="quantity">
+		价格： <input type="number" ng-model="price">
+		<p><b>总价：</b> {{ quantity * price }}</p>
+	</div>
+
+	<!--
+		重复 HTML 元素
+		ng-repeat 指令会重复一个 HTML 元素：
+	-->
+	<div ng-init="names=['Jani','Hege','Kai']">
+		<p>使用 ng-repeat 来循环数组</p>
+		<ul>
+			<li ng-repeat="x in names">
+				{{ x }}
+			</li>
+		</ul>
+	</div>
+	<div ng-init="names=[
+	{name:'Jani',country:'Norway'},
+	{name:'Hege',country:'Sweden'},
+	{name:'Kai',country:'Denmark'}
+	]">
+		<p>循环对象：</p>
+		<ul>
+			<li ng-repeat="x	in names">
+				{{ x.name + ', ' + x.country }}
+			</li>
+		</ul>
+	</div>
+
+	ng-init 指令
+	ng-init 指令为 AngularJS 应用程序定义了 初始值。
+	通常情况下，不使用 ng-init。您将使用一个控制器或模块来代替它。
+	稍后您将学习更多有关控制器和模块的知识。
+
+	ng-model 指令
+	ng-model 指令 绑定 HTML 元素 到应用程序数据。
+	ng-model 指令也可以：
+	为应用程序数据提供类型验证（number、email、required）。
+	为应用程序数据提供状态（invalid、dirty、touched、error）。
+	为 HTML 元素提供 CSS 类。
+	绑定 HTML 元素到 HTML 表单。
+</body>
+</html>

@@ -1,0 +1,65 @@
+/*public style*/
+a{text-decoration:none;color:#fff;}
+a:hover{color:#ccc;}
+a:focus{outline:none;-moz-outline-style:none;}
+fieldset,img{border:0;}
+img{vertical-align:middle;border:0;}
+button,input,select,textarea{font-size:100%;}
+button,input[type='button'],input[type='reset'],input[type='submit']{cursor:pointer;-webkit-appearance:button;}
+q:before,q:after{content:'';}
+table{border-spacing:0;border-collapse:collapse;}
+em,i{font-style:normal;}
+.fl{float:left;_display:inline;}
+.fr{float:right;_display:inline;}
+.fn{float:none;}
+.clear{font-size:1px;line-height:1px;clear:both;width:100%;height:1px;}
+.clearfix{display:block;*display:inline-block;}
+.clearfix:after{display:block;visibility:hidden;clear:both;height:0;content:'.';}
+.op{opacity:0.7;filter:Alpha(opacity=70);}
+.cut{overflow:hidden;}
+.db{display:block;}
+.none,.hide{display:none;}
+.hand{cursor:pointer;}
+.shadow{box-shadow:5px 5px 2px #dfdfdf;}
+.fix{width:996px;margin-right:auto;margin-left:auto;}
+
+/*下拉列表样式修改*/
+select{padding-right:14px;background:url('../img/search-bg.png') no-repeat center right 3px;-webkit-appearance:none;-moz-appearance:none;appearance:none;}
+select::-ms-expand{display:none;}
+
+textarea{-webkit-appearance:none;-moz-appearance:none;appearance:none;}
+
+/*其他*/
+.up{width:100%;height:100%;background-color:#ccc;}
+.up h1{font:800 40px/40px 'Microsoft YaHei';text-align:center;}
+.center{position:absolute;top:0;right:0;bottom:208px;left:0;height:40px;margin:auto;}
+
+h1,h2{color:#fff;}
+/*留言板*/
+.guestbook{position:absolute;bottom:0;width:100%;padding:30px 0 34px;background-color:#30333a;}
+.guestbook .fix{width:940px;padding:0 28px;}
+
+.guestbook .title{overflow:hidden;width:100%;}
+.guestbook .title i{display:block;float:left;width:14px;height:20px;margin-right:10px;background:url('../img/icon.png') no-repeat;}
+.guestbook .title h2{font:14px/14px 'Microsoft YaHei';float:left;}
+
+.guestbook .investment,.guestbook .con,.guestbook .contact{float:left;}
+
+.guestbook .investment{width:110px;}
+.guestbook .investment .title i{width:14px;height:20px;background-position:0 0;}
+.guestbook .investment .title h2{margin-top:6px;}
+.guestbook .investment b{display:block;float:left;width:110px;height:108px;margin-top:13px;background:url('../img/icon.png') no-repeat;background-position:-26px 0;}
+
+.guestbook .con{width:508px;margin:6px 38px 0;background:none;}
+.guestbook .con .title i{width:22px;height:15px;background-position:0 -24px;}
+.guestbook .con .title h2{margin-top:1px;}
+.guestbook .con form{font:12px/35px 'Microsoft YaHei';position:relative;margin-top:12px;}
+.guestbook .con form input{float:left;clear:left;width:170px;height:35px;margin-right:2px;margin-bottom:2px;padding:0 13px;color:#5d5d5d;border:1px solid #3b3b43;}
+.guestbook .con form input:first-child{float:right;clear:right;width:35px;height:110px;margin:0 0 0 2px;padding:0 10px;color:#fff;border:none;background:url('../img/button.png');/*IE不识别css sprite，单独切个图出来*/background-color:#3baff7;writing-mode:vertical-rl;}
+.guestbook .con form input:last-child{height:36px;margin:0;}
+.guestbook .con form textarea{line-height:24px;position:absolute;width:300px;height:110px;padding:8px;color:#5d5d5d;border:1px solid #3b3b43;}
+
+.guestbook .contact{width:246px;}
+.guestbook .contact .title i{width:18px;height:20px;background-position:0 -44px;}
+.guestbook .contact .title h2{margin-top:5px;}
+.guestbook .contact p{font:12px/23px 'Microsoft YaHei';margin-top:10px;color:#8a8c91;}

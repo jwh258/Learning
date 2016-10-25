@@ -1,0 +1,8 @@
+﻿call 第一个参数为空，则this指向window(在node环境中则指向global)
+dataset 操作自定义data-*数据
+xxx.addEventListener("click",xxx);
+
+三元运算符:
+如名字表示的三元运算符需要三个操作数。
+语法是 条件 ? 结果1 : 结果2;. 这里你把条件写在问号(?)的前面后面跟着用冒号(:)分隔的结果1和结果2。满足条件时结果1否则结果2。
+aqiTable.innerHTML = city ? items : "";

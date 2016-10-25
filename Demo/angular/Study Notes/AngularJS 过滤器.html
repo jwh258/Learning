@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="angular.min.js"></script>
+</head>
+<body>
+	<h1>AngularJS 过滤器</h1>
+	<p>
+		AngularJS 过滤器可用于转换数据：
+		过滤器	    描述
+		currency	格式化数字为货币格式。
+		filter	  从数组项中选择一个子集。
+		lowercase	格式化字符串为小写。
+		orderBy	  根据某个表达式排列数组。
+		uppercase	格式化字符串为大写。
+	</p>
+	<br>
+	<hr>
+	<br>
+	<h1>表达式中添加过滤器</h1>
+	<p>过滤器可以通过一个管道字符（|）和一个过滤器添加到表达式中。.
+		 (（下面的两个实例，我们将使用前面章节中提到的 person 控制器）)</p>
+	<div ng-app="myApp" ng-controller="personCtrl">
+		<p>姓名为 {{ lastName | uppercase }}</p>
+		<p>姓名为 {{ lastName | lowercase }}</p>
+	</div>
+	<script>
+		angular.module('myApp', []).controller('personCtrl', function ($scope) {
+			$scope.firstName = "John",
+			$scope.lastName = "Doe",
+			$scope.fullName = function () {
+				return $scope.firstName + " " + $scope.lastName;
+			}
+		});
+	</script>
+	<br>
+	<hr>
+	<br>
+	<h1>currency 过滤器</h1>
+	<p>currency 过滤器将数字格式化为货币格式：</p>
+	<div ng-app="myApp1" ng-controller="costCtrl">
+		数量: <input type="number" ng-model="quantity"> 价格: <input type="number" ng-model="price">
+		<p>总价 = {{ (quantity * price) | currency }}</p>
+	</div>
+	<script>
+		var app = angular.module('myApp1', []);
+		app.controller('costCtrl', function ($scope) {
+			$scope.quantity = 1;
+			$scope.price = 9.99;
+		});
+		angular.bootstrap(document.getElementsByTagName('div')[1], ['myApp1']);
+	</script>
+	<br>
+	<hr>
+	<br>
+	<h1>向指令添加过滤器</h1>
+	<p>
+		过滤器可以通过一个管道字符（|）和一个过滤器添加到指令中。
+		orderBy 过滤器根据表达式排列数组：
+	</p>
+	<div ng-app="myApp2" ng-controller="namesCtrl">
+		<p>循环对象:</p>
+		<ul>
+			<li ng-repeat="x in names | orderBy:'country'">
+				{{ x.name + ', ' + x.country }}
+			</li>
+		</ul>
+	</div>
+	<script>
+		angular.module('myApp2', []).controller('namesCtrl', function($scope) {
+			$scope.names = [
+				{name:'Jani',country:'Norway'},
+				{name:'Hege',country:'Sweden'},
+				{name:'Kai',country:'Denmark'}
+			];
+		});
+		angular.bootstrap(document.getElementsByTagName('div')[2],['myApp2']);
+	</script>
+	<br>
+	<hr>
+	<br>
+	<h1>过滤输入</h1>
+	<p>
+		输入过滤器可以通过一个管道字符（|）和一个过滤器添加到指令中，该过滤器后跟一个冒号和一个模型名称。
+		filter 过滤器从数组中选择一个子集：
+	</p>
+	<div ng-app="myApp3" ng-controller="namesCtrl">
+		<p>输入过滤:</p>
+		<p><input type="text" ng-model="test"></p>
+		<ul>
+			<!--
+					注意上面的ng-model="test"和下面的filter:test
+			-->
+			<li ng-repeat="x in names | filter:test | orderBy:'country'">
+				{{ (x.name | uppercase) + ', ' + x.country }}
+			</li>
+		</ul>
+	</div>
+	<script>
+		angular.module('myApp3', []).controller('namesCtrl', function($scope) {
+			$scope.names = [
+				{name:'Jani',country:'Norway'},
+				{name:'Hege',country:'Sweden'},
+				{name:'Kai',country:'Denmark'}
+			];
+		});
+		angular.bootstrap(document.getElementsByTagName('div')[3],['myApp3']);
+	</script>
+</body>

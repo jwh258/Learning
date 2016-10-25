@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="angular.min.js"></script>
+</head>
+<body>
+	<h2>网页显示不正确是ng-app没有显示  设置后即可正确显示</h2>
+	<h1>1 ng-disabled 指令</h1>
+	<p>ng-disabled 指令直接绑定应用程序数据到 HTML 的 disabled 属性。</p>
+	<div ng-app="" ng-init="mySwitch=true">
+		<p>
+			<button ng-disabled="mySwitch">点我!</button>
+		</p>
+		<p>
+			<input type="checkbox" ng-model="mySwitch"/>按钮
+		</p>
+		<p>
+			{{ mySwitch }}
+		</p>
+		<br>
+		实例讲解：<br>
+		ng-disabled 指令绑定应用程序数据 "mySwitch" 到 HTML 的 disabled 属性。<br>
+		ng-model 指令绑定 "mySwitch" 到 HTML input checkbox 元素的内容（value）。<br>
+		如果 mySwitch 为true, 按钮将不可用: <br>
+		<p>
+			<button disabled>点我！</button>
+		</p>
+		<p>如果 mySwitch 为false, 按钮则可用: </p>
+		<p>
+			<button>点我!</button>
+		</p>
+	</div>
+	<br>
+	<hr>
+	<br>
+	<h1>2 ng-show 指令</h1>
+	<p>ng-show 指令隐藏或显示一个 HTML 元素。</p>
+	<div ng-app="">
+		<p ng-show="true" style="color:#ccc">我是可见的。</p>
+		<p ng-show="false" style="color:#ccc">我是不可见的。</p>
+	</div>
+	<p>ng-show 指令根据 value 的值来显示（隐藏）HTML 元素。<br>
+		 你可以使用表达式来计算布尔值（ true 或 false）:</p>
+	<div ng-app="" ng-init="hour=13">
+		<p ng-show="hour > 12" style="color:#ccc">我是可见的。</p>
+	</div>
+	<br>
+	<hr>
+	<br>
+	<h1>3 ng-hide 指令</h1>
+	<p>ng-hide 指令用于隐藏或显示 HTML 元素。</p>
+	<div ng-app="">
+		<p ng-hide="true" style="color:#ccc">我是不可见的。</p>
+		<p ng-hide="false" style="color:#ccc">我是可见的。</p>
+	</div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>2016年5月5日帮人制作统计页</title>
+	<style>
+		div{ margin-top:52px; float:left; }
+		tr{ height:50px; text-align:center }
+		td{ width:50px; border:1px solid #111; background:#ededed; margin:0; padding:0; overflow:hidden; cursor:pointer }
+		p{ font:600 14px "宋体"; margin:0; }
+		#head{ font:600 20px "微软雅黑"; position:fixed; top:0; background-color:#fff; }
+		#head td{ height:50px; width:50px; }
+		#head td:first-child{ padding-right:2px; }
+		#num{ font:600 25px "微软雅黑" }
+		#main{ float:left; }
+		.on{ background:#0eff00; }
+	</style>
+</head>
+<body>
+	<table id="head">
+		<tr>
+			<td>期数</td>
+			<td>0</td>
+			<td>1</td>
+			<td>2</td>
+			<td>3</td>
+			<td>4</td>
+			<td>5</td>
+			<td>6</td>
+			<td>7</td>
+			<td>8</td>
+			<td>9</td>
+		</tr>
+	</table>
+	<div>
+		<table id="num"></table>
+	</div>
+	<div>
+		<table id="main"></table>
+	</div>
+</body>
+<script>
+	var x = 120;//生成的行数
+	var num = document.getElementById('num');
+	var main = document.getElementById('main');
+	var cTbody = document.createElement('tbody');
+	//创建表格
+	for (var i = 0; i < x; i++) {
+		var numTR = document.createElement('tr');
+		var numTD = document.createElement('td');
+		numTD.innerHTML = i + 1;
+		numTR.appendChild(numTD);
+		num.appendChild(numTR);//创建左边期数
+		var cTR = document.createElement('tr');
+		for (var j = 0; j < 10; j++) {
+			var cTD = document.createElement('td');
+			cTR.appendChild(cTD);
+			cTD.setAttribute('id', i + "-" + j);
+			cTR.setAttribute('class', i);
+		}
+		cTbody.appendChild(cTR);
+	}
+	main.appendChild(cTbody);//创建右边主表格
+	//检查
+	//检查同行是否有多个点击的函数没有完善  用原生JS写这个代码太复杂
+	function check() {
+		for (xx = 0; xx < 10; xx++) {
+			var tr = main.getElementsByTagName('tr');
+			var kd = 1;
+			for (var yy = 0; yy < x; yy++) {
+				var td = tr[yy].getElementsByTagName('td');
+				if ((td[xx].getAttribute('data-on')) && (td[xx].className.search(/on/) != -1)) {
+					kd = 1;
+				} else {
+					td[xx].innerHTML = kd;
+					kd += 1;
+				}
+			}
+		}
+	}
+	//绑定事件
+	for (i = 0; i < x; i++) {
+		var tr = main.getElementsByTagName('tr');
+		var td = tr[i].getElementsByTagName('td');
+		for (var j = 0; j < 10; j++) {
+			if (i >= 0) {
+				td[j].onclick = function () {
+					if (!+this.getAttribute('data-on')) {
+						this.setAttribute('data-on', 1);
+						this.className = 'on';
+						var id = this.getAttribute('id');
+						var content = id.substr(-1, 1);
+						check();
+						this.innerHTML = '<p>' + content + '</p>';
+					} else {
+						if (this.index % 2 == 0) {
+							this.className = 'even';
+						}
+						this.className = this.className.replace(/on/g, '');
+						this.setAttribute('data-on', 0);
+						check();
+					}
+				}
+			}
+		}
+	}
+	check();//先运行一次把表格中的数字填满
+</script>
+</html>

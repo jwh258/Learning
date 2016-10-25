@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>js任务2</title>
+</head>
+<body>
+	<br>
+	<hr>
+	<br>
+	<p>第一种方法，循环创建li放入ul</p>
+	<h3>污染城市列表1</h3>
+	<ul id="aqi-list1">
+		<!--
+				<li>第一名：福州（样例），10</li>
+				<li>第二名：福州（样例），10</li> -->
+	</ul>
+	<!--最基础的写法-->
+	<script type="text/javascript">
+/*		(function () {
+			for (i = 0; i < 50000; i++) {
+				var li = document.createElement('li');//建立li
+				li.appendChild(document.createTextNode("第" + i + "名："));//把内容放入li
+				document.getElementById('aqi-list1').appendChild(li);//把li放入ul
+			}
+		})();*/
+		(function () {
+			var oFragmeng = document.createDocumentFragment();//创建文档碎片
+			for (i = 0; i < 50000; i++) {
+				var li = document.createElement('li');//建立li
+				li.appendChild(document.createTextNode("第" + i + "名："));//把内容放入li
+				oFragmeng.appendChild(li);//把li放入ul
+			}
+			document.getElementById('aqi-list1').appendChild(oFragmeng);//把li放入ul
+		})();
+/*		(function () {
+			var str = '';
+			for (i = 0; i < 50000; i++) {
+				str += "<li>第" + i + "名";
+			}
+			document.getElementById('aqi-list1').innerHTML = str;
+})();*/
+	</script>
+</body>
+</html>

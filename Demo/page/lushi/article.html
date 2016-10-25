@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>炉石传说-文章页</title>
+	<link rel="stylesheet" href="style/index.css">
+	<script src="scripts/jquery-1.12.0.min.js"></script>
+	<script src="scripts/index.js"></script>
+</head>
+<body>
+	<div class="topBar">
+		<div class="fix">
+			<div class="topBar-logo fl">
+				<a href="index.html" target="_balnk"> <img src="images/topBar-logo.gif" alt="图片占位符"> </a>
+			</div>
+			<div class="topBar-list">
+				<a href="index.html">首页</a>|<a href="list_article.html">新闻</a>|<a href="list_article.html">攻略</a>|<a href="list_article.html">视频</a>|<a href="http://www.baidu.com" target="_balnk">卡牌工具</a>|<a href="http://www.baidu.com" target="_balnk">游戏论坛</a>
+			</div>
+			<div id="_userlogin">
+				<div class="fr">
+					<a href="#" id="loginClick">登录</a> | <a href="{dede:global.cfg_memberurl/}/index_do.php?fmdo=user&dopost=regnew">注册</a>
+				</div>
+				<div class="userlogin">
+					<form name="userlogin" action="{dede:global.cfg_memberurl/}/index_do.php" method="POST">
+						<input type="hidden" name="fmdo" value="login"/> <input type="hidden" name="dopost" value="login"/>
+						<input type="hidden" name="keeptime" value="604800"/>
+						<div class="fb">
+							<span>用户名&nbsp</span><input type="text" name="userid" size="16" class="ipt-txt"/> <span>密码&nbsp</span><input type="password" name="pwd" size="16" class="ipt-txt"/> <span>验证码&nbsp</span><input type="text" name="vdcode" size="8" class="ipt-txt"/>
+							<img align="center" src="images/vdimgck.jpg" onClick="this.src=this.src+'?'"/>
+							<button type="submit" class="btn-1">登录</button>
+							<!--<a href="{dede:global.cfg_memberurl/}/index_do.php?fmdo=user&dopost=regnew">注册帐号</a>-->
+							<a href="{dede:global.cfg_memberurl/}/resetpassword.php">忘记密码?</a>
+						</div>
+					</form>
+				</div>
+			</div>
+			<!-- userlogin JS -->
+			<script src="{dede:global.cfg_cmsurl/}/include/dedeajax2.js"></script>
+			<script>
+				$(function () {
+					$("a[_for]").mouseover(function () {
+						$(this).parents().children("a[_for]").removeClass("thisclass").parents().children("dd").hide();
+						$(this).addClass("thisclass").blur();
+						$("#" + $(this).attr("_for")).show();
+					});
+					$("a[_for=uc_member]").mouseover();
+					$("a[_for=flink_1]").mouseover();
+				});
+				function CheckLogin() {
+					var taget_obj = document.getElementById('_userlogin');
+					myajax = new DedeAjax(taget_obj, false, false, '', '', '');
+					myajax.SendGet2("{dede:global.cfg_cmspath/}/member/ajax_loginsta.php");
+					DedeXHTTP = null;
+				}
+			</script>
+			<script>CheckLogin();</script>
+			<script>
+				$('#loginClick').click(function () {
+					$('.userlogin').toggle()
+				})
+			</script>
+		</div>
+	</div>
+	<div class="top">
+		<div class="fix">
+			<div class="nav">
+				<ul>
+					<li><a href="index.html">首页</a></li>
+					<li><a href="list_article.html">新闻<img src="images/sanjiao.png"></a>
+						<ul class="nav2">
+							<em class="navxialatop"></em> <em class="navxialabottom"></em>
+							<li><a href="list_article.html">国服动态</a></li>
+							<li><a href="list_article.html">暴雪蓝贴</a></li>
+							<li><a href="list_article.html">嘉年华</a></li>
+						</ul>
+					</li>
+					<li><a href="list_article.html">攻略<img src="images/sanjiao.png"></a>
+						<ul class="nav2">
+							<em class="navxialatop"></em> <em class="navxialabottom"></em>
+							<li><a href="list_article.html">新手攻略</a></li>
+							<li><a href="list_article.html">高手攻略</a></li>
+							<li><a href="list_article.html">综合攻略</a></li>
+						</ul>
+					</li>
+					<li><a href="list_article.html">视频<img src="images/sanjiao.png"></a>
+						<ul class="nav2">
+							<em class="navxialatop"></em> <em class="navxialabottom"></em>
+							<li><a href="list_article.html">解说视频</a></li>
+							<li><a href="list_article.html">娱乐视频</a></li>
+							<li><a href="list_article.html">比赛视频</a></li>
+							<li><a href="list_article.html">竞技场</a></li>
+						</ul>
+					</li>
+					<li><a href="http://www.baidu.com" target="_blank">卡牌工具</a></li>
+					<li><a href="http://www.baidu.com" target="_blank">游戏论坛</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="main">
+		<div class="wrap">
+			<div class="article">
+				<div class="art-top">
+					<span class="fr fwb">
+						<a href="index.html">返回首页</a>
+					</span>
+					当前位置：<a href="#">炉石传说</a>&nbsp;&gt;&gt;&nbsp;<a class="LinkPath" href="#">炉石传说新闻</a>&nbsp;&gt;&gt;&nbsp;<a href="list_article.html">赛事新闻</a>
+				</div>
+				<div class="art-top-info" style="margin-top:20px;width:1086px;height:200px;border: 2px solid #FFF;text-align: center;line-height: 200px">上面放置一些东西</div>
+				<div class="art-main cut">
+					<div class="art-title">
+						<h1>I联赛世界总决赛八强出炉 职业选手出征决赛</h1>
+						<p><span>作者:小Z</span><span>来源：本站原创</span><span>时间：2016/6/20 14:21:16</span></p>
+					</div>
+					<div class="art-con">
+						<p>　　在昨晚刚结束的中国区决赛中，民间大神贴吧丨谢帅与第三届i联赛亚军EfutureIzoro发挥出色，成功拿到了中国赛区的两个晋级名额，他们将携手出征本届SL i炉石世界总决赛，与其他6位选手共同争夺世界冠军的荣耀!</p>
+						<p align="center"><img src="images/adventure-1.jpg" alt="图片说明"></p>
+						<p>　　在昨晚刚结束的中国区决赛中，民间大神贴吧丨谢帅与第三届i联赛亚军EfutureIzoro发挥出色，成功拿到了中国赛区的两个晋级名额，他们将携手出征本届SL i炉石世界总决赛，与其他6位选手共同争夺世界冠军的荣耀!在昨晚刚结束的中国区决赛中，民间大神贴吧丨谢帅与第三届i联赛亚军EfutureIzoro发挥出色，成功拿到了中国赛区的两个晋级名额，他们将携手出征本届SL i炉石世界总决赛，与其他6位选手共同争夺世界冠军的荣耀!</p>
+						<p>　　在昨晚刚结束的中国区决赛中，民间大神贴吧丨谢帅与第三届i联赛亚军EfutureIzoro发挥出色，成功拿到了中国赛区的两个晋级名额，他们将携手出征本届SL i炉石世界总决赛，与其他6位选手共同争夺世界冠军的荣耀!</p>
+						<p>　　在昨晚刚结束的中国区决赛中，民间大神贴吧丨谢帅与第三届i联赛亚军EfutureIzoro发挥出色，成功拿到了中国赛区的两个晋级名额，他们将携手出征本届SL i炉石世界总决赛，与其他6位选手共同争夺世界冠军的荣耀!</p>
+					</div>
+				</div>
+				<div class="art-bottom-info" style="width:1086px;height:200px;border: 2px solid #FFF;text-align: center;line-height: 200px">下面放置一些东西</div>
+			</div>
+		</div>
+		<div class="main-bottom fix"></div>
+	</div>
+	<div class="footer">
+		<div class="w980">
+			<p>
+				<a href="#" target="_blank">关于我们</a>
+				<a href="#" target="_blank">商务合作</a>
+				<a href="#" target="_blank">免责声明</a>
+				<a href="#" target="_blank">网站地图</a>
+				<a href="#" target="_blank">意见反馈</a>
+			</p>
+			<p>此作品仅供参考练习，请勿抄袭模仿&nbsp;||&nbsp;此作品仅供参考练习，请勿抄袭模仿</p>
+			<p>Copyright © 2004 - 2016 xxxx.com All Rights Reserved. xxxxx 版权所有 </p></div>
+	</div>
+</body>
+</html>

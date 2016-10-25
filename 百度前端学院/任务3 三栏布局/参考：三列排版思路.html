@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>几种响应式设计的思路</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1,user-scalable=no">
+	<title>Test 1</title>
+</head>
+<style>
+	html {
+		font-family:  'helvetica neue', 'hiragino sans gb', 'tahoma', 'microsoft yahei ui', 'microsoft yahei', 'simsun', 'sans-serif';
+		font-size: 14px;
+	}
+
+	p{margin:0}/*元素P的reset很重要！*/
+
+	div{vertical-align:middle; }
+	body > div{ margin-bottom:10px; width:100%; clear:both; }
+	body > div > div{ height:100%; text-align:center; color:#fff; font-weight:bolder }
+	body>div>div>div{height:50%;}
+	.div1{ height:150px;}
+	.left1{
+		float:left; width:30%; background-color:#19cc00;
+	}
+	.right1{
+		float:right; width:30%; background-color:#0005cc;
+	}
+	.center1{
+		margin:0 30%; background-color:#ff001d;
+	}
+	.div2{ height:150px; }
+	.left2{
+		float:left; width:30%; margin-left:-100%; background-color:#19cc00;
+	}
+	.right2{
+		float:left; width:30%; margin-left:-30%; background-color:#0005cc;
+	}
+	.center2{
+		float:left; width:100%; background-color:#ff001d;
+	}
+	.div3{ height:150px; }
+	.left3{
+		float:left; width:30%; background-color:#19cc00;
+	}
+	.right3{
+		float:left; width:30%; background-color:#0005cc;
+	}
+	.center3{
+		float:left; width:40%; background-color:#ff001d;
+	}
+	.div4{ height:150px; }
+	.left4{
+		float:left; width:30%; background-color:#19cc00;
+	}
+	.right4{
+		margin-left:70%; width:30%; background-color:#0005cc;
+	}
+	.center4{
+		float:left; width:40%; background-color:#ff001d;
+	}
+	.div5{ height:150px; background-color:#ff00d3; }
+	.left5{
+		margin-right:70%; background-color:#19cc00;
+	}
+	.bigright5{float:right; width:70% }
+	.right5{
+		margin-left:60%; background-color:#0005cc;
+	}
+	.center5{
+		float:left; width:60%; background-color:#ff001d;
+	}
+	.div6{ height:150px; background-color:#ff00d3; }
+	.left6{
+		float:left; width:30%; background-color:#19cc00;
+	}
+	.bigright6{ float:right; width:70% }
+	.right6{
+		float:right; width:40%; background-color:#0005cc;
+	}
+	.center6{
+		float:left; width:60%; background-color:#ff001d;
+	}
+	.div7{ height:150px; background-color:#ff00d3; }
+	.bigleft7{ float:left; width:70% }
+	.center7{
+		float:right; width:60%; background-color:#ff001d;
+	}
+	.left7{
+		float:left; width:40%; background-color:#19cc00;
+	}
+	.right7{
+		float:left; width:30%; background-color:#0005cc;
+	}
+	.div8{ height:150px; background-color:#ff00d3; }
+	.bigleft8{ float:left; width:70% }
+	.center8{
+		float:right; width:60%; background-color:#ff001d;
+	}
+	.left8{
+		float:left; width:40%; background-color:#19cc00;
+	}
+	.right8{
+		margin-left:70%; background-color:#0005cc;
+	}
+	.div9{ height:150px; }
+	.left9{
+		float:left; width:200px; background-color:#19cc00;
+	}
+	.right9{
+		float:right;width:200px; background-color:#0005cc;
+	}
+	.center9{
+		margin:0 200px; background-color:#ff001d;
+	}
+</style>
+<body>
+	<h1>方法1</h1>
+	<div class="div1">
+		<div class="left1">
+			<p>1</p>
+			<p>float:left;</p>
+			<p>width:30%;</p>
+		</div>
+		<div class="right1">
+			<p>2</p>
+			<p>margin:0 30%</p>
+		</div>
+		<div class="center1">
+			<p>3</p>
+			<p>float:right;</p>
+			<p>width:30%;</p>
+		</div>
+	</div>
+	<h1>方法2</h1>
+	<div class="div2">
+		<div class="center2">
+			<p>1</p>
+			<p>float:left;</p>
+			<p>width:100%;</p>
+		</div>
+		<div class="right2">
+			<p>2</p>
+			<p>float:left;</p>
+			<p>width:30%;</p>
+			<p>margin-left:-100%</p>
+		</div>
+		<div class="left2">
+			<p>3</p>
+			<p>float:left;</p>
+			<p>width:30%;</p>
+			<p>margin-left:-30%</p>
+		</div>
+	</div>
+	<h1>方法3</h1>
+	<div class="div3">
+		<div class="left3">
+			<p>1</p>
+			<p>float:left;</p>
+			<p>width:30%;</p>
+		</div>
+		<div class="center3">
+			<p>2</p>
+			<p>float:left;</p>
+			<p>width:40%;</p>
+		</div>
+		<div class="right3">
+			<p>3</p>
+			<p>float:left;</p>
+			<p>width:30%;</p>
+		</div>
+	</div>
+	<h1>方法4</h1>
+	<div class="div4">
+		<div class="left4">
+			<p>1</p>
+			<p>float:left;</p>
+			<p>width:30%;</p>
+		</div>
+		<div class="center4">
+			<p>2</p>
+			<p>float:left;</p>
+			<p>width:40%;</p>
+		</div>
+		<div class="right4">
+			<p>3</p>
+			<p>margin-left:70%</p>
+			<p>width:30%;</p>
+		</div>
+	</div>
+	<h1>方法5</h1>
+	<div class="div5">
+		<div class="bigright5">
+			<div class="center5">
+				<p>2</p>
+				<p>float:left;</p>
+				<p>width:60%;</p>
+			</div>
+			<div class="right5">
+				<p>3</p>
+				<p>margin-left:60%</p>
+			</div>
+			<p>1 float:right;width:70%;</p>
+		</div>
+		<div class="left5">
+			<p>4</p>
+			<p>margin-right:70%</p>
+		</div>
+	</div>
+	<h1>方法6</h1>
+	<div class="div6">
+		<div class="bigright6">
+			<div class="center6">
+				<p>2</p>
+				<p>float:left;</p>
+				<p>width:60%;</p>
+			</div>
+			<div class="right6">
+				<p>3</p>
+				<p>float:right;</p>
+				<p>width:40%;</p>
+			</div>
+			<p>1 float:right;width:70%;</p>
+		</div>
+		<div class="left6">
+			<p>4</p>
+			<p>float:left;</p>
+			<p>width:30%;</p>
+		</div>
+	</div>
+	<h1>方法7</h1>
+	<div class="div7">
+		<div class="bigleft7">
+			<div class="center7">
+				<p>2</p>
+				<p>float:right;</p>
+				<p>width:60%;</p>
+			</div>
+			<div class="left7">
+				<p>3</p>
+				<p>float:left;</p>
+				<p>width:40%;</p>
+			</div>
+			<p>1 float:left;width:70%;</p>
+		</div>
+		<div class="right7">
+			<p>4</p>
+			<p>float:right;</p>
+			<p>width:30%;</p>
+		</div>
+	</div>
+	<h1>方法8</h1>
+	<div class="div8">
+		<div class="bigleft8">
+			<div class="center8">
+				<p>2</p>
+				<p>float:right;</p>
+				<p>width:60%;</p>
+			</div>
+			<div class="left8">
+				<p>3</p>
+				<p>float:left;</p>
+				<p>width:40%;</p>
+			</div>
+			<p>1 float:left;width:70%;</p>
+		</div>
+		<div class="right8">
+			<p>4</p>
+			<p>margin-left:70%;</p>
+		</div>
+	</div>
+	<h1>方法9</h1>
+	<div class="div9">
+		<div class="left9">
+			<p>1</p>
+			<p>float:left;</p>
+			<p>width:200px;</p>
+		</div>
+		<div class="right9">
+			<p>2</p>
+			<p>float:right;</p>
+			<p>width:200px;</p>
+		</div>
+		<div class="center9">
+			<p>3</p>
+			<p>float:right;</p>
+			<p>margin:0 200px;</p>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="angular.min.js"></script>
+</head>
+<body>
+	<h2>服务端包含</h2>
+	<p>
+		大多服务端脚本都支持包含文件功能 (SSI： Server Side Includes)。<br> 使用 SSI, 你可在 HTML 中包含 HTML 文件，并发送到客户端浏览器。
+	</p>
+	<p>php: <span class="highLT">&lt;</span><span class="highELE">?php</span>
+		<span class="highATT">require("navigation.php"); ?</span><span class="highGT">&gt;</span>
+	</p>
+	<h2>客户端包含</h2>
+	<p>通过 JavaScript 有很多种方式可以在 HTML 中包含 HTML 文件。<br> 通常我们使用 http 请求 (AJAX) 从服务端获取数据，返回的数据我们可以通过 使用 innerHTML 写入到 HTML 元素中。</p>
+	<h2>AngularJS 包含</h2>
+	<p>使用 AngularJS, 你可以使用 ng-include 指令来包含 HTML 内容:</p>
+	<span class="highLT">&lt;</span><span class="highELE">body</span><span class="highGT">&gt;</span><br><br><span class="highLT">&lt;</span><span class="highELE">div</span>
+	<span class="highATT">class=</span><span class="highVAL">"container"</span><span class="highGT">&gt;</span><br>&nbsp;
+	<span class="highLT">&lt;</span><span class="highELE">div</span>
+	<span class="highATT">ng-include=</span><span class="highVAL">"'myUsers_List.htm'"</span><span class="highGT">&gt;</span><span class="highLT">&lt;</span><span class="highELE">/div</span><span class="highGT">&gt;</span><br>&nbsp;
+	<span class="highLT">&lt;</span><span class="highELE">div</span>
+	<span class="highATT">ng-include=</span><span class="highVAL">"'myUsers_Form.htm'"</span><span class="highGT">&gt;</span><span class="highLT">&lt;</span><span class="highELE">/div</span><span class="highGT">&gt;</span><br><span class="highLT">&lt;</span><span class="highELE">/div</span><span class="highGT">&gt;</span><br><br>
+	<span class="highLT">&lt;</span><span class="highELE">/body</span><span class="highGT">&gt;</span>
+	<p>步骤如下：<br> </p>
+
+	<hr>
+	<h2>步骤 1: 创建 HTML 列表 </h2>
+	<div class="example">
+		<h2 class="example">myUsers_List.html</h2>
+		<div class="example_code">
+			<span class="highLT">&lt;</span><span class="highELE">h3</span><span class="highGT">&gt;</span>Users<span class="highLT">&lt;</span><span class="highELE">/h3</span><span class="highGT">&gt;</span><br><br><span class="highLT">&lt;</span><span class="highELE">table</span> <span class="highATT">class=</span><span class="highVAL">"table table-striped"</span><span class="highGT">&gt;</span><br>&nbsp; <span class="highLT">&lt;</span><span class="highELE">thead</span><span class="highGT">&gt;</span><span class="highLT">&lt;</span><span class="highELE">tr</span><span class="highGT">&gt;</span><br>&nbsp;&nbsp;&nbsp;
+			<span class="highLT">&lt;</span><span class="highELE">th</span><span class="highGT">&gt;</span>Edit<span class="highLT">&lt;</span><span class="highELE">/th</span><span class="highGT">&gt;</span><br>&nbsp;&nbsp;&nbsp; <span class="highLT">&lt;</span><span class="highELE">th</span><span class="highGT">&gt;</span>First Name<span class="highLT">&lt;</span><span class="highELE">/th</span><span class="highGT">&gt;</span><br>&nbsp;&nbsp;&nbsp;
+			<span class="highLT">&lt;</span><span class="highELE">th</span><span class="highGT">&gt;</span>Last Name<span class="highLT">&lt;</span><span class="highELE">/th</span><span class="highGT">&gt;</span><br>&nbsp; <span class="highLT">&lt;</span><span class="highELE">/tr</span><span class="highGT">&gt;</span><span class="highLT">&lt;</span><span class="highELE">/thead</span><span class="highGT">&gt;</span><br>&nbsp; <span class="highLT">&lt;</span><span class="highELE">tbody</span><span class="highGT">&gt;</span><span class="highLT">&lt;</span><span class="highELE">tr</span>
+			<span class="highATT">ng-repeat=</span><span class="highVAL">"user in users"</span><span class="highGT">&gt;</span><br>&nbsp;&nbsp;&nbsp; <span class="highLT">&lt;</span><span class="highELE">td</span><span class="highGT">&gt;</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<span class="highLT">&lt;</span><span class="highELE">button</span> <span class="highATT">class=</span><span class="highVAL">"btn"</span> <span class="highATT">ng-click=</span><span class="highVAL">"editUser(user.id)"</span><span class="highGT">&gt;</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<span class="highLT">&lt;</span><span class="highELE">span</span> <span class="highATT">class=</span><span class="highVAL">"glyphicon glyphicon-pencil"</span><span class="highGT">&gt;</span><span class="highLT">&lt;</span><span class="highELE">/span</span><span class="highGT">&gt;</span>&amp;nbsp;&amp;nbsp;Edit<br>
+																																																		 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<span class="highLT">&lt;</span><span class="highELE">/button</span><span class="highGT">&gt;</span><br>&nbsp;&nbsp;&nbsp; <span class="highLT">&lt;</span><span class="highELE">/td</span><span class="highGT">&gt;</span><br>&nbsp;&nbsp;&nbsp; <span class="highLT">&lt;</span><span class="highELE">td</span><span class="highGT">&gt;</span><span class="highATT">{{
+user.fName }}</span><span class="highLT">&lt;</span><span class="highELE">/td</span><span class="highGT">&gt;</span><br>&nbsp;&nbsp;&nbsp; <span class="highLT">&lt;</span><span class="highELE">td</span><span class="highGT">&gt;</span><span class="highATT">{{ user.lName }}</span><span class="highLT">&lt;</span><span class="highELE">/td</span><span class="highGT">&gt;</span><br>&nbsp;
+			<span class="highLT">&lt;</span><span class="highELE">/tr</span><span class="highGT">&gt;</span><span class="highLT">&lt;</span><span class="highELE">/tbody</span><span class="highGT">&gt;</span><br><span class="highLT">&lt;</span><span class="highELE">/table</span><span class="highGT">&gt;</span>
+		</div>
+		<br><a class="tryitbtn" href="http://www.runoob.com/try/tryit.php?filename=myUsers_List" target="_blank">尝试一下 »</a>
+	</div>
+	<hr>
+	<h2>步骤 2: 创建 HTML 表单</h2>
+	<div class="example">
+		<h2 class="example">myUsers_Form.html</h2>
+		<div class="example_code">
+
+			<span class="highLT">&lt;</span><span class="highELE">button</span> <span class="highATT">class=</span><span class="highVAL">"btn btn-success"</span> <span class="highATT">ng-click=</span><span class="highVAL">"editUser('new')"</span><span class="highGT">&gt;</span><br>
+			&nbsp; <span class="highLT">&lt;</span><span class="highELE">span</span> <span class="highATT">class=</span><span class="highVAL">"glyphicon glyphicon-user"</span><span class="highGT">&gt;</span><span class="highLT">&lt;</span><span class="highELE">/span</span><span class="highGT">&gt;</span> Create New User<br>
+			<span class="highLT">&lt;</span><span class="highELE">/button</span><span class="highGT">&gt;</span><br><span class="highLT">&lt;</span><span class="highELE">hr</span><span class="highGT">&gt;</span><br><br><span class="highLT">&lt;</span><span class="highELE">h3</span> <span class="highATT">ng-show=</span><span class="highVAL">"edit"</span><span class="highGT">&gt;</span>Create New User:<span class="highLT">&lt;</span><span class="highELE">/h3</span><span class="highGT">&gt;</span><br><span class="highLT">&lt;</span><span class="highELE">h3</span>
+			<span class="highATT">ng-hide=</span><span class="highVAL">"edit"</span><span class="highGT">&gt;</span>Edit User:<span class="highLT">&lt;</span><span class="highELE">/h3</span><span class="highGT">&gt;</span><br><br><span class="highLT">&lt;</span><span class="highELE">form</span> <span class="highATT">class=</span><span class="highVAL">"form-horizontal"</span><span class="highGT">&gt;</span><br><span class="highLT">&lt;</span><span class="highELE">div</span>
+			<span class="highATT">class=</span><span class="highVAL">"form-group"</span><span class="highGT">&gt;</span><br>&nbsp; <span class="highLT">&lt;</span><span class="highELE">label</span> <span class="highATT">class=</span><span class="highVAL">"col-sm-2 control-label"</span><span class="highGT">&gt;</span>First
+			Name:<span class="highLT">&lt;</span><span class="highELE">/label</span><span class="highGT">&gt;</span><br>&nbsp; <span class="highLT">&lt;</span><span class="highELE">div</span> <span class="highATT">class=</span><span class="highVAL">"col-sm-10"</span><span class="highGT">&gt;</span><br>&nbsp;&nbsp;&nbsp; <span class="highLT">&lt;</span><span class="highELE">input</span>
+			<span class="highATT">type=</span><span class="highVAL">"text"</span> <span class="highATT">ng-model=</span><span class="highVAL">"fName"</span> <span class="highATT">ng-disabled=</span><span class="highVAL">"!edit"</span> <span class="highATT">placeholder=</span><span class="highVAL">"First Name"</span><span class="highGT">&gt;</span><br>
+			&nbsp;
+			<span class="highLT">&lt;</span><span class="highELE">/div</span><span class="highGT">&gt;</span><br><span class="highLT">&lt;</span><span class="highELE">/div</span><span class="highGT">&gt;</span> <br><span class="highLT">&lt;</span><span class="highELE">div</span> <span class="highATT">class=</span><span class="highVAL">"form-group"</span><span class="highGT">&gt;</span><br>&nbsp; <span class="highLT">&lt;</span><span class="highELE">label</span>
+			<span class="highATT">class=</span><span class="highVAL">"col-sm-2 control-label"</span><span class="highGT">&gt;</span>Last Name:<span class="highLT">&lt;</span><span class="highELE">/label</span><span class="highGT">&gt;</span><br>&nbsp; <span class="highLT">&lt;</span><span class="highELE">div</span>
+			<span class="highATT">class=</span><span class="highVAL">"col-sm-10"</span><span class="highGT">&gt;</span><br>&nbsp;&nbsp;&nbsp; <span class="highLT">&lt;</span><span class="highELE">input</span> <span class="highATT">type=</span><span class="highVAL">"text"</span> <span class="highATT">ng-model=</span><span class="highVAL">"lName"</span>
+			<span class="highATT">ng-disabled=</span><span class="highVAL">"!edit"</span> <span class="highATT">placeholder=</span><span class="highVAL">"Last Name"</span><span class="highGT">&gt;</span><br>&nbsp; <span class="highLT">&lt;</span><span class="highELE">/div</span><span class="highGT">&gt;</span><br><span class="highLT">&lt;</span><span class="highELE">/div</span><span class="highGT">&gt;</span><br><span class="highLT">&lt;</span><span class="highELE">div</span>
+			<span class="highATT">class=</span><span class="highVAL">"form-group"</span><span class="highGT">&gt;</span><br>&nbsp; <span class="highLT">&lt;</span><span class="highELE">label</span> <span class="highATT">class=</span><span class="highVAL">"col-sm-2
+control-label"</span><span class="highGT">&gt;</span>Password:<span class="highLT">&lt;</span><span class="highELE">/label</span><span class="highGT">&gt;</span><br>&nbsp; <span class="highLT">&lt;</span><span class="highELE">div</span> <span class="highATT">class=</span><span class="highVAL">"col-sm-10"</span><span class="highGT">&gt;</span><br>&nbsp;&nbsp;&nbsp;
+			<span class="highLT">&lt;</span><span class="highELE">input</span> <span class="highATT">type=</span><span class="highVAL">"password"</span> <span class="highATT">ng-model=</span><span class="highVAL">"passw1"</span> <span class="highATT">placeholder=</span><span class="highVAL">"Password"</span><span class="highGT">&gt;</span><br>&nbsp;
+			<span class="highLT">&lt;</span><span class="highELE">/div</span><span class="highGT">&gt;</span><br><span class="highLT">&lt;</span><span class="highELE">/div</span><span class="highGT">&gt;</span><br><span class="highLT">&lt;</span><span class="highELE">div</span> <span class="highATT">class=</span><span class="highVAL">"form-group"</span><span class="highGT">&gt;</span><br>&nbsp; <span class="highLT">&lt;</span><span class="highELE">label</span> <span class="highATT">class=</span><span class="highVAL">"col-sm-2
+control-label"</span><span class="highGT">&gt;</span>Repeat:<span class="highLT">&lt;</span><span class="highELE">/label</span><span class="highGT">&gt;</span><br>&nbsp; <span class="highLT">&lt;</span><span class="highELE">div</span> <span class="highATT">class=</span><span class="highVAL">"col-sm-10"</span><span class="highGT">&gt;</span><br>&nbsp;&nbsp;&nbsp;
+			<span class="highLT">&lt;</span><span class="highELE">input</span> <span class="highATT">type=</span><span class="highVAL">"password"</span> <span class="highATT">ng-model=</span><span class="highVAL">"passw2"</span> <span class="highATT">placeholder=</span><span class="highVAL">"Repeat Password"</span><span class="highGT">&gt;</span><br>&nbsp;
+			<span class="highLT">&lt;</span><span class="highELE">/div</span><span class="highGT">&gt;</span><br><span class="highLT">&lt;</span><span class="highELE">/div</span><span class="highGT">&gt;</span><br><span class="highLT">&lt;</span><span class="highELE">/form</span><span class="highGT">&gt;</span><br><br><span class="highLT">&lt;</span><span class="highELE">hr</span><span class="highGT">&gt;</span><br><span class="highLT">&lt;</span><span class="highELE">button</span> <span class="highATT">class=</span><span class="highVAL">"btn btn-success"</span>
+			<span class="highATT">ng-disabled=</span><span class="highVAL">"error || incomplete"</span><span class="highGT">&gt;</span><br>&nbsp; <span class="highLT">&lt;</span><span class="highELE">span</span> <span class="highATT">class=</span><span class="highVAL">"glyphicon
+	glyphicon-save"</span><span class="highGT">&gt;</span><span class="highLT">&lt;</span><span class="highELE">/span</span><span class="highGT">&gt;</span> Save Changes<br><span class="highLT">&lt;</span><span class="highELE">/button</span><span class="highGT">&gt;</span>
+		</div>
+		<br><a class="tryitbtn" href="http://www.runoob.com/try/tryit.php?filename=myUsers_Form" target="_blank">尝试一下 »</a>
+	</div>
+	<hr>
+	<h2>步骤 3: 创建控制器</h2>
+	<div class="example">
+		<h2 class="example">myUsers.js</h2>
+		<div class="example_code notranslate jsHigh">
+			angular.module(<span class="highVAL">'myApp'</span>, []).controller(<span class="highVAL">'userCtrl'</span>, <span class="highELE">function</span>($scope) {<br>$scope.fName
+			= <span class="highVAL">''</span>;<br>$scope.lName = <span class="highVAL">''</span>;<br>$scope.passw1 = <span class="highVAL">''</span>;<br>$scope.passw2 = <span class="highVAL">''</span>;<br>
+			$scope.users = [<br>{id:<span class="highVAL">1</span>, fName:<span class="highVAL">'Hege'</span>,lName:<span class="highVAL">"Pege"</span> },<br>{id:<span class="highVAL">2</span>, fName:<span class="highVAL">'Kim'</span>,lName:<span class="highVAL">"Pim"</span>
+			},<br>{id:<span class="highVAL">3</span>, fName:<span class="highVAL">'Sal'</span>,lName:<span class="highVAL">"Smith"</span> },<br>{id:<span class="highVAL">4</span>, fName:<span class="highVAL">'Jack'</span>,lName:<span class="highVAL">"Jones"</span>
+			},<br>{id:<span class="highVAL">5</span>, fName:<span class="highVAL">'John'</span>,lName:<span class="highVAL">"Doe"</span> },<br>{id:<span class="highVAL">6</span>, fName:<span class="highVAL">'Peter'</span>,lName:<span class="highVAL">"Pan"</span>
+			}<br>];<br>$scope.edit = <span class="highVAL">true</span>;<br>$scope.error = <span class="highVAL">false</span>;<br>$scope.incomplete
+			= <span class="highVAL">false</span>; <br>$scope.editUser = <span class="highELE">function</span>(id) {<br>&nbsp; <span class="highELE">if</span> (id == <span class="highVAL">'new'</span>) {<br>&nbsp;&nbsp;&nbsp; $scope.edit
+			= <span class="highVAL">true</span>;<br>&nbsp;&nbsp;&nbsp; $scope.incomplete = <span class="highVAL">true</span>;<br>&nbsp;&nbsp;&nbsp; $scope.fName = <span class="highVAL">''</span>;<br>&nbsp;&nbsp;&nbsp; $scope.lName =
+			<span class="highVAL">''</span>;<br>&nbsp;&nbsp;&nbsp; } <span class="highELE">else</span> {<br>&nbsp;&nbsp;&nbsp; $scope.edit = <span class="highVAL">false</span>;<br>&nbsp;&nbsp;&nbsp; $scope.fName = $scope.users[id-1].fName;<br>
+			&nbsp;&nbsp;&nbsp;
+			$scope.lName = $scope.users[id-1].lName; <br>&nbsp; }<br>};<br><br>$scope.$watch(<span class="highVAL">'passw1'</span>,<span class="highELE">function</span>()
+			{$scope.test();});<br>$scope.$watch(<span class="highVAL">'passw2'</span>,<span class="highELE">function</span>() {$scope.test();});<br>
+			$scope.$watch(<span class="highVAL">'fName'</span>,<span class="highELE">function</span>() {$scope.test();});<br>$scope.$watch(<span class="highVAL">'lName'</span>,<span class="highELE">function</span>()
+			{$scope.test();});<br><br>$scope.test = <span class="highELE">function</span>() {<br>&nbsp; <span class="highELE">if</span> ($scope.passw1
+			!== $scope.passw2) {<br>&nbsp;&nbsp;&nbsp; $scope.error = <span class="highVAL">true</span>;<br>&nbsp;&nbsp;&nbsp; } <span class="highELE">else</span> {<br>&nbsp;&nbsp;&nbsp; $scope.error =
+			<span class="highVAL">false</span>;<br>&nbsp; }<br>&nbsp; $scope.incomplete = <span class="highVAL">false</span>;<br>&nbsp; <span class="highELE">if</span> ($scope.edit &amp;&amp; (!$scope.fName.length
+			||<br>&nbsp;&nbsp;&nbsp; !$scope.lName.length ||<br>&nbsp;&nbsp;&nbsp; !$scope.passw1.length ||
+			!$scope.passw2.length)) {<br>&nbsp;&nbsp;&nbsp; $scope.incomplete = <span class="highVAL">true</span>;<br>&nbsp; }<br>};<br>
+			})</div>
+	</div>
+
+	<hr>
+	<h2>步骤 4: 创建主页</h2>
+	<div class="example">
+		<h2 class="example">myUsers.html</h2>
+		<div class="example_code">
+			<span class="highLT">&lt;</span><span class="highELE">!DOCTYPE</span> <span class="highATT">html</span><span class="highGT">&gt;</span><br><span class="highLT">&lt;</span><span class="highELE">html</span><span class="highGT">&gt;</span><br><span class="highLT">&lt;</span><span class="highELE">link</span> <span class="highATT">rel=</span><span class="highVAL">"stylesheet"</span>
+			<span class="highATT">href =</span><span class="highVAL"> "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"</span><span class="highGT">&gt;</span><br>
+			<span class="highLT">&lt;</span><span class="highELE">script</span> <span class="highATT">src=</span><span class="highVAL"> "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"</span><span class="highGT">&gt;</span><span class="highLT">&lt;</span><span class="highELE">/script</span><span class="highGT">&gt;</span>
+			<br><br><span class="highLT">&lt;</span><span class="highELE">body</span>
+			<span class="highATT">ng-app=</span><span class="highVAL">"myApp"</span> <span class="highATT">ng-controller=</span><span class="highVAL">"userCtrl"</span><span class="highGT">&gt;</span><br><br><span class="highLT">&lt;</span><span class="highELE">div</span>
+			<span class="highATT">class=</span><span class="highVAL">"container"</span><span class="highGT">&gt;</span><br>&nbsp; <span class="highLT">&lt;</span><span class="highELE">div</span> <span class="highATT">ng-include=</span><span class="highVAL">"'myUsers_List.htm'"</span><span class="highGT">&gt;</span><span class="highLT">&lt;</span><span class="highELE">/div</span><span class="highGT">&gt;</span><br>&nbsp; <span class="highLT">&lt;</span><span class="highELE">div</span>
+			<span class="highATT">ng-include=</span><span class="highVAL">"'myUsers_Form.htm'"</span><span class="highGT">&gt;</span><span class="highLT">&lt;</span><span class="highELE">/div</span><span class="highGT">&gt;</span><br><span class="highLT">&lt;</span><span class="highELE">/div</span><span class="highGT">&gt;</span><br><br>
+			<span class="highLT">&lt;</span><span class="highELE">script</span> <span class="highATT">src=</span><span class="highVAL"> "myUsers.js"</span><span class="highGT">&gt;</span><span class="highLT">&lt;</span><span class="highELE">/script</span><span class="highGT">&gt;</span><br><br><span class="highLT">&lt;</span><span class="highELE">/body</span><span class="highGT">&gt;</span><br>
+			<br><span class="highLT">&lt;</span><span class="highELE">/html</span><span class="highGT">&gt;</span></div>
+		<br><a class="tryitbtn" href="http://www.runoob.com/try/tryit.php?filename=try_ng_includes" target="_blank">尝试一下 »</a>
+	</div>
+</body>
+</html>

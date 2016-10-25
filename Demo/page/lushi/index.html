@@ -1,0 +1,1125 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<title>炉石传说-首页</title>
+	<link rel="stylesheet" href="style/index.css">
+	<script src="scripts/jquery-1.12.0.min.js"></script>
+	<!--如果不是PC直接跳转-->
+	<script type="text/javascript">
+		function resizeWindow() {
+			var mWidth = window.screen.availWidth;//移动屏幕宽度
+			if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+				if (mWidth < "1200") {
+					window.location = "m.index.html"
+				}
+			}else{
+				if (mWidth < "1200") {
+					window.location = "m.index.html"
+				}
+			}
+		}
+		$(window).bind("resize", resizeWindow);
+		resizeWindow();
+	</script>
+	<script src="scripts/index.js"></script>
+</head>
+<body>
+	<div class="topBar">
+		<div class="fix">
+			<div class="topBar-logo fl">
+				<a href="index.html" target="_balnk"> <img src="images/topBar-logo.gif" alt="图片占位符"> </a>
+			</div>
+			<div class="topBar-list">
+				<a href="index.html">首页</a>|<a href="list_article.html">新闻</a>|<a href="list_article.html">攻略</a>|<a href="list_article.html">视频</a>|<a href="http://www.baidu.com" target="_balnk">卡牌工具</a>|<a href="http://www.baidu.com" target="_balnk">游戏论坛</a>
+			</div>
+			<div id="_userlogin">
+				<div class="fr">
+					<a href="#" id="loginClick">登录</a> | <a href="{dede:global.cfg_memberurl/}/index_do.php?fmdo=user&dopost=regnew">注册</a>
+				</div>
+				<div class="userlogin">
+					<form name="userlogin" action="{dede:global.cfg_memberurl/}/index_do.php" method="POST">
+						<input type="hidden" name="fmdo" value="login"/> <input type="hidden" name="dopost" value="login"/>
+						<input type="hidden" name="keeptime" value="604800"/>
+						<div class="fb">
+							<span>用户名&nbsp</span><input type="text" name="userid" size="16" class="ipt-txt"/> <span>密码&nbsp</span><input type="password" name="pwd" size="16" class="ipt-txt"/> <span>验证码&nbsp</span><input type="text" name="vdcode" size="8" class="ipt-txt"/>
+							<img align="center" src="images/vdimgck.jpg" onClick="this.src=this.src+'?'"/>
+							<button type="submit" class="btn-1">登录</button>
+							<!--<a href="{dede:global.cfg_memberurl/}/index_do.php?fmdo=user&dopost=regnew">注册帐号</a>-->
+							<a href="{dede:global.cfg_memberurl/}/resetpassword.php">忘记密码?</a>
+						</div>
+					</form>
+				</div>
+			</div>
+			<!-- userlogin JS -->
+			<script src="{dede:global.cfg_cmsurl/}/include/dedeajax2.js"></script>
+			<script>
+				$(function () {
+					$("a[_for]").mouseover(function () {
+						$(this).parents().children("a[_for]").removeClass("thisclass").parents().children("dd").hide();
+						$(this).addClass("thisclass").blur();
+						$("#" + $(this).attr("_for")).show();
+					});
+					$("a[_for=uc_member]").mouseover();
+					$("a[_for=flink_1]").mouseover();
+				});
+				function CheckLogin() {
+					var taget_obj = document.getElementById('_userlogin');
+					myajax = new DedeAjax(taget_obj, false, false, '', '', '');
+					myajax.SendGet2("{dede:global.cfg_cmspath/}/member/ajax_loginsta.php");
+					DedeXHTTP = null;
+				}
+			</script>
+			<script>CheckLogin();</script>
+			<script>
+				$('#loginClick').click(function () {
+					$('.userlogin').toggle()
+				})
+			</script>
+		</div>
+	</div>
+	<div class="top">
+		<div class="fix">
+			<div class="nav">
+				<ul>
+					<li><a href="index.html">首页</a></li>
+					<li><a href="list_article.html">新闻<img src="images/sanjiao.png"></a>
+						<ul class="nav2">
+							<em class="navxialatop"></em> <em class="navxialabottom"></em>
+							<li><a href="list_article.html">国服动态</a></li>
+							<li><a href="list_article.html">暴雪蓝贴</a></li>
+							<li><a href="list_article.html">嘉年华</a></li>
+						</ul>
+					</li>
+					<li><a href="list_article.html">攻略<img src="images/sanjiao.png"></a>
+						<ul class="nav2">
+							<em class="navxialatop"></em> <em class="navxialabottom"></em>
+							<li><a href="list_article.html">新手攻略</a></li>
+							<li><a href="list_article.html">高手攻略</a></li>
+							<li><a href="list_article.html">综合攻略</a></li>
+						</ul>
+					</li>
+					<li><a href="list_article.html">视频<img src="images/sanjiao.png"></a>
+						<ul class="nav2">
+							<em class="navxialatop"></em> <em class="navxialabottom"></em>
+							<li><a href="list_article.html">解说视频</a></li>
+							<li><a href="list_article.html">娱乐视频</a></li>
+							<li><a href="list_article.html">比赛视频</a></li>
+							<li><a href="list_article.html">竞技场</a></li>
+						</ul>
+					</li>
+					<li><a href="http://www.baidu.com" target="_blank">卡牌工具</a></li>
+					<li><a href="http://www.baidu.com" target="_blank">游戏论坛</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="main">
+		<div class="wrap">
+			<!--新闻-->
+			<div class="news">
+				<div class="news-left">
+					<div class="news-top">
+						<h1><a href="article.html">重大新闻：XXXXXXXXXXX</a></h1>
+						<p>
+							<a href="article.html">炉石传说安卓版</a> <a href="article.html">玩家原创卡组攻略</a> <a href="article.html">每周炉石卡组推荐</a>
+						</p>
+						<h1><a href="article.html">重大新闻：XXXXXXXXXXX</a></h1>
+						<p>
+							<a href="article.html">炉石传说安卓版</a> <a href="article.html">玩家原创卡组攻略</a> <a href="article.html">每周炉石卡组推荐</a>
+						</p>
+					</div>
+					<div class="news-left-tab">
+						<!-- 标题开始 -->
+						<div class="tab-title tab-li1">
+							<ul>
+								<li class="active"><span>最新</span></li>
+								<li><span>蓝贴</span></li>
+								<li><span>卡组</span></li>
+							</ul>
+						</div>
+						<!-- 内容开始 -->
+						<div class="news-left-con tab-con1">
+							<div id="news-left-con0" class="tab-item1">
+								<ul class="news-left-list">
+									<li>
+										<span>06-27</span>
+										<p>
+											<span>[<a href="list_article.html">攻略</a>]</span><a href="article.html">我也曾是个好男孩 历史上各种牧师卡组流派</a>
+										</p>
+									</li>
+									<li>
+										<span>06-27</span>
+										<p>
+											<span>[<a href="list_article.html">资讯</a>]</span><a href="article.html">第一名居然是傻龙：标准模式炉石卡牌TOP20</a>
+										</p>
+									</li>
+									<li>
+										<span>06-27</span>
+										<p>
+											<span>[<a href="list_article.html">攻略</a>]</span><a href="article.html">这才叫信仰 炉石全程恩佐斯环牧进国服前百</a>
+										</p>
+									</li>
+									<li>
+										<span>06-22</span>
+										<p>
+											<span>[<a href="list_article.html">资讯</a>]</span><a href="article.html">上限高一定强吗 你不知道的炉石卡牌上下限</a>
+										</p>
+									</li>
+									<li>
+										<span>06-22</span>
+										<p>
+											<span>[<a href="list_article.html">视频</a>]</span><a href="article.html">墨泽炉石竞技场46期 登峰造极的黑骑贼12胜</a>
+										</p>
+									</li>
+								</ul>
+								<a href="list_article.html" class="more" target="_blank">查看更多内容</a>
+							</div>
+							<div id="news-left-con1" class="tab-item1">
+								<ul class="news-left-list">
+									<li>
+										<span>06-22</span>
+										<p>
+											<span>[<a href="list_article.html">攻略</a>]</span><a href="#">蓝贴内容123123123123</a>
+										</p>
+									</li>
+									<li>
+										<span>06-22</span>
+										<p>
+											<span>[<a href="list_article.html">资讯</a>]</span><a href="#">蓝贴内容123123123123</a>
+										</p>
+									</li>
+									<li>
+										<span>06-22</span>
+										<p>
+											<span>[<a href="list_article.html">攻略</a>]</span><a href="#">蓝贴内容123123123123</a>
+										</p>
+									</li>
+									<li>
+										<span>06-22</span>
+										<p>
+											<span>[<a href="list_article.html">资讯</a>]</span><a href="#">蓝贴内容123123123123</a>
+										</p>
+									</li>
+									<li>
+										<span>06-22</span>
+										<p>
+											<span>[<a href="list_article.html">视频</a>]</span><a href="#">蓝贴内容123123123123</a>
+										</p>
+									</li>
+								</ul>
+								<a href="list_article.html" class="more" target="_blank">查看更多内容</a>
+							</div>
+							<div id="news-left-con2" class="tab-item1">
+								<ul class="news-left-list">
+									<li>
+										<span>06-22</span>
+										<p>
+											<span>[<a href="list_article.html">攻略</a>]</span><a href="#">卡组123123123</a>
+										</p>
+									</li>
+									<li>
+										<span>06-22</span>
+										<p>
+											<span>[<a href="list_article.html">资讯</a>]</span><a href="#">卡组123123123</a>
+										</p>
+									</li>
+									<li>
+										<span>06-22</span>
+										<p>
+											<span>[<a href="list_article.html">攻略</a>]</span><a href="#">卡组123123123</a>
+										</p>
+									</li>
+									<li>
+										<span>06-22</span>
+										<p>
+											<span>[<a href="list_article.html">资讯</a>]</span><a href="#">卡组123123123</a>
+										</p>
+									</li>
+									<li>
+										<span>06-22</span>
+										<p>
+											<span>[<a href="list_article.html">视频</a>]</span><a href="#">卡组123123123</a>
+										</p>
+									</li>
+								</ul>
+								<a href="list_article.html" class="more" target="_blank">查看更多内容</a>
+							</div>
+							<script>/*给今天的主题标红*/
+							var today = new Date(),
+							tM = (today.getMonth() + 1),
+							tD = today.getDate(),
+							str = (tM < 10 ? "0" + tM : tM) + "-" + (tD < 10 ? "0" + tD : tD),
+							newsSpan = $(".news-left-con li>span");
+							/*为了效果展示，先加几个今天的日期*/
+							newsSpan[4].innerHTML = str;
+							newsSpan[5].innerHTML = str;
+							newsSpan[7].innerHTML = str;
+							newsSpan[10].innerHTML = str;
+							newsSpan[13].innerHTML = str;
+							newsSpan[14].innerHTML = str;
+							/*添加日期完毕*/
+							for (i = 0; i < newsSpan.length; i++) {
+								if (newsSpan[i].innerHTML == str) {
+									newsSpan[i].style.color = "red";
+								}
+							}
+							</script>
+						</div>
+					</div>
+				</div>
+				<div class="news-right">
+					<div class="slide cut">
+						<ul>
+							<li>
+								<a href="article.html"><img src="images/slide/slide-1.jpg" alt="轮播图片1"></a>
+								<span><a href="article.html">新闻1 今日黄金决赛某某夺冠</a></span>
+							</li>
+							<li>
+								<a href="article.html"><img src="images/slide/slide-2.jpg" alt="轮播图片2"></a>
+								<span><a href="article.html">新闻2 某某卡组登顶 必将引起一阵热潮</a></span>
+							</li>
+							<li>
+								<a href="article.html"><img src="images/slide/slide-3.jpg" alt="轮播图片3"></a>
+								<span><a href="article.html">新闻3 经典卡牌XXX 盘点炉石传说中那些经久不衰的卡牌</a></span>
+							</li>
+							<li>
+								<a href="article.html"><img src="images/slide/slide-4.jpg" alt="轮播图片4"></a>
+								<span><a href="article.html">新闻4 拯救牧师 XXX牧师卡组勇上传说</a></span>
+							</li>
+							<li>
+								<a href="article.html"><img src="images/slide/slide-5.jpg" alt="轮播图片5"></a>
+								<span><a href="article.html">新闻5 暴雪用装饰点缀医院 历代游戏角色应有尽有</a></span>
+							</li>
+						</ul>
+						<div class="slide-btn">
+							<a></a> <a></a> <a></a> <a></a> <a></a>
+						</div>
+					</div>
+					<div class="adv">
+						<a href="http://www.baidu.com" target="_blank"> <img src="images/link.jpg" alt="链接位"> </a>
+						<a href="http://www.baidu.com" target="_blank"> <img src="images/link.jpg" alt="链接位"> </a>
+						<a href="http://www.baidu.com" target="_blank"> <img src="images/link.jpg" alt="链接位"> </a>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<div class="career">
+				<div class="career-title">
+					<div class="title-top">
+						<span class="title-top-l"></span>
+					</div>
+					<ul id="myCareer">
+						<li onclick="career(this,0);" class="active">
+							<span>战士</span>
+						</li>
+						<li onclick="career(this,1);">
+							<span>圣骑士</span>
+						</li>
+						<li onclick="career(this,2);">
+							<span>法师</span>
+						</li>
+						<li onclick="career(this,3);">
+							<span>牧师</span>
+						</li>
+						<li onclick="career(this,4);">
+							<span>术士</span>
+						</li>
+						<li onclick="career(this,5);">
+							<span>潜行者</span>
+						</li>
+						<li onclick="career(this,6);">
+							<span>德鲁伊</span>
+						</li>
+						<li onclick="career(this,7);">
+							<span>猎人</span>
+						</li>
+						<li onclick="career(this,8);">
+							<span>萨满祭司</span>
+						</li>
+					</ul>
+				</div>
+				<div class="career-content" id="myCareer-Content0">
+					<div class="info-left">
+						<div class="info-title">
+							<a href="list_article.html" title="" target="_blank">更多&gt;&gt;</a> 热门卡组
+						</div>
+						<ul class="hot-ka">
+							<li><a href="article.html">传说奴隶战</a></li>
+							<li><a href="article.html">登顶克苏恩战</a></li>
+							<li><a href="article.html">狗贼土豪战</a></li>
+							<li><a href="article.html">美服海盗战</a></li>
+							<li><a href="article.html">提速龙战士</a></li>
+							<li><a href="article.html">半宇宙防战</a></li>
+							<li><a href="article.html">打脸龙战</a></li>
+							<li><a href="article.html">第一瓦王战</a></li>
+							<li><a href="article.html">标准防战</a></li>
+							<li><a href="article.html">小编的中速战</a></li>
+						</ul>
+					</div>
+					<div class="info-center">
+						<div class="info-title">
+							<a href="list_article.html" title="" target="_blank">更多&gt;&gt;</a> 职业视频
+						</div>
+						<ul class="sp">
+							<li>
+								<a href="article.html"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>K神节奏瓦王战</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="article.html"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>登顶克苏恩战</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="article.html"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>冠军中速战</p>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="info-right">
+						<div class="info-title">
+							<a href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 职业攻略
+						</div>
+						<ul class="gonglve">
+							<li><a href="article.html">瓦王战再上传说:天梯环境和细节分享</a></li>
+							<li><a href="article.html">老战士分享：炉石奴隶战大型使用指南</a></li>
+							<li><a href="article.html">奴隶战的春天：论如何对抗天梯毒瘤卡</a></li>
+							<li><a href="article.html">炉石传说战士竞技场强度值使用指南</a></li>
+							<li><a href="article.html">2月份防战卡组指南:针对快攻卡组利器</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="career-content" id="myCareer-Content1">
+					<div class="info-left">
+						<div class="info-title">
+							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 热门卡组
+						</div>
+						<ul class="hot-ka">
+							<li><a href="#">骑士卡组123</a></li>
+							<li><a href="#">骑士卡组123</a></li>
+							<li><a href="#">骑士卡组123</a></li>
+							<li><a href="#">骑士卡组123</a></li>
+							<li><a href="#">骑士卡组123</a></li>
+							<li><a href="#">骑士卡组123</a></li>
+							<li><a href="#">骑士卡组123</a></li>
+							<li><a href="#">骑士卡组123</a></li>
+							<li><a href="#">骑士卡组123</a></li>
+							<li><a href="#">骑士卡组123</a></li>
+						</ul>
+					</div>
+					<div class="info-center">
+						<div class="info-title">
+							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 职业视频
+						</div>
+						<ul class="sp">
+							<li>
+								<a href="#"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>骑士视频</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>骑士视频</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>骑士视频</p>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="info-right">
+						<div class="info-title">
+							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 职业攻略
+						</div>
+						<ul class="gonglve">
+							<li><a href="#">骑士攻略</a></li>
+							<li><a href="#">骑士攻略</a></li>
+							<li><a href="#">骑士攻略</a></li>
+							<li><a href="#">骑士fdgergcv</a></li>
+							<li><a href="#">骑士攻略</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="career-content" id="myCareer-Content2">
+					<div class="info-left">
+						<div class="info-title">
+							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 热门卡组
+						</div>
+						<ul class="hot-ka">
+							<li><a href="#">法师卡组</a></li>
+							<li><a href="#">法师卡组</a></li>
+							<li><a href="#">法师卡组</a></li>
+							<li><a href="#">法师卡组</a></li>
+							<li><a href="#">法师卡组</a></li>
+							<li><a href="#">法师卡组</a></li>
+							<li><a href="#">法师卡组</a></li>
+							<li><a href="#">法师卡组</a></li>
+							<li><a href="#">法师卡组</a></li>
+							<li><a href="#">法师卡组</a></li>
+						</ul>
+					</div>
+					<div class="info-center">
+						<div class="info-title">
+							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 职业视频
+						</div>
+						<ul class="sp">
+							<li>
+								<a href="#"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>法师视频</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>法师视频</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>法师视频</p>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="info-right">
+						<div class="info-title">
+							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 职业攻略
+						</div>
+						<ul class="gonglve">
+							<li><a href="#">法师攻略</a></li>
+							<li><a href="#">法师攻略</a></li>
+							<li><a href="#">法师攻略</a></li>
+							<li><a href="#">法师ljdgfkljoerj</a></li>
+							<li><a href="#">法师攻略</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="career-content" id="myCareer-Content3">
+					<div class="info-left">
+						<div class="info-title">
+							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 热门卡组
+						</div>
+						<ul class="hot-ka">
+							<li><a href="#">牧师卡组321</a></li>
+							<li><a href="#">牧师卡组321</a></li>
+							<li><a href="#">牧师卡组321</a></li>
+							<li><a href="#">牧师卡组321</a></li>
+							<li><a href="#">牧师卡组321</a></li>
+							<li><a href="#">牧师卡组321</a></li>
+							<li><a href="#">牧师卡组321</a></li>
+							<li><a href="#">牧师卡组321</a></li>
+							<li><a href="#">牧师卡组321</a></li>
+							<li><a href="#">牧师卡组321</a></li>
+						</ul>
+					</div>
+					<div class="info-center">
+						<div class="info-title">
+							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 职业视频
+						</div>
+						<ul class="sp">
+							<li>
+								<a href="#"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>牧师视频</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>牧师视频</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>牧师视频</p>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="info-right">
+						<div class="info-title">
+							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 职业攻略
+						</div>
+						<ul class="gonglve">
+							<li><a href="#">牧师攻略</a></li>
+							<li><a href="#">牧师攻略</a></li>
+							<li><a href="#">牧师攻略</a></li>
+							<li><a href="#">牧师攻略</a></li>
+							<li><a href="#">牧师攻略</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="career-content" id="myCareer-Content4">
+					<div class="info-left">
+						<div class="info-title">
+							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 热门卡组
+						</div>
+						<ul class="hot-ka">
+							<li><a href="#">术士卡组</a></li>
+							<li><a href="#">术士卡组</a></li>
+							<li><a href="#">术士卡组</a></li>
+							<li><a href="#">术士卡组</a></li>
+							<li><a href="#">术士卡组</a></li>
+							<li><a href="#">术士卡组</a></li>
+							<li><a href="#">术士卡组</a></li>
+							<li><a href="#">术士卡组</a></li>
+							<li><a href="#">术士卡组</a></li>
+							<li><a href="#">术士卡组</a></li>
+						</ul>
+					</div>
+					<div class="info-center">
+						<div class="info-title">
+							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 职业视频
+						</div>
+						<ul class="sp">
+							<li>
+								<a href="#"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>术士视频</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>术士视频</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>术士视频</p>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="info-right">
+						<div class="info-title">
+							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 职业攻略
+						</div>
+						<ul class="gonglve">
+							<li><a href="#">术士攻略</a></li>
+							<li><a href="#">术士攻略</a></li>
+							<li><a href="#">术士攻略</a></li>
+							<li><a href="#">术士攻略</a></li>
+							<li><a href="#">术士攻略</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="career-content" id="myCareer-Content5">
+					<div class="info-left">
+						<div class="info-title">
+							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 热门卡组
+						</div>
+						<ul class="hot-ka">
+							<li><a href="#">潜行者卡组</a></li>
+							<li><a href="#">潜行者卡组</a></li>
+							<li><a href="#">潜行者卡组</a></li>
+							<li><a href="#">潜行者卡组</a></li>
+							<li><a href="#">潜行者卡组</a></li>
+							<li><a href="#">潜行者卡组</a></li>
+							<li><a href="#">潜行者卡组</a></li>
+							<li><a href="#">潜行者卡组</a></li>
+							<li><a href="#">潜行者卡组</a></li>
+							<li><a href="#">潜行者卡组</a></li>
+						</ul>
+					</div>
+					<div class="info-center">
+						<div class="info-title">
+							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 职业视频
+						</div>
+						<ul class="sp">
+							<li>
+								<a href="#"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>潜行者视频</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>潜行者视频</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>潜行者视频</p>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="info-right">
+						<div class="info-title">
+							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 职业攻略
+						</div>
+						<ul class="gonglve">
+							<li><a href="#">盗贼攻略</a></li>
+							<li><a href="#">盗贼攻略</a></li>
+							<li><a href="#">盗贼攻略</a></li>
+							<li><a href="#">盗贼攻略</a></li>
+							<li><a href="#">盗贼攻略</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="career-content" id="myCareer-Content6">
+					<div class="info-left">
+						<div class="info-title">
+							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 热门卡组
+						</div>
+						<ul class="hot-ka">
+							<li><a href="#">德鲁伊卡组</a></li>
+							<li><a href="#">德鲁伊卡组</a></li>
+							<li><a href="#">德鲁伊卡组</a></li>
+							<li><a href="#">德鲁伊卡组</a></li>
+							<li><a href="#">德鲁伊卡组</a></li>
+							<li><a href="#">德鲁伊卡组</a></li>
+							<li><a href="#">德鲁伊卡组</a></li>
+							<li><a href="#">德鲁伊卡组</a></li>
+							<li><a href="#">德鲁伊卡组</a></li>
+							<li><a href="#">德鲁伊卡组</a></li>
+						</ul>
+					</div>
+					<div class="info-center">
+						<div class="info-title">
+							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 职业视频
+						</div>
+						<ul class="sp">
+							<li>
+								<a href="#"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>德鲁伊视频</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>德鲁伊视频</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>德鲁伊视频</p>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="info-right">
+						<div class="info-title">
+							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 职业攻略
+						</div>
+						<ul class="gonglve">
+							<li><a href="#">德鲁伊攻略</a></li>
+							<li><a href="#">德鲁伊攻略</a></li>
+							<li><a href="#">德鲁伊攻略</a></li>
+							<li><a href="#">德鲁伊攻略</a></li>
+							<li><a href="#">德鲁伊攻略</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="career-content" id="myCareer-Content7">
+					<div class="info-left">
+						<div class="info-title">
+							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 热门卡组
+						</div>
+						<ul class="hot-ka">
+							<li><a href="#">猎人卡组</a></li>
+							<li><a href="#">猎人卡组</a></li>
+							<li><a href="#">猎人卡组</a></li>
+							<li><a href="#">猎人卡组</a></li>
+							<li><a href="#">猎人卡组</a></li>
+							<li><a href="#">猎人卡组</a></li>
+							<li><a href="#">猎人卡组</a></li>
+							<li><a href="#">猎人卡组</a></li>
+							<li><a href="#">猎人卡组</a></li>
+							<li><a href="#">猎人卡组</a></li>
+						</ul>
+					</div>
+					<div class="info-center">
+						<div class="info-title">
+							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 职业视频
+						</div>
+						<ul class="sp">
+							<li>
+								<a href="#"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>猎人视频</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>猎人视频</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>猎人视频</p>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="info-right">
+						<div class="info-title">
+							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 职业攻略
+						</div>
+						<ul class="gonglve">
+							<li><a href="#">猎人攻略</a></li>
+							<li><a href="#">猎人攻略</a></li>
+							<li><a href="#">猎人攻略</a></li>
+							<li><a href="#">猎人攻略</a></li>
+							<li><a href="#">猎人攻略</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="career-content" id="myCareer-Content8">
+					<div class="info-left">
+						<div class="info-title">
+							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 热门卡组
+						</div>
+						<ul class="hot-ka">
+							<li><a href="#">萨满卡组</a></li>
+							<li><a href="#">萨满卡组</a></li>
+							<li><a href="#">萨满卡组</a></li>
+							<li><a href="#">萨满卡组</a></li>
+							<li><a href="#">萨满卡组</a></li>
+							<li><a href="#">萨满卡组</a></li>
+							<li><a href="#">萨满卡组</a></li>
+							<li><a href="#">萨满卡组</a></li>
+							<li><a href="#">萨满卡组</a></li>
+							<li><a href="#">萨满卡组</a></li>
+						</ul>
+					</div>
+					<div class="info-center">
+						<div class="info-title">
+							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 职业视频
+						</div>
+						<ul class="sp">
+							<li>
+								<a href="#"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>萨满视频</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>萨满视频</p>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#"><img src="images/career-sp/career-sp-1.jpg" alt="Kolento节奏瓦王战卡组天梯对战视频">
+									<div class="cov">
+										<span></span>
+										<p>萨满视频</p>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="info-right">
+						<div class="info-title">
+							<a class="fr" href="list_article.html" target="_blank" title="">更多&gt;&gt;</a> 职业攻略
+						</div>
+						<ul class="gonglve">
+							<li><a href="#">萨满攻略</a></li>
+							<li><a href="#">萨满攻略</a></li>
+							<li><a href="#">萨满攻略</a></li>
+							<li><a href="#">萨满攻略</a></li>
+							<li><a href="#">萨满攻略</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="newCard">
+				<div class="title-top">
+					<span class="title-top-l tl2"></span>
+					<ul class="fl" id="newCard-tab">
+						<li class="on"><a href="#" onclick="showcard(0);return false;">上古之神的低语</a></li>
+						<li><a href="#" onclick="showcard(1);return false;">探险者协会</a></li>
+						<li><a href="#" onclick="showcard(2);return false;">冠军的试炼</a></li>
+						<li><a href="#" onclick="showcard(3);return false;">黑石山的火焰</a></li>
+						<li><a href="#" onclick="showcard(4);return false;">侏儒大战地精</a></li>
+					</ul>
+				</div>
+				<div class="newCard-content w1000">
+					<a class="newCard-left"></a><!-- onclick="pre(0);return false;"-->
+					<div class="newCard-list db">
+						<ul>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-1.png" alt="XXXX大帝"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-2.png" alt="鹿盔"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-1.png" alt="XXXX大帝"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-2.png" alt="鹿盔"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-1.png" alt="XXXX大帝"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-2.png" alt="鹿盔"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-2.png" alt="鹿盔"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-2.png" alt="鹿盔"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-2.png" alt="鹿盔"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-2.png" alt="鹿盔"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-1.png" alt="XXXX大帝"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-1.png" alt="XXXX大帝"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-1.png" alt="XXXX大帝"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-1.png" alt="XXXX大帝"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-1.png" alt="XXXX大帝"> </a>
+							</li>
+						</ul>
+					</div>
+					<div class="newCard-list">
+						<ul>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-3.png" alt="雷诺"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-4.png" alt="铜须"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-3.png" alt="雷诺"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-4.png" alt="铜须"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-3.png" alt="雷诺"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-4.png" alt="铜须"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-4.png" alt="铜须"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-4.png" alt="铜须"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-4.png" alt="铜须"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-4.png" alt="铜须"> </a>
+							</li>
+						</ul>
+					</div>
+					<div class="newCard-list">
+						<ul>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-5.png" alt="瓦王"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-6.png" alt="罗宁"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-5.png" alt="瓦王"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-6.png" alt="罗宁"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-5.png" alt="瓦王"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-6.png" alt="罗宁"> </a>
+							</li>
+						</ul>
+					</div>
+					<div class="newCard-list">
+						<ul>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-7.png" alt="大帝"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-8.png" alt="黑龙"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-7.png" alt="大帝"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-8.png" alt="黑龙"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-7.png" alt="大帝"> </a>
+							</li>
+							<li>
+								<a href="article.html"> <img src="images/card/newCard-8.png" alt="黑龙"> </a>
+							</li>
+						</ul>
+					</div>
+					<div class="newCard-list">
+						<ul>
+							<li>
+								<a href="#"> <img src="images/card/newCard-9.png" alt="砰砰"> </a>
+							</li>
+							<li>
+								<a href="#"> <img src="images/card/newCard-10.png" alt="花木机"> </a>
+							</li>
+							<li>
+								<a href="#"> <img src="images/card/newCard-9.png" alt="砰砰"> </a>
+							</li>
+							<li>
+								<a href="#"> <img src="images/card/newCard-10.png" alt="花木机"> </a>
+							</li>
+							<li>
+								<a href="#"> <img src="images/card/newCard-9.png" alt="砰砰"> </a>
+							</li>
+							<li>
+								<a href="#"> <img src="images/card/newCard-10.png" alt="花木机"> </a>
+							</li>
+						</ul>
+					</div>
+					<a class="newCard-right"></a><!-- onclick="pre(0);return false;"-->
+				</div>
+			</div>
+			<!--探险部分-->
+			<div class="adventure">
+				<div class="title-top tab-li">
+					<span class="title-top-l tl3"></span>
+					<ul class="fl">
+						<li class="on" data-url="探险者协会的URL"><a href="#">探险者协会</a></li>
+						<li data-url="黑石山的URL"><a href="#">黑石山</a></li>
+						<li data-url="NAXX的URL"><a href="#">纳克萨玛斯</a></li>
+					</ul>
+					<a href="list_article.html" target="_blank" class="ico fuben tab-more">副本详情</a>
+				</div>
+				<div class="w980 tab-con">
+					<div class="adventure-list tab-item">
+						<a href="article.html"> <img src="images/adventure-1.jpg" alt="探险者协会"> </a> <a href="article.html">
+						<img src="images/adventure-1.jpg" alt="探险者协会"> </a> <a href="article.html"> <img src="images/adventure-1.jpg" alt="探险者协会">
+					</a> <a href="article.html"> <img src="images/adventure-1.jpg" alt="探险者协会"> </a> <a href="article.html">
+						<img src="images/adventure-1.jpg" alt="探险者协会"> </a>
+					</div>
+					<div class="adventure-list tab-item">
+						<a href="#"> <img src="images/adventure-2.jpg" alt="黑石深渊"> </a> <a href="#"> <img src="images/adventure-2.jpg" alt="黑石深渊">
+					</a> <a href="#"> <img src="images/adventure-2.jpg" alt="黑石深渊"> </a> <a href="#"> <img src="images/adventure-2.jpg" alt="黑石深渊">
+					</a> <a href="#"> <img src="images/adventure-2.jpg" alt="黑石深渊"> </a>
+					</div>
+					<div class="adventure-list tab-item">
+						<a href="#"> <img src="images/adventure-3.jpg" alt="冰龙巢穴"> </a> <a href="#"> <img src="images/adventure-3.jpg" alt="冰龙巢穴">
+					</a> <a href="#"> <img src="images/adventure-3.jpg" alt="冰龙巢穴"> </a> <a href="#"> <img src="images/adventure-3.jpg" alt="冰龙巢穴">
+					</a> <a href="#"> <img src="images/adventure-3.jpg" alt="冰龙巢穴"> </a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="main-bottom fix"></div>
+	</div>
+	<div class="footer">
+		<div class="w980">
+			<p>
+				<a href="#">关于我们</a> <a href="#">商务合作</a> <a href="#">免责声明</a> <a href="#">网站地图</a> <a href="#">意见反馈</a>
+			</p>
+			<p>此作品仅供参考练习，请勿抄袭模仿&nbsp;||&nbsp;此作品仅供参考练习，请勿抄袭模仿</p>
+			<p>Copyright © 2004 - 2016 xxxx.com All Rights Reserved. xxxxx 版权所有 </p></div>
+	</div>
+</body>
+<script>/*初始化开始内容*/
+window.onload = function () {
+	for (i = 1; i < 9; i++) {
+		document.getElementById("myCareer-Content" + i).style.display = "none";
+	}
+	for (i = 1; i < 3; i++) {
+		document.getElementsByClassName("adventure-list")[i].style.display = "none";
+		document.getElementById("news-left-con" + i).style.display = "none";
+	}
+	nCl = $(".newCard-left").length;
+	for (i = 0; i < nCl; i++) {
+		$(".newCard-left").addClass("ico");
+		$(".newCard-right").addClass("ico");
+	}
+}
+</script>
+</html>

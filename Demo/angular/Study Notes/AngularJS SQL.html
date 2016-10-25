@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="angular.min.js"></script>
+	<style>
+		table, th, td{
+			border:1px solid grey;
+			border-collapse:collapse;
+			padding:5px;
+		}
+		table tr:nth-child(odd){
+			background-color:#f1f1f1;
+		}
+		table tr:nth-child(even){
+			background-color:#fff;
+		}
+	</style>
+</head>
+<body>
+	<h1>1 使用 PHP 从 MySQL 中获取数据</h1>
+	<div ng-app="myApp" ng-controller="customersCtrl">
+		<table>
+			<tr ng-repeat="x in names">
+				<td>{{ x.Name }}</td>
+				<td>{{ x.Country }}</td>
+			</tr>
+		</table>
+	</div>
+	<script>
+		var app = angular.module('myApp', []);
+		app.controller('customersCtrl', function ($scope, $http) {
+			$http.get("Customers_MySQL.php")
+			.success(function (response) {
+				$scope.names = response.records;
+			});
+		});
+	</script>
+	<br>
+	<hr>
+	<br>
+	<h1>2 ASP.NET 中执行 SQL 获取数据</h1>
+	<div ng-app="myApp1" ng-controller="customersCtrl">
+		<table>
+			<tr ng-repeat="x in names">
+				<td>{{ x.Name }}</td>
+				<td>{{ x.Country }}</td>
+			</tr>
+		</table>
+	</div>
+	<script>
+		var app = angular.module('myApp1', []);
+		app.controller('customersCtrl', function ($scope, $http) {
+			$http.get("Customers_SQL.aspx")
+			.success(function (response) {
+				$scope.names = response.records;
+			});
+		});
+		angular.bootstrap(document.getElementsByTagName('div')[1], ['myApp1']);
+	</script>
+	<br>
+	<hr>
+	<br>
+	<h1>其他说明</h1>
+	<h2>服务端代码</h2>
+	<p>以下列出了列出了几种服务端代码类型：
+		 使用 PHP 和 MySQL。返回 JSON。
+		 使用 PHP 和 MS Access。返回 JSON。
+		 使用 ASP.NET, VB, 及 MS Access。 返回 JSON。
+		 使用 ASP.NET, Razor, 及 SQL Lite。 返回 JSON。</p>
+	<h2>跨域 HTTP 请求</h2>
+	<p>
+		如果你需要从不同的服务器（不同域名）上获取数据就需要使用跨域 HTTP 请求。
+		跨域请求在网页上非常常见。很多网页从不同服务器上载入 CSS, 图片，Js脚本等。
+		在现代浏览器中，为了数据的安全，所有请求被严格限制在同一域名下，如果需要调用不同站点的数据，需要通过跨域来解决。
+		以下的 PHP 代码运行使用的网站进行跨域访问。
+	</p>
+	<p>header("Access-Control-Allow-Origin: *");</p>
+	<h2>代码实例</h2>
+	<p>
+		http://www.runoob.com/angularjs/angularjs-sql.html
+	</p>
+	<h2>跨域解决方案</h2>
+	<p>
+		http://www.runoob.com/w3cnote/php-ajax-cross-border.html
+	</p>
+</body>
+</html>

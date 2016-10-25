@@ -1,0 +1,158 @@
+﻿@charset "utf-8";
+
+样本的CSS3太6了  这个作业没有自己写  只是给样本做了一些修改  学习了很多样本中的思路技巧
+
+记录如下：
+
+transition css3过渡效果 属性有4个：
+1.内容  transition-property
+	none	没有属性会获得过渡效果。
+	all	所有属性都将获得过渡效果。
+	property	定义应用过渡效果的 CSS 属性名称列表，列表以逗号分隔。
+2.完成时间  transition-duration
+	0.3s 写一个具体时间
+3.规定速度(重要) transition-timing-function
+	linear	规定以相同速度开始至结束的过渡效果（等于 cubic-bezier(0,0,1,1)）。
+	ease	规定慢速开始，然后变快，然后慢速结束的过渡效果（cubic-bezier(0.25,0.1,0.25,1)）。
+	ease-in	规定以慢速开始的过渡效果（等于 cubic-bezier(0.42,0,1,1)）。
+	ease-out	规定以慢速结束的过渡效果（等于 cubic-bezier(0,0,0.58,1)）。
+	ease-in-out	规定以慢速开始和结束的过渡效果（等于 cubic-bezier(0.42,0,0.58,1)）。
+	cubic-bezier(n,n,n,n)	在 cubic-bezier 函数中定义自己的值。可能的值是 0 至 1 之间的数值。
+4.开始动画的时间  transition-delay
+	可以不写
+
+例子：
+-webkit-transition:width 0.4s ease-in-out;
+-moz-transition:width 0.4s ease-in-out;
+transition:width 0.4s ease-in-out;
+
+标题栏的下方动画效果通过在li的下面写一个div 当li有hover的时候  div设置LEFT xxx 配合 transition 来完成动画
+
+代码如下
+
+header nav ul .move{
+	position:absolute;
+	border-top:4px solid #e53c3c;
+	left:0;
+	top:55px;
+	-webkit-transition:left 0.4s ease-in-out;
+	-moz-transition:left 0.4s ease-in-out;
+	transition:left 0.4s ease-in-out;
+}
+header nav ul li:nth-child(1):hover ~ .move{
+	left:0;
+}/*第一个可以不写*/
+header nav ul li:nth-child(2):hover ~ .move{
+	left:20%;
+}
+header nav ul li:nth-child(3):hover ~ .move{
+	left:40%;
+}
+header nav ul li:nth-child(4):hover ~ .move{
+	left:60%;
+}
+header nav ul li:nth-child(5):hover ~ .move{
+	left:80%;
+}
+
+同理 想给li下方设置上下动画的下划线  可以这样写：
+
+header .banner-right .move{
+	width:34%;/*宽度改为%之后自适应更好*/
+	position:absolute;
+	top:45px;
+	left:33%;
+	-webkit-transition:border 0.4s ease-in-out;
+	-moz-transition:border 0.4s ease-in-out;
+	transition:border 0.4s linear;
+}
+header .banner-right:hover .move{
+	border-top:3px solid #e53c3c;/*改为border后 鼠标离开时不是慢动画*/
+}
+
+通过伪类::after 来做一个三角形：
+#section-6 .left::after{
+	content:'';
+	position:absolute;
+	border-width:30px;
+	/*宽度还是要给的  这个关系到三角形的大小*/
+	border-style:solid;
+	border-color:transparent transparent transparent #xxxxxx;
+	/*transparent是透明的 color的方向是 上右下左 只给其中一个增加颜色 即可做出三角形*/
+	top:250px;
+	left:100%;
+	margin-left:-60px;
+}
+
+通过checked来设置 下拉列表 设置轮播按钮极其内容的样式：
+
+~符号用来选择包含XXX名字的内容
+
+#section-6 .right .wrapper .list:first-of-type{
+	background-color:#6c5c5c;
+}
+#section-6 .right .wrapper input[type="radio"]:checked ~ .list{
+	background-color:#fff;
+}
+#section-6 .right .wrapper input[type="radio"]:checked ~ .mes{
+	display:none;
+}
+#section-6 .right .wrapper input[type="radio"]:nth-of-type(1):checked ~ .list:nth-of-type(1){
+	background-color:#6c5c5c;
+}
+#section-6 .right .wrapper input[type="radio"]:nth-of-type(1):checked ~ .mes-1{
+	display:block;
+}
+#section-6 .right .wrapper input[type="radio"]:nth-of-type(2):checked ~ .list:nth-of-type(2){
+	background-color:#6c5c5c;
+}
+#section-6 .right .wrapper input[type="radio"]:nth-of-type(2):checked ~ .mes-2{
+	display:block;
+}
+#section-6 .right .wrapper input[type="radio"]:nth-of-type(3):checked ~ .list:nth-of-type(3){
+	background-color:#6c5c5c;
+}
+#section-6 .right .wrapper input[type="radio"]:nth-of-type(3):checked ~ .mes-3{
+	display:block;
+}
+
+
+通过focus来改变input被选中时的颜色：
+
+#section-8 .right input[type="text"]:focus, #section-8 .right textarea:focus{
+	border:1px solid #e3e3e3;
+	background-color:#fff;
+}
+
+背景图片随着整体的变化而变化：
+
+background-size: cover;
+
+
+可以让图片在你放上去的时候放大查看：
+
+.action .action-item .img-scan{
+	border: 1px #dadada solid;
+	padding: 13px;
+	border-radius: 5px;
+	overflow: hidden;/*这样就不会变大超出父框体啦~~*/
+}
+.action .action-item .img-scan img{
+	-webkit-transition: all ease-out 1s;
+	-o-transition: all ease-out 1s;
+	transition: all ease-out 1s;
+}
+.action .action-item .img-scan img:hover{
+	-webkit-transform: scale(1.5);
+	-ms-transform: scale(1.5);
+	-o-transform: scale(1.5);
+	transform: scale(1.5);
+}
+
+除了css reset 还有一个东西叫做 normalize
+
+http://necolas.github.io/normalize.css/
+
+Normalize 相对「平和」，注重通用的方案，重置掉该重置的样式，保留有用的 user agent 样式，同时进行一些 bug 的修复，这点是 reset 所缺乏的。
+
+Reset 相对「暴力」，不管你有没有用，统统重置成一样的效果，且影响的范围很大，讲求跨浏览器的一致性。
