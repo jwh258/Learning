@@ -26,14 +26,31 @@ var $ = function (id) {
 };
 numText = $("num-text");
 result = $("result");
-window.onload = function () {
+
+//git上网速不好 图片经常出不来 onload太慢了!
+/*window.onload = function () {
 	var buttons = document.getElementsByTagName("button");
 	//给按钮增加事件
 	for (var i = 0; i < buttons.length; i++) {
 		buttons[i].addEventListener('click', clickButton)
 	}
 	//给DIV增加事件
-};
+};*/
+
+//我要让他快一点运行
+function addButtonClick() {
+	var buttons = document.getElementsByTagName("button");
+	//给按钮增加事件
+	for (var i = 0; i < buttons.length; i++) {
+		buttons[i].addEventListener('click', clickButton)
+	}
+	//给DIV增加事件
+}
+addButtonClick();
+
+
+
+
 var divNum = 1;//每次新建DIV给予一个编号方便识别
 function addListener() {//这个函数必须放在addDivDelEvent()的外边 不然会捆绑多次
 	console.log("删除了:" + this);//为什么这个this返回的是类型
