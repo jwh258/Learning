@@ -5,10 +5,6 @@
 	<title>js任务2</title>
 </head>
 <body>
-	<img src="任务要求.png" alt="">
-	<br>
-	<hr>
-	<br>
 	<p>学习笔记：尽量避免循环内appendChild…重排会引起性能下降，对DOM的操作要越少越好</p>
 	<p>前两种方法性能相差不多，但是第三种明显快</p>
 	<p>由此可知，循环内appendChild不管放哪里都会降低性能。保存到临时字符串(contentStr += "ooxx")，最后一次性添加(innerHTML)，是更好的做法。</p>
@@ -126,13 +122,21 @@
 			 */
 			var chineseNumbers = ["一", "二", "三", "四", "五", "六"];
 			var contentStr = "";
-			aqiData.filter(function (element) {return element[1] > 60;})
-			       .sort(function (d1, d2) {return d2[1] - d1[1];})
-			       .forEach(function (element, index) {
-								contentStr += "<li>第" + chineseNumbers[index] + "名：" + element[0] + "，" + element[1] + "</li>";
-							});
+			aqiData.filter(function (element) {
+				return element[1] > 60;
+			})
+			.sort(function (d1, d2) {
+				return d2[1] - d1[1];
+			})
+			.forEach(function (element, index) {
+				contentStr += "<li>第" + chineseNumbers[index] + "名：" + element[0] + "，" + element[1] + "</li>";
+			});
 			document.getElementById("aqi-list3").innerHTML = contentStr;
 		})();
 	</script>
+	<br>
+	<hr>
+	<br>
+	<img src="任务要求.png" alt="">
 </body>
 </html>
