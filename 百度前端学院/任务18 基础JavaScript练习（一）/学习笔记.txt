@@ -1,0 +1,22 @@
+﻿/**
+ *  IE 8 及更早 IE 版本，Opera 7.0及其更早版本不支持 addEventListener() 和 removeEventListener() 方法。
+ *  但是，对于这类浏览器版本可以使用 detachEvent() 方法来移除事件句柄:
+ *  element.attachEvent(event, function);
+ *  element.detachEvent(event, function);
+ * */
+
+//没有考虑IE8之前addEvent的兼容性问题  可以参考以下代码加入之后兼容IE
+
+// function addEvent(element, event, listener) {
+// 	if (element.addEventListener) {
+// 		element.addEventListener(event, listener, false);
+// 	}
+// 	else if (element.attachEvent) {
+// 		element.attachEvent("on" + event, listener);
+// 	}
+// 	else {
+// 		element["on" + event] = listener;
+// 	}
+// }
+
+今天开始看看正则  感觉实战中用的不是很多   但是也不少  有必要学习下
