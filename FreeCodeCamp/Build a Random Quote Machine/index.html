@@ -76,14 +76,20 @@
 			},
 			url: url_x,
 			success: function (res) {
-				var r = JSON.parse(res);
+				//用F5插件的时候，(r = res) ==>不能解码中文json，需要r = JSON.parse(res)
+				//但是r = JSON.parse(res)在服务器上会返回一个错误，中文无法解码
+				//以下方法是不用插件的时候的状况  在服务端也是这么写
+				var r;
 				if (url_x == url_1) {
+					r = res;
 					var myQuote = Math.floor(Math.random() * r.length);
 					while (myQuote === oldQuote) {//保证每次格言不一样
 						myQuote = Math.floor(Math.random() * r.length);
 					}
 					oldQuote = myQuote;
 					r = r[myQuote];//这样 r就不是整个对象了 只是其中一个 并且不是上一个
+				}else{
+					r = JSON.parse(res);
 				}
 				currentQuote = r.quote;
 				currentAuthor = r.author;
