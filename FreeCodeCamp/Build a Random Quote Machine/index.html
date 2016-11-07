@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>随机格言</title>
+	<link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="index.css">
+</head>
+<body>
+<div class="container">
+	<div class="wrap">
+		<div class="quote-text">
+			<i class="fa fa-quote-left"></i>&nbsp;
+			<span>
+真理惟一可靠的标准就是永远自相符合。</span>
+			&nbsp;<i class="fa fa-quote-right"></i>
+		</div>
+		<div class="quote-author">
+			<span id="author-">- </span><span id="author">欧文</span>
+		</div>
+		<div class="buttons">
+			<a target="_blank" id="twitter" href="https://twitter.com/intent/tweet?hashtags=quotes&amp;related=freecodecamp&amp;text=%22真理惟一可靠的标准就是永远自相符合。%22%20欧文"><i class="fa fa-twitter"></i></a>
+			<a target="_blank" id="tumblr" href="https://www.tumblr.com/widgets/share/tool?posttype=quote&amp;tags=quotes,freecodecamp&amp;caption=欧文&amp;content=真理惟一可靠的标准就是永远自相符合。"><i class="fa fa-tumblr"></i></a>
+			<button id="new-quote">切换格言</button>
+			<button id="tab-1" class="tab-on">本地线路</button>
+			<button id="tab-2">外地线路</button>
+		</div>
+	</div>
+	<footer>
+		by&nbsp;jwh&nbsp;&nbsp;&nbsp;由于网页无法打开&nbsp;原始链接传送的数据格式不一定正确
+	</footer>
+</div>
+</body>
+<script src="../jquery-3.1.0.min.js"></script>
+<script>
+	/*
+	 * 作者这里是判断是不是顶级窗口  以便后边做不同的操作
+	 * */
+	//	function inIframe() {
+	//		try {
+	//			return window.self !== window.top;
+	//		} catch (e) {
+	//			return true;
+	//		}
+	//	}
+
+	var colors = ['#16324a', '#24385e', '#393f65', '#4e4a67', '#5a4563', '#b38e95', '#edae9e', '#c1b9c2', '#bec3cb', '#9ea7bb', '#99b4ce', '#a2b09e'],
+	oldColor = 0,
+	oldQuote = 0,
+	url_1 = 'quote.json',
+	url_2 = 'https://andruxnet-random-famous-quotes.p.mashape.com/cat=',
+	url_x = url_1,
+	currentQuote = '',
+	currentAuthor = '';
+	function checkBotton() {
+		if (this.id == 'new-quote') {
+			getQuote();
+		} else if (this.id == 'tab-1') {
+			url_x = url_1;
+			if (this.class != "tab-on") {
+				$(this).removeClass().addClass("tab-on").siblings().removeClass();
+			}
+		} else {
+			url_x = url_2;
+			if (this.class != "tab-on") {
+				$(this).removeClass().addClass("tab-on").siblings().removeClass();
+			}
+		}
+	}
+	function getQuote() {
+		$.ajax({
+			headers: {
+				'X-Mashape-Key': 'OivH71yd3tmshl9YKzFH7BTzBVRQp1RaKLajsnafgL2aPsfP9V',
+				Accept: 'application/json',
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			url: url_x,
+			success: function (res) {
+				var r = JSON.parse(res);
+				if (url_x == url_1) {
+					var myQuote = Math.floor(Math.random() * r.length);
+					while (myQuote === oldQuote) {//保证每次格言不一样
+						myQuote = Math.floor(Math.random() * r.length);
+					}
+					oldQuote = myQuote;
+					r = r[myQuote];//这样 r就不是整个对象了 只是其中一个 并且不是上一个
+				}
+				currentQuote = r.quote;
+				currentAuthor = r.author;
+				//这是当没法开小窗口的时候 改变url
+				$('#tweet').attr('href', 'https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=' + encodeURIComponent('"' + currentQuote + '" ' + currentAuthor));
+				$('#tumblr').attr('href', 'https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,freecodecamp&caption=' + encodeURIComponent(currentAuthor) + '&content=' + encodeURIComponent(currentQuote));
+				$('.quote-text span').text(r.quote);
+				$('#author').html(r.author);
+				var color = Math.floor(Math.random() * colors.length);
+				while (color === oldColor) {//保证每次颜色不一样
+					color = Math.floor(Math.random() * colors.length);
+				}
+				oldColor = color;
+				$('html body').css({
+					'backgroundColor': colors[color],
+					'color': colors[color]
+				});
+				$('.buttons button,.buttons a,footer').css('backgroundColor', colors[color]);
+
+			}
+		});
+	}
+	$(document).ready(function () {
+		$('button').on('click', checkBotton);
+		/*推特和汤不热我打不开啊 没法测试*/
+	});
+</script>
+</html>

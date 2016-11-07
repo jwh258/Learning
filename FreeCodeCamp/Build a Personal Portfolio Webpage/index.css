@@ -121,12 +121,12 @@ header nav .nav-list li a:hover{
 }
 /*第一部分*/
 .intro-header{
-	background: url('../img/intro-header-bg.png') no-repeat center center fixed;
+	background: url('img/intro-header-bg.png') no-repeat center center fixed;
 	height:800px;
 }
 .intro-header .container h1{
 	text-shadow: 2px 1px 2px #fff;
-	font-size: 3em;
+	font-size: 5em;
 	color:rgba(51, 51, 51, 0.7);
 }
 .intro-header .container h3{
@@ -163,7 +163,7 @@ header nav .nav-list li a:hover{
 }
 /*第二部分 个人简介*/
 .about{
-	background: url('../img/about-bg.jpg') no-repeat center center fixed
+	background: url('img/about-bg.jpg') no-repeat center center fixed
 }
 .about .description{
 	float:left;
@@ -171,23 +171,23 @@ header nav .nav-list li a:hover{
 	text-align:left;
 }
 .about h2{
-	font-size: 32px;
+	font-size: 3em;
 }
 .about p{
-	font-size: 18px;
+	font-size: 22px;
 }
 .about .my-pic{
 	display:none;
 }
 /*第三部分 作品展示*/
 .portfolio{
-	background: url('../img/portfolio-bg.jpg') no-repeat center center fixed;
+	background: url('img/portfolio-bg.jpg') no-repeat center center fixed;
 	background-size:cover;
 	font-weight:700;
 	text-align: center;
 	width:100%;
 	color:#fff;
-	padding:80px 0;
+	padding-top:80px;
 }
 .portfolio * {
 	z-index: 2;
@@ -281,7 +281,7 @@ header nav .nav-list li a:hover{
 
 /*第四部分 联系方式*/
 .contact{
-	background: url('../img/contact-bg.jpg') no-repeat center center fixed
+	background: url('img/contact-bg.jpg') no-repeat center center fixed
 }
 .contact .container{
 	padding:100px 0;
@@ -292,14 +292,15 @@ header nav .nav-list li a:hover{
 	text-align:left;
 	text-shadow:#fff 1px 0 0,#fff 0 1px 0,#fff -1px 0 0,#fff 0 -1px 0;/*描边*/
 }
-.contact .title{
+.contact .title,.contact .website{
 	padding:0 15px;
+	float:left;
 }
 .contact .website{
-	padding:50px 15px 0;
-	text-align:center;
+	margin-top:30px;
 }
 .contact .website li{
+	float:left;
 	clear:both;
 }
 /*footer*/
@@ -312,14 +313,6 @@ footer{
 
 
 /*自适应部分*/
-@media screen and (min-width:400px){
-	.about h2{
-		font-size: 3em;
-	}
-	.about p{
-		font-size: 22px;
-	}
-}
 @media screen and (min-width:768px){
 	header nav{
 		width:80%;
@@ -392,15 +385,11 @@ footer{
 	.container{
 		width:950px;
 	}
-	.intro-header .container h1{
-		font-size:5em;
-	}
 	.about .my-pic{
 		margin-left:15%;
 	}
-	.contact .website,.contact .website li{/*就让文字把上面占满吧  宽屏时都堆在上面不好看*/
+	.contact .website,.contact .website li{
 		float:right;
-		padding-top:0;
 	}
 	.portfolio-list>div{
 		width:33%;
