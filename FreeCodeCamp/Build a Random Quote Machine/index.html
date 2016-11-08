@@ -68,6 +68,8 @@
 		}
 	}
 	function getQuote() {
+		$('.quote-text span').text("加载中...");
+		$('#author').html('加载中...');
 		$.ajax({
 			headers: {
 				'X-Mashape-Key': 'OivH71yd3tmshl9YKzFH7BTzBVRQp1RaKLajsnafgL2aPsfP9V',
