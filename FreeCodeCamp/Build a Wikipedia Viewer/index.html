@@ -10,9 +10,10 @@
 			background-color:#092b40;
 		}
 		.btn{
-			outline:none;border:0;/*Chrome不好使  必须内嵌啊？？？*/
+			outline:none;
+			border:0; /*Chrome不好使  必须内嵌啊？？？*/
 		}
-		#random,#getIds{
+		#random, #getIds{
 			margin:20px;
 		}
 		h1{
@@ -41,16 +42,21 @@
 <script>
 	var mySearch;
 	var searchAPI;
-	$("#getIds").on("click", function () {
+	$("#getIds").on("click", search);
+	$('#mySearch').bind('keypress', function (e) {
+		if (e.keyCode == "13") {
+			search();
+		}
+	});
+	function search() {
 		mySearch = $('#mySearch').val();
-		if(mySearch == ''){
+		if (mySearch == '') {
 			$('.result').html("<div class='well'><p>没有输入搜索词！</p></div>");
 			return;
-		}else{
+		} else {
 			$('.result').html("<div class='well'><p>搜索中...</p></div>");
 		}
 		searchAPI = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=" + /*encodeURI(mySearch)*/mySearch + "&callback=?";
-//		$(".result").html("<div class='well'><p>搜索中...</p></div>");
 		$.getJSON(searchAPI, function (json) {//&limit=xxx 返回的个数  默认为10个
 			console.log(json);
 			if (json[1].length == 0) {
@@ -61,8 +67,8 @@
 					$('.result').append("<div class='well'><a href=" + json[3][i] + " target='_blank'>" + json[1][i] + "</a><p>" + json[2][i] + "</p></div>");
 				}
 			}
-		});
-	});
+		})
+	}
 </script>
 </body>
 </html>
