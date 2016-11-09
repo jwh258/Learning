@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Build a Wikipedia Viewer</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"><!--bootstrap-->
+	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css"><!--字体-->
+	<style>
+		body{
+			background-color:#092b40;
+		}
+		.btn{
+			outline:none;border:0;/*Chrome不好使  必须内嵌啊？？？*/
+		}
+		#random,#getIds{
+			margin:20px;
+		}
+		h1{
+			font-family:Lobster, Arial;
+			color:white;
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+	<h1 class="text-center">Search Wikipedia</h1>
+	<p class="text-center" id="random">
+		<a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank">
+			<button class="btn btn-success" style="outline:none;border:0;">Random page</button>
+		</a>
+	</p>
+	<p class="text-center">
+		<input class="form-control" name="mySearch" type="text" id="mySearch"/>
+		<button class="btn btn-info" id="getIds" style="outline:none;border:0;">Search</button>
+	</p>
+</div>
+<div class="container" id="resultsZone">
+	<p class="text-center result"></p>
+</div>
+<script src="../jquery-3.1.0.min.js"></script>
+<script>
+	var mySearch;
+	var searchAPI;
+	$("#getIds").on("click", function () {
+		mySearch = $('#mySearch').val();
+		if(mySearch == ''){
+			$('.result').html("<div class='well'><p>没有输入搜索词！</p></div>");
+			return;
+		}else{
+			$('.result').html("<div class='well'><p>搜索中...</p></div>");
+		}
+		searchAPI = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=" + /*encodeURI(mySearch)*/mySearch + "&callback=?";
+//		$(".result").html("<div class='well'><p>搜索中...</p></div>");
+		$.getJSON(searchAPI, function (json) {//&limit=xxx 返回的个数  默认为10个
+			console.log(json);
+			if (json[1].length == 0) {
+				$('.result').html("<div class='well'><p>没有找到你要的结果</p></div>");
+			} else {
+				$('.result').empty();
+				for (i = 0; i < json[1].length; i++) {
+					$('.result').append("<div class='well'><a href=" + json[3][i] + " target='_blank'>" + json[1][i] + "</a><p>" + json[2][i] + "</p></div>");
+				}
+			}
+		});
+	});
+</script>
+</body>
+</html>
+
+<!--
+		地址  https://www.mediawiki.org/wiki/API:Opensearch
+		search: Search string.
+		namespace: Namespaces to search. (Default: 0)
+		limit: Maximum number of results to return. (Note: prior to MW 1.28, this value was capped at 100, regardless of user permissions.) No more than 500 (5000 for bots) allowed. (Default: 10)
+		profile: Search profile to use. Possible values: strict, normal, fuzzy, classic. (Default: fuzzy) 1.28+
+		strict: Strict profile with few punctuation characters removed but diacritics and stress marks are kept.
+		normal: Few punctuation characters, some diacritics and stopwords removed.
+		fuzzy: Similar to normal with typo correction (two typos supported).
+		classic: Classic prefix, few punctuation characters and some diacritics removed.
+		suggest: Do nothing if $wgEnableOpenSearchSuggest is false.
+		redirects: How to handle redirects. Possible values: return, resolve. (Default: return when format=json/jsonfm; resolve otherwise.)
+		return: Return the redirect itself.
+		resolve: Return the target page. May return fewer than limit results.
+		format: The format of the output. Possible values: json, jsonfm, xml, xmlfm. (Default: json)
+		warningsaserror: If warnings are raised with format=json, return an API error instead of ignoring them.
+-->
