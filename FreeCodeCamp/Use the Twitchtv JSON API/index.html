@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Use the Twitchtv JSON API</title>
+	<!--<script src="http://127.0.0.1/_/js/reloader.js"></script>-->
+	<style>
+		html, body{
+			width:100%;
+			height:100%;
+			background-color:#4a5e82;
+			margin:0;
+			text-align:center;
+		}
+		a{
+			text-decoration:none;
+			color:#cd9a66
+		}
+		a:hover{
+			text-decoration:underline;
+		}
+		header{
+			background-color:#ffc675;
+			padding:20px 0;
+		}
+		.container ul{
+			list-style-type:none;
+			padding:0 40px 0 20px;
+			font-size:1.2em;
+			color:#cd9a66;
+			max-width:660px;
+			display:inline-block;
+		}
+		strong{
+			color:#ffdb80;
+			text-shadow:#555 1px 0 0, #555 0 1px 0, #555 -1px 0 0, #555 0 -1px 0;
+		}
+		.unavailable{
+			background-color:#444;
+		}
+		.offline{
+			background-color:#686868;
+		}
+		.online{
+			background-color:#fff;
+		}
+		.container img{
+			float:left;
+			margin-right:20px;
+			border-radius:50%;;
+		}
+		li{
+			border-radius:20px;
+			padding:10px;
+			float:left;
+			width:100%;
+			margin-bottom:5px;
+		}
+		.logo{
+			height:70px;
+			width:70px;
+		}
+		.menu p span{
+
+		}
+		.menu p .selector{
+			display:inline-block;
+			background-color:#ff6559;
+			color:#fff;
+			height:30px;
+			line-height:30px;
+			width:80px;
+			border:2px solid #e0ccff;
+			margin:5px 10px;
+			cursor:pointer
+		}
+		.menu p .active{
+			color:#fffc79;
+			background-color:#ffbec0;
+			border:2px solid #54fcff;
+		}
+		.hidden{
+			display:none;
+		}
+	</style>
+</head>
+<body>
+<header>
+	<h1 class="text-center">TWITCH STREAMERS</h1>
+</header>
+<div class="menu">
+	<p>
+		<span class="selector active" id="all">all</span>
+		<span class="selector" id="online">online</span>
+		<span class="selector" id="offline">offline</span>
+	</p>
+</div>
+</div>
+<div class="container text-center">
+	<ul>
+		<li id="text1" class="offline">
+			<img src="logo.jpg" class="logo" alt="freecodecamp logo">
+			<strong>text1</strong> is offline.
+		</li>
+		<li id="text2" class="online">
+			<a href="#">
+				<img src="logo.jpg" class="logo" alt="freecodecamp logo">
+				<strong>text2</strong>text1 is string:xxxx
+			</a>
+		</li>
+		<li id="text3" class="offline">
+			<img src="logo.jpg" class="logo" alt="freecodecamp logo">
+			<strong>text3</strong> is offline.
+		</li>
+		<li id="text4" class="online">
+			<a href="#">
+				<img src="logo.jpg" class="logo" alt="freecodecamp logo">
+				<strong>text2</strong>text1 is string:xxxx
+			</a>
+		</li>
+	</ul>
+</div>
+</body>
+<script src="../jquery-3.1.0.min.js"></script>
+<script>
+	$(document).ready(function () {
+		var usrName = "";
+		var usrURL = "";
+		var usrLogo = "";
+		var usrStatus = "";
+		var usrStream = "";
+		var html = "";
+		var users = ["freecodecamp", "brunofin", "comster404", "storbeck", "terakilobyte", "MedryBW", "habathcx", "RobotCaleb", "thomasballinger", "noobs2ninjas", "beohoff", "Monstercat"];
+
+		function displayUser(usrName, usrURL, usrLogo, usrStatus, usrStream) {
+			if (usrLogo == null) {
+				usrLogo = "logo.jpg";
+			}
+			html = "";
+			html += "<li id='" + usrName + "' class='" + usrStatus + "'>";
+			if (usrStatus != "unavailable") {
+				html += "<a href='" + usrURL + "' target='_blank'>";
+			}
+			html += "<img src='" + usrLogo;
+			html += "' class='logo' alt='";
+			html += usrName + " logo'>";
+			html += "<strong>" + usrName + "</strong>";
+			html += " is " + usrStatus;
+			if (usrStatus == "unavailable") {
+				html += ". This user cannot be found on Twitch.tv.";
+			}
+			if (usrStream != "") {
+				html += " streaming: <span class='streamTitle'>" + usrStream + "</span>";
+			}
+			if (usrStatus != "unavailable") {
+				html += "</a>" + "</li>";
+			} else {
+				html += "</li>";
+			}
+		}
+
+		users.forEach(function (user) {
+			$.getJSON("https://api.twitch.tv/kraken/streams/" + user + "?callback=?", function (data) {
+				console.log(data);
+				if (data["stream"] != null) {
+					usrName = data["stream"]["channel"]["display_name"];
+					usrURL = data["stream"]["channel"]["url"];
+					usrLogo = data["stream"]["channel"]["logo"];
+					usrStatus = "online";
+					usrStream = data["stream"]["game"];
+					displayUser(usrName, usrURL, usrLogo, usrStatus, usrStream);
+					$(".container ul").append(html);
+				} else if (data["stream"] == null) {
+					$.getJSON("https://api.twitch.tv/kraken/channels/" + user + "?callback=?", function (data) {
+						if ("error" in data) {
+							usrName = user;
+							usrURL = "";
+							usrLogo = "logo.jpg";
+							usrStatus = "unavailable";
+							usrStream = "";
+							displayUser(usrName, usrURL, usrLogo, usrStatus, usrStream);
+							$(".container ul").append(html);
+						} else {
+							usrName = data["display_name"];
+							usrURL = data["url"];
+							usrLogo = data["logo"];
+							usrStatus = "offline";
+							usrStream = "";
+							displayUser(usrName, usrURL, usrLogo, usrStatus, usrStream);
+							$(".container ul").append(html);
+						}
+					});
+				}
+			});
+		});
+		$(".selector").click(function () {
+			$(".selector").removeClass("active");
+			$(this).addClass("active");
+			var status = $(this).attr('id');
+			if (status === "all") {
+				$(".online, .offline, .unavailable").removeClass("hidden");
+			} else if (status === "online") {
+				$(".online").removeClass("hidden");
+				$(".offline, .unavailable").addClass("hidden");
+			} else {
+				$(".offline").removeClass("hidden");
+				$(".online, .unavailable").addClass("hidden");
+			}
+		})
+	});
+</script>
+</html>
